@@ -1,0 +1,5 @@
+[component]
+type = "collection"
+name = "Components"
+locales-repo = "https://github.com/archetype-themes/locales.git"
+dev-theme = "https://github.com/archetype-themes/reference-theme.git"

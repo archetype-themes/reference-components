@@ -1,0 +1,10 @@
+build
+node_modules
+.explorer
+.locales
+
+#MacOS
+.DS_Store
+
+#IntelliJ IDE
+.idea
