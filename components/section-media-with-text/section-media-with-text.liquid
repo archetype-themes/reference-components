@@ -1,0 +1,49 @@
+{%- comment -%}
+  Media with text section
+
+  Accepts the following attributes:
+  - slot {string} - Slot for media content
+  - full_width {true|false} - Whether the section should be full width
+  - media_width {'33'|'50'|'66'} - Width of the media
+  - layout {'left'|'right'} - Layout of the section
+  - content_alignment {'left'|'center'|'right'} - Alignment of the content
+  - media_crop {'none'|'16-9'|'4-3'|'portrait'|'landscape'|'square'|'rounded'|'rounded-wave'|'rounded-top'|'star'|'splat-1'|'splat-2'|'splat-3'|'splat-4'} - Crop type of the media
+  - content_position {'top'|'center'|'bottom'} - Position of the content
+
+  Usage:
+  {% liquid
+    capture blocks
+      for block in section.blocks
+        case block.type
+          when '@app'
+            render block
+          when 'image'
+            render 'block-image', block: block
+          when 'video'
+            render 'block-video', block: block
+        endcase
+      endfor
+    endcapture
+
+    render 'section-media-text', slot: blocks
+  %}
+{%- endcomment -%}
+
+{% liquid
+  assign full_width = full_width | default: section.settings.full_width, allow_false: true | default: true, allow_false: true
+  assign media_width = media_width | default: section.settings.media_width | default: '50'
+  assign layout = layout | default: section.settings.layout | default: 'right'
+  assign content_alignment = content_alignment | default: section.settings.content_alignment | default: 'left'
+  assign media_crop = media_crop | default: section.settings.media_crop | default: 'none'
+  assign content_position = content_position | default: section.settings.content_position | default: 'center'
+%}
+
+<section class="media-with-text media-with-text--{{ layout }} media-with-text-media--{{ media_width }} {% unless full_width %}page-width{% endunless %}">
+  <div class="media-with-text__text justify-{{ content_position }} text-{{ content_alignment }}">
+    {% render 'block-rich-text' %}
+  </div>
+
+  <div class="media-with-text__media">
+    {{ slot }}
+  </div>
+</section>

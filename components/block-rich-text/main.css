@@ -1,0 +1,9 @@
+.rich-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.rich-text > * {
+  margin-bottom: 0;
+}

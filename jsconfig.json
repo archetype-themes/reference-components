@@ -2,15 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@archetype-themes/scripts/helpers/*": [
-        "scripts/helpers/*"
+      "@archetype-themes/scripts/custom-elements/*": [
+        "scripts/custom-elements/*"
       ],
-      "@archetype-themes/scripts/modules/*": [
-        "scripts/modules/*"
-      ],
-      "@archetype-themes/scripts/vendors/*": [
-        "scripts/vendors/*"
-      ]
+      "@archetype-themes/scripts/helpers/*": ["scripts/utils/*"],
+      "@archetype-themes/scripts/vendors/*": ["scripts/vendors/*"]
     }
   }
 }
