@@ -1,0 +1,20 @@
+{%- comment -%}
+  Main product section
+
+  @param {string} [product_media_gallery] - Content for the product media gallery
+
+  @example
+  {% render 'main-product' %}
+{%- endcomment -%}
+
+{%- liquid
+  capture product_media_gallery_default
+    render 'product-media-gallery'
+  endcapture
+-%}
+
+<section class="main-product page-width page-width--flush-small">
+  <div class="main-product__media-gallery">
+    {{- product_media_gallery | default: product_media_gallery_default -}}
+  </div>
+</section>

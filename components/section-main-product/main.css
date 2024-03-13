@@ -1,0 +1,18 @@
+@import "../../styles/vendor/normalize.css";
+@import '../../styles/variables.css';
+@import '../../styles/layout/page-width.css';
+
+.main-product {
+  display: grid;
+  width: 100%;
+
+  @media (--medium-up) {
+    grid-template-columns: 60% 1fr;
+    gap: var(--grid-gutter);
+  }
+}
+
+.main-product__media-gallery {
+  display: grid;
+  width: 100%;
+}

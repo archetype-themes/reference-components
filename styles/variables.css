@@ -1,0 +1,51 @@
+:root {
+  --gutter: 30px;
+  --page-width: 1500px;
+  --page-width-narrow: 1000px;
+  --input-radius: 0;
+  --page-width-gutter-small: 17px;
+  --page-width-gutter-large: 40px;
+  --grid-gutter: 22px;
+  --grid-gutter-small: 16px;
+  --breakpoint-small: 768px;
+  --breakpoint-medium-up: 769px;
+  --breakpoint-medium-down: 959px;
+  --slideCurve: 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  --drawerBoxShadow: 0 10px 25px rgba(0,0,0,0.15);
+
+  /*================ Product and collection grids ================*/
+  /* Product grid margin is double this variable */
+  --productGridMargin: 10px;
+  --productGridPadding: 12px;
+  --productRadius: 10px;
+
+  /*================ Color variables ================*/
+  --colorStickyNavLinks: #fff;
+  --disabledGrey: #f6f6f6;
+  --disabledBorder: #b6b6b6;
+  --disabledGreyText: #b6b6b6;
+  --errorRed: #d02e2e;
+  --errorRedBg: #fff6f6;
+  --successGreen: #56ad6a;
+  --successGreenBg: #ecfef0;
+
+  /*================ General sizing and z-index ================*/
+  --desktopMenuChevronSize: 10px;
+  --siteNavItemPadding: 20px;
+  --siteNavItemPaddingTopBottom: 16px;
+  --siteNavIconPadding: 12px;
+
+  --z-index-modal: 30;
+  --z-index-toolbar: 7;
+  --z-index-header: 6;
+  --z-index-header-bottom-row: 3;
+  --z-index-header-drawers: 5;
+  --z-index-header-drawers-mobile: 3;
+  --z-index-header-search: 7;
+  --z-index-loader: 4;
+}
+
+/*================ Breakpoints ================*/
+@custom-media --small only screen and (max-width: 768px);
+@custom-media --medium-up only screen and (min-width: 769px);
+@custom-media --medium-down only screen and (max-width: 959px);
