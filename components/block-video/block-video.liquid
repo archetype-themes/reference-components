@@ -1,5 +1,5 @@
 {%- comment -%}
-  Renders a video element with an optional alt image
+  Renders a video element
 
   Accepts the following attributes:
   - video {Object} - Video object
@@ -8,7 +8,6 @@
   - loop {boolean} - Loop the video
   - hide_controls {boolean} - Hide the video controls
   - mute_video {boolean} - Mute the video
-  - alt_image {Object} - Image object
   - media_crop {'16-9'|'4-3'|'portrait'|'landscape'|'square'} - Crop type of the media
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 {%- endcomment -%}
@@ -20,7 +19,6 @@
   assign loop = loop | default: block.settings.loop, allow_false: true
   assign show_controls = show_controls | default: block.settings.show_controls, allow_false: false
   assign mute_video = mute_video | default: block.settings.mute_video, allow_false: true
-  assign alt_image = alt_image | default: block.settings.alt_image
   assign media_crop = media_crop | default: section.settings.media_crop | default: '16-9'
   assign hydration = hydration | default: 'on:visible'
 %}
