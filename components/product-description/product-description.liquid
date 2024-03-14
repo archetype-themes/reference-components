@@ -19,7 +19,7 @@
 
 {%- if is_tab -%}
   {% assign title = 'labels.description' | t %}
-  {%- render 'tab', id: id, title: title, content: description -%}
+  {% comment %} {%- render 'tab', id: id, title: title, content: description -%} {% endcomment %}
 {%- else -%}
   <div class="rte clearfix">
     {{ description }}
