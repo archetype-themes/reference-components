@@ -3,35 +3,28 @@
 
   Accepts the following attributes:
   - image {Object} - Image object
-  - media_width {'33'|'50'|'66'} - Width of the media
   - media_crop {'16-9'|'4-3'|'portrait'|'landscape'|'square'} - Crop type of the media
+  - preload {Boolean} - Whether to preload the image
 {%- endcomment -%}
 
 {% liquid
   assign image = image | default: block.settings.image
-  assign media_width = media_width | default: section.settings.media_width | default: '50'
   assign media_crop = media_crop | default: section.settings.media_crop | default: 'none'
+  assign preload = preload | default: false
 
-  assign lazyload_images = true
-
-  if section.index == 1
-    assign lazyload_images = false
+  if preload
+    assign loading = 'eager'
+    assign fetchpriority = 'high'
+  else
+    assign loading = 'lazy'
+    assign fetchpriority = 'auto'
   endif
 %}
 
 <div class="block-image aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
   {%- if image != blank -%}
     {%- liquid
-      assign sizes = media_width | append: 'vw'
-
-      assign imageWidth = media_width | times: 1
-      if imageWidth >= 50
-        assign loading = lazyload_images
-      else
-        assign loading = true
-      endif
-
-      echo image | image_url: width: 800 | image_tag: loading: loading, sizes: sizes
+      echo image | image_url: width: 800 | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes
     -%}
   {%- else -%}
     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
