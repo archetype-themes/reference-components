@@ -1,0 +1,31 @@
+{% comment %}
+  @param {block} block - The block object
+  @param {string} [id] - The id of the tab
+  @param {product} [product] - The product object
+
+  @example
+  {% render 'product-description' with block %}
+{% endcomment %}
+
+{%- liquid
+  assign block = product-description
+-%}
+
+{%- liquid
+  assign is_tab = is_tab | default: block.settings.is_tab
+  assign id = id | default: block.id | append: product.id
+  if product.empty?
+    assign description = 'info.placeholder_product_description' | t
+  else
+    assign description = product.description
+  endif
+-%}
+
+{%- if is_tab -%}
+  {% assign title = 'labels.description' | t %}
+  {%- render 'tab', id: id, title: title, content: description -%}
+{%- else -%}
+  <div class="rte clearfix">
+    {{ description }}
+  </div>
+{%- endif -%}

@@ -1,10 +1,21 @@
 {%- comment -%}
   Main product section
 
+  @param {string} slot - Content for product info
   @param {string} [product_media_gallery] - Content for the product media gallery
 
   @example
-  {% render 'main-product' %}
+  {% liquid
+    capture blocks
+      case block.type
+        when '@app'
+          render block
+        when 'description'
+          render 'block-description' with block
+      endcase
+    endcapture
+    render 'main-product', slot: blocks
+  %}
 {%- endcomment -%}
 
 {%- liquid
@@ -16,5 +27,8 @@
 <section class="main-product page-width page-width--flush-small">
   <div class="main-product__media-gallery">
     {{- product_media_gallery | default: product_media_gallery_default -}}
+  </div>
+  <div class="main-product__info">
+    {{- slot -}}
   </div>
 </section>
