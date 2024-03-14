@@ -4,15 +4,11 @@
   @param {block} block - The block object
 
   @example
-  {% render 'product-description' with block %}
+  {% render 'product-description', block: block %}
 {%- endcomment -%}
-
-{%- liquid
-  assign block = block-description
--%}
 
 <div class="product-block{% if block.settings.is_tab %} product-block--tab{% endif %}" {{ block.shopify_attributes }}>
   {%- liquid
-    render 'product-description' with block
+    render 'product-description', block: block
   -%}
 </div>

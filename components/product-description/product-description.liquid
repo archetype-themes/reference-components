@@ -4,12 +4,8 @@
   @param {product} [product] - The product object
 
   @example
-  {% render 'product-description' with block %}
+  {% render 'product-description', with: block %}
 {% endcomment %}
-
-{%- liquid
-  assign block = product-description
--%}
 
 {%- liquid
   assign is_tab = is_tab | default: block.settings.is_tab
