@@ -18,6 +18,7 @@ export default class extends HTMLElement {
     if (this.autoplay) {
       inView(this, () => {
         this.play();
+        return () => this.pause();
       });
     }
   }
