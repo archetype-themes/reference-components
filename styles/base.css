@@ -1,0 +1,17 @@
+html {
+  touch-action: manipulation;
+}
+
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html,
+body {
+  background-color: var(--colorBody);
+  color: var(--colorTextBody);
+}
+
+details summary::-webkit-details-marker {
+  display:none;
+}

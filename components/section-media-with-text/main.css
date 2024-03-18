@@ -2,6 +2,7 @@
 @import "../../styles/variables.css";
 @import "../../styles/helpers/typography.css";
 @import "../../styles/layout/page-width.css";
+@import "../../styles/base.css";
 
 .media-with-text {
   display: flex;
