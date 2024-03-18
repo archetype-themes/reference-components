@@ -5,15 +5,15 @@
 .product-media-gallery {
   display: grid;
   grid-auto-flow: column;
-  gap: 1rem;
+  gap: 8px;
   justify-content: flex-start;
   width: 100%;
   overflow-x: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: var(--pageWidthPadding);
+  padding-right: var(--pageWidthPadding);
   scroll-snap-type: x mandatory;
-  scroll-padding-left: 1.5rem;
-  scroll-padding-right: 1.5rem;
+  scroll-padding-left: var(--pageWidthPadding);
+  scroll-padding-right: var(--pageWidthPadding);
   scroll-behavior: smooth;
 
   @media (--medium-up) {
