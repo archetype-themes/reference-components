@@ -1,3 +1,4 @@
+@import "../../styles/vendor/normalize.css";
 @import "../../styles/variables.css";
 @import "../../styles/helpers/typography.css";
 @import "../../styles/layout/page-width.css";
