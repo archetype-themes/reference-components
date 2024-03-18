@@ -7,12 +7,12 @@
   @example
   {% liquid
     capture blocks
-      case block.type
-        when '@app'
-          render block
-        when 'description'
-          render 'block-description', block: block
-      endcase
+      for block in section.blocks
+        case block.type
+          when 'description'
+            render 'block-description', block: block
+        endcase
+      endfor
     endcapture
     render 'main-product', slot: blocks
   %}
