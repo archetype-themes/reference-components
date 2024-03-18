@@ -1,4 +1,5 @@
-@import "../../styles/index.css";
+@import "../../styles/vendor/normalize.css";
+@import "../../styles/variables.css";
 
 .product-media-gallery {
   display: grid;

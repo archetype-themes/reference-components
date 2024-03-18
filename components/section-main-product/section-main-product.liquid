@@ -11,7 +11,7 @@
         when '@app'
           render block
         when 'description'
-          render 'block-description' with block
+          render 'block-description', block: block
       endcase
     endcapture
     render 'main-product', slot: blocks

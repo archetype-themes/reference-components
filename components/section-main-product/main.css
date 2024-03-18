@@ -1,13 +1,14 @@
-@import "../../styles/index.css";
+@import "../../styles/vendor/normalize.css";
+@import "../../styles/variables.css";
 @import "../../styles/layout/page-width.css";
 
 .main-product {
   display: grid;
   width: 100%;
+  gap: var(--grid-gutter);
 
   @media (--medium-up) {
     grid-template-columns: 60% 1fr;
-    gap: var(--grid-gutter);
   }
 }
 

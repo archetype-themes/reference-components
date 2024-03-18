@@ -1,27 +1,19 @@
 {% comment %}
-  @param {block} block - The block object
-  @param {string} [id] - The id of the tab
   @param {product} [product] - The product object
 
   @example
-  {% render 'product-description', with: block %}
+  {% render 'product-description' %}
 {% endcomment %}
 
 {%- liquid
-  assign is_tab = is_tab | default: block.settings.is_tab
-  assign id = id | default: block.id | append: product.id
-  if product.empty?
-    assign description = 'info.placeholder_product_description' | t
-  else
+  assign description = 'info.placeholder_product_description' | t
+  unless product.empty?
     assign description = product.description
-  endif
+  endunless
+
+  # TODO: add tab support
 -%}
 
-{%- if is_tab -%}
-  {% assign title = 'labels.description' | t %}
-  {% comment %} {%- render 'tab', id: id, title: title, content: description -%} {% endcomment %}
-{%- else -%}
-  <div class="rte clearfix">
-    {{ description }}
-  </div>
-{%- endif -%}
+<div class="rte clearfix">
+  {{ description }}
+</div>

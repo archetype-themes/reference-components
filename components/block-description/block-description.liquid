@@ -7,8 +7,6 @@
   {% render 'product-description', block: block %}
 {%- endcomment -%}
 
-<div class="product-block{% if block.settings.is_tab %} product-block--tab{% endif %}" {{ block.shopify_attributes }}>
-  {%- liquid
-    render 'product-description', block: block
-  -%}
+<div class="product-block" {{ block.shopify_attributes }}>
+  {%- render 'product-description' -%}
 </div>

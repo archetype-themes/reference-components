@@ -1,4 +1,4 @@
-@import "../../styles/index.css";
+@import "../../styles/vendor/normalize.css";
 
 .media {
   width: 100%;
