@@ -1,0 +1,37 @@
+{%- comment -%}
+  Renders product variant-picker
+
+  @param {block} block - Block object
+  @param {product} [product] - Product object
+  @param {boolean} [update_url] - Whether to update the URL when the variant is changed
+
+  @example
+  {% render 'block-variant-picker', block: block %}
+{%- endcomment -%}
+
+{%- liquid
+  assign update_url = update_url | default: true
+-%}
+
+{%- unless product.has_only_default_variant -%}
+  <block-variant-picker
+    id="variant-selects-{{ section.id }}"
+    data-section="{{ section.id }}"
+    data-url="{{ product.url }}"
+    {% if update_url == false %}
+      data-update-url="false"
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
+    {%- for option in product.options_with_values -%}
+      {%- if picker_type == 'button' -%}
+        {%- render 'variant-button', option: option -%}
+      {%- else -%}
+        {%- # TODO: add dropdown support -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
+  </block-variant-picker>
+{%- endunless -%}
