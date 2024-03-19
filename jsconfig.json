@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "checkJs": true,
+    "lib": ["es2015", "dom"],
     "baseUrl": ".",
     "paths": {
       "@archetype-themes/scripts/custom-elements/*": [
@@ -8,5 +10,6 @@
       "@archetype-themes/scripts/helpers/*": ["scripts/utils/*"],
       "@archetype-themes/scripts/vendors/*": ["scripts/vendors/*"]
     }
-  }
+  },
+  "include": ["scripts", "components"]
 }
