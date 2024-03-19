@@ -2,10 +2,10 @@
   Renders the first 3D model of a product
 
   Accepts the following attributes:
-  - product {Object} - Product object
-  - media {Object} - Media object
+  - product {product} - Product object
+  - media {media} - Media object
   - autoplay {Boolean} - Whether the model should autoplay
-  - media_crop {'16-9'|'4-3'|'portrait'|'landscape'|'square'} - Crop type of the media
+  - media_crop {'16-9'|'portrait'|'landscape'|'square'} - Crop type of the media
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 {%- endcomment -%}
 
@@ -13,7 +13,7 @@
   assign product = product | default: block.settings.product
   assign media = media | default: product.media | where: 'media_type', 'model' | first
   assign autoplay = autoplay | default: block.settings.autoplay
-  assign media_crop = media_crop | default: section.settings.media_crop | default: 'none'
+  assign media_crop = media_crop | default: block.settings.media_crop | default: 'square'
   assign hydration = hydration | default: 'on:visible'
 %}
 

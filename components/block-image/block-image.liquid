@@ -2,14 +2,14 @@
   Renders an image
 
   Accepts the following attributes:
-  - image {Object} - Image object
-  - media_crop {'16-9'|'4-3'|'portrait'|'landscape'|'square'} - Crop type of the media
+  - image {image} - Image object
+  - media_crop {'16-9'|'portrait'|'landscape'|'square'} - Crop type of the media
   - preload {Boolean} - Whether to preload the image
 {%- endcomment -%}
 
 {% liquid
   assign image = image | default: block.settings.image
-  assign media_crop = media_crop | default: section.settings.media_crop | default: 'none'
+  assign media_crop = media_crop | default: block.settings.media_crop | default: 'square'
   assign preload = preload | default: false
 
   if preload

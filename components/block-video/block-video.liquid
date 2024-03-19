@@ -2,13 +2,13 @@
   Renders a video element
 
   Accepts the following attributes:
-  - video {Object} - Video object
-  - external_video {Object} - External video object
+  - video {video} - Video object
+  - external_video {external_video} - External video object
   - autoplay {boolean} - Autoplay the video
   - loop {boolean} - Loop the video
   - hide_controls {boolean} - Hide the video controls
   - mute_video {boolean} - Mute the video
-  - media_crop {'16-9'|'4-3'|'portrait'|'landscape'|'square'} - Crop type of the media
+  - media_crop {'16-9'|'portrait'|'landscape'|'square'} - Crop type of the media
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 {%- endcomment -%}
 
@@ -19,7 +19,7 @@
   assign loop = loop | default: block.settings.loop, allow_false: true
   assign show_controls = show_controls | default: block.settings.show_controls, allow_false: false
   assign mute_video = mute_video | default: block.settings.mute_video, allow_false: true
-  assign media_crop = media_crop | default: section.settings.media_crop | default: '16-9'
+  assign media_crop = media_crop | default: block.settings.media_crop | default: '16-9'
   assign hydration = hydration | default: 'on:visible'
 %}
 
@@ -65,9 +65,11 @@
     {%- endif -%}
   </div>
 
-  <template data-island>
-    <script type="module">
-      import 'components/block-video';
-    </script>
-  </template>
+  {% if video or external_video %}
+    <template data-island>
+      <script type="module">
+        import 'components/block-video';
+      </script>
+    </template>
+  {% endif %}
 </is-land>
