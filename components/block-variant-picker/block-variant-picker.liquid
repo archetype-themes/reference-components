@@ -24,7 +24,7 @@
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
-      {%- if picker_type == 'button' -%}
+      {%- if block.settings.picker_type == 'button' -%}
         {%- render 'variant-button', option: option -%}
       {%- else -%}
         {%- # TODO: add dropdown support -%}
