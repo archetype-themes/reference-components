@@ -62,6 +62,4 @@ export class ModelMedia extends BaseMedia {
   }
 }
 
-if (!customElements.get("model-media")) {
-  customElements.define("model-media", ModelMedia);
-}
+customElements.define("model-media", ModelMedia);

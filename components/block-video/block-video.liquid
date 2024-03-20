@@ -61,11 +61,11 @@
         </template>
       </video-media>
     {%- else -%}
-      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
     {%- endif -%}
   </div>
 
-  {% if video or external_video %}
+  {% if video != blank or external_video != blank %}
     <template data-island>
       <script type="module">
         import 'components/block-video';

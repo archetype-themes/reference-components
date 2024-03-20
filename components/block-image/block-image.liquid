@@ -12,12 +12,12 @@
   assign media_crop = media_crop | default: block.settings.media_crop | default: 'square'
   assign preload = preload | default: false
 
+  assign loading = 'lazy'
+  assign fetchpriority = 'auto'
+
   if preload
     assign loading = 'eager'
     assign fetchpriority = 'high'
-  else
-    assign loading = 'lazy'
-    assign fetchpriority = 'auto'
   endif
 %}
 
@@ -27,6 +27,6 @@
       echo image | image_url: width: 800 | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes
     -%}
   {%- else -%}
-    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg' }}
   {%- endif -%}
 </div>

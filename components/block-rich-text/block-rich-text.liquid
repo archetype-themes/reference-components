@@ -5,7 +5,6 @@
   - subheading {string} - Text for the subheading
   - heading {string} - Text for the heading
   - heading_size {'h3'|'h2'|'h1'|'h0'} - Size of the heading
-  - text_highlight {'accent-color'|'handwrite'|'outline'|'regular'|'serif'} - Highlight style for the heading
   - text {string} - Text for the section
   - button_text {string} - Label for the button
   - button_link {string} - URL for the button
@@ -15,7 +14,6 @@
   assign subheading = subheading | default: section.settings.subheading
   assign heading = heading | default: section.settings.heading
   assign heading_size = heading_size | default: section.settings.heading_size | default: 'h2'
-  assign text_highlight = text_highlight | default: section.settings.text_highlight | default: 'serif'
   assign text = text | default: section.settings.text
   assign button_text = button_text | default: section.settings.button_text
   assign button_link = button_link | default: section.settings.button_link
@@ -29,7 +27,7 @@
   {%- endif -%}
 
   {%- if heading != blank -%}
-    <h2 class="{{ heading_size }} rich-text__heading text-highlight text-highlight--{{ text_highlight }}">
+    <h2 class="{{ heading_size }} rich-text__heading">
       {{ heading }}
     </h2>
   {%- endif -%}
@@ -42,7 +40,7 @@
 
   {%- if button_text != blank -%}
     <div class="rich-text__button">
-      <a href="{{ button_link | default: "#" }}" class="btn">
+      <a href="{{ button_link | default: "#" }}" class="button">
         {{ button_text | escape }}
       </a>
     </div>

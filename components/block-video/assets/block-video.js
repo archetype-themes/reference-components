@@ -112,6 +112,4 @@ export class VideoMedia extends BaseMedia {
   }
 }
 
-if (!customElements.get("video-media")) {
-  customElements.define("video-media", VideoMedia);
-}
+customElements.define("video-media", VideoMedia);

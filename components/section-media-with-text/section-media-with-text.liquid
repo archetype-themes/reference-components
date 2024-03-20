@@ -34,9 +34,10 @@
   assign layout = layout | default: section.settings.layout | default: 'right'
   assign content_alignment = content_alignment | default: section.settings.content_alignment | default: 'left'
   assign content_position = content_position | default: section.settings.content_position | default: 'center'
+  assign color_scheme = color_scheme | default: section.settings.color_scheme | default: 'scheme-1'
 %}
 
-<section class="media-with-text media-with-text--{{ layout }} media-with-text-media--{{ media_width }} {% unless full_width %}page-width{% endunless %}">
+<section class="media-with-text media-with-text--{{ layout }} media-with-text-media--{{ media_width }} {% unless full_width %}page-width{% endunless %} color-{{ color_scheme }}">
   <div class="media-with-text__text justify-{{ content_position }} text-{{ content_alignment }}">
     {% render 'block-rich-text' %}
   </div>
