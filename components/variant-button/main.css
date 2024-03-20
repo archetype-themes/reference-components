@@ -3,7 +3,7 @@
 @import "../../styles/variables.css";
 @import "../../styles/helpers/visibility";
 
-.variant-input-wrap {
+.variant-button {
   --labelBottomMargin: 12px;
   border: 0;
   padding: 0;
@@ -31,7 +31,7 @@
     }
   }
 
-  input[type=radio]:focus + label {
+  input[type='radio']:focus + label {
     box-shadow: 0 0 0 1px var(--colorTextBody);
     outline: 2px auto Highlight;
     outline: 2px auto -webkit-focus-ring-color;
@@ -59,7 +59,7 @@
   }
 }
 
-.variant__label {
+.variant-button__label {
   display: block;
   margin-bottom: 10px;
   cursor: default;
