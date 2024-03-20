@@ -1,10 +1,7 @@
 let subscribers = {};
 
 export const PUB_SUB_EVENTS = {
-  cartUpdate: 'cart-update',
-  quantityUpdate: 'quantity-update',
   variantChange: 'variant-change',
-  cartError: 'cart-error',
 };
 
 export function subscribe(eventName, callback) {
