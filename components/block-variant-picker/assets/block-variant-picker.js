@@ -16,7 +16,7 @@ class BlockVariantPicker extends HTMLElement {
     this.updateVariantStatuses();
 
     if (this.currentVariant) {
-      this.renderProductInfo();
+      this.getProductInfo();
     }
   }
 
@@ -77,7 +77,7 @@ class BlockVariantPicker extends HTMLElement {
     });
   }
 
-  renderProductInfo() {
+  getProductInfo() {
     const requestedVariantId = this.currentVariant.id;
     const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
 

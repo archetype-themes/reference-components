@@ -4,21 +4,23 @@ import { PUB_SUB_EVENTS } from 'components/block-variant-picker';
 class BlockBuyButtons extends HTMLElement {
   constructor() {
     super();
-    this.getLocales();
   }
 
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
       this.sectionId = event.data.sectionId;
-      if (!event.data.currentVariant) {
+      const { html, variant } = event.data;
+      if (!variant) {
         this.setUnavailable();
+        return;
       }
-      this.renderProductInfo(event.data);
+      this.updateVariantInput(variant);
+      this.renderProductInfo(html);
     });
   }
 
-  renderProductInfo(data) {
-    const addButtonUpdated = data.html.getElementById(`ProductSubmitButton-${this.sectionId}`);
+  renderProductInfo(html) {
+    const addButtonUpdated = html.getElementById(`ProductSubmitButton-${this.sectionId}`);
     this.toggleAddButton(
       addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true,
       this.getLocales().soldOut
@@ -51,28 +53,21 @@ class BlockBuyButtons extends HTMLElement {
     const button = document.getElementById(`product-form-${this.sectionId}`);
     const addButton = button.querySelector('[name="add"]');
     const addButtonText = button.querySelector('[name="add"] > span');
-    const price = document.getElementById(`price-${this.sectionId}`);
-    const inventory = document.getElementById(`Inventory-${this.sectionId}`);
-    const sku = document.getElementById(`Sku-${this.sectionId}`);
 
     if (!addButton) return;
-    addButtonText.textContent = this.locales.unavailable;
-    if (price) price.classList.add('visibility-hidden');
-    if (inventory) inventory.classList.add('visibility-hidden');
-    if (sku) sku.classList.add('visibility-hidden');
+    addButtonText.textContent = this.getLocales().unavailable;
   }
 
-  updateVariantInput() {
+  updateVariantInput(variant) {
     const productForms = document.querySelectorAll(
-      `#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`
+      `#product-form-${this.sectionId}, #product-form-installment-${this.sectionId}`
     );
     productForms.forEach((productForm) => {
       const input = productForm.querySelector('input[name="id"]');
-      input.value = this.currentVariant.id;
+      input.value = variant.id;
       input.dispatchEvent(new Event('change', { bubbles: true }));
     });
   }
 }
-
 
 customElements.define('block-buy-buttons', BlockBuyButtons);
