@@ -1,0 +1,18 @@
+@import "../../styles/vendor/normalize.css"
+@import "../../styles/modules/button.css";
+
+.block-buy-buttons {
+  display: block;
+
+  .shopify-payment-button {
+    margin-top: 10px;
+  }
+}
+
+.block-buy-buttons__submit {
+  &.button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

@@ -15,6 +15,7 @@
 
 {%- unless product.has_only_default_variant -%}
   <block-variant-picker
+    class="block-variant-picker"
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
     data-url="{{ product.url }}"

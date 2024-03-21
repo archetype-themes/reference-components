@@ -19,6 +19,9 @@
 
 .main-product__info {
   padding: 0 var(--pageWidthPadding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gutter);
 
   @media (--medium-up) {
     padding: 65px 0 0 45px;

@@ -1,4 +1,4 @@
-block-variant-picker {
+.block-variant-picker {
   display: grid;
   gap: 25px;
 }
