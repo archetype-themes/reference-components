@@ -10,6 +10,7 @@ class BlockVariantPicker extends HTMLElement {
 
   onVariantChange(event) {
     this.updateOptions();
+    this.updateLocales();
     this.updateMasterId();
     this.toggleAddButton(true, '', false);
     this.updateVariantStatuses();
@@ -34,6 +35,10 @@ class BlockVariantPicker extends HTMLElement {
     });
   }
 
+  updateLocales() {
+    this.locales ||= JSON.parse(this.querySelector('[type="application/json"][data-locales-json]').textContent);
+  }
+
   updateMasterId() {
     this.currentVariant = this.getVariantData().find((variant) => {
       return !variant.options
@@ -45,7 +50,7 @@ class BlockVariantPicker extends HTMLElement {
   }
 
   getVariantData() {
-    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"][data-variants-json]').textContent);
     return this.variantData;
   }
 
@@ -61,7 +66,7 @@ class BlockVariantPicker extends HTMLElement {
       if (text) addButtonText.textContent = text;
     } else {
       addButton.removeAttribute('disabled');
-      addButtonText.textContent = window.theme.strings.addToCart;
+      addButtonText.textContent = this.locales.addToCart;
     }
 
     if (!modifyClass) return;
@@ -93,7 +98,7 @@ class BlockVariantPicker extends HTMLElement {
       } else if (element.tagName === 'OPTION') {
         element.innerText = availableElement
           ? value
-          : window.theme.strings.unavailable.replace('[value]', value);
+          : this.locales.unavailable.replace('[value]', value);
       }
     });
   }
@@ -118,7 +123,7 @@ class BlockVariantPicker extends HTMLElement {
     const sku = document.getElementById(`Sku-${this.dataset.section}`);
 
     if (!addButton) return;
-    addButtonText.textContent = window.theme.strings.unavailable;
+    addButtonText.textContent = this.locales.unavailable;
     if (price) price.classList.add('visibility-hidden');
     if (inventory) inventory.classList.add('visibility-hidden');
     if (sku) sku.classList.add('visibility-hidden');
@@ -169,7 +174,7 @@ class BlockVariantPicker extends HTMLElement {
         const addButtonUpdated = html.getElementById(`ProductSubmitButton-${sectionId}`);
         this.toggleAddButton(
           addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true,
-          window.theme.strings.soldOut
+          this.locales.soldOut
         );
 
         publish(event, {
