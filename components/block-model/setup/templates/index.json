@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "media_with_text": {
+      "type": "media-with-text",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "product": "cap-lamp"
+          }
+        }
+      },
+      "block_order": [
+        "model"
+      ],
+      "settings": {
+        "full_width": false,
+        "subheading": "Next-gen products",
+        "heading": "Innovate <em>boldly<\/em>",
+        "heading_size": "h2",
+        "text": "<p>Step into the future with our collection of 3D models designed to inspire and excite. From the intricacies of a digital world to the sleek curves of modern aesthetics, find the perfect model to ignite your next project.<\/p>",
+        "button_text": "Explore models"
+      }
+    }
+  },
+  "order": [
+    "media_with_text"
+  ]
+}

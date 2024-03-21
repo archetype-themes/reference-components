@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "media_with_text": {
+      "type": "media-with-text",
+      "blocks": {
+        "image": {
+          "type": "image"
+        }
+      },
+      "block_order": [
+        "image"
+      ],
+      "settings": {
+        "full_width": false,
+        "media_width": "33",
+        "layout": "left",
+        "content_alignment": "center",
+        "subheading": "Travel Essentials",
+        "heading": "Pack for adventure",
+        "heading_size": "h2",
+        "text": "<p>Your journey begins with the essentials. Our premium travel gear combines style and functionality to accompany you to any destination.<\/p>",
+        "button_text": "Organize in style",
+        "color_scheme": "scheme-3"
+      }
+    }
+  },
+  "order": [
+    "media_with_text"
+  ]
+}
