@@ -34,13 +34,6 @@
     <script type="application/json" data-variants-json>
       {{ product.variants | json }}
     </script>
-    <script type="application/json" data-locales-json>
-      {
-        "addToCart": "{{ 'actions.add_to_cart' | t }}",
-        "soldOut": "{{ 'info.sold_out' | t }}",
-        "unavailable": "{{ 'info.unavailable' | t }}"
-      }
-    </script>
   </block-variant-picker>
   <script type="module">
     import 'components/block-variant-picker';

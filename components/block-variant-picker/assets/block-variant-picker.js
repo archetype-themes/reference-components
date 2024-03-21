@@ -1,6 +1,8 @@
 import { publish } from '@archetype-themes/scripts/utils/pubsub';
 
-export const event = 'variant-change';
+export const PUB_SUB_EVENTS = {
+  variantChange: 'variant-change',
+};
 
 class BlockVariantPicker extends HTMLElement {
   constructor() {
@@ -10,16 +12,10 @@ class BlockVariantPicker extends HTMLElement {
 
   onVariantChange(event) {
     this.updateOptions();
-    this.updateLocales();
     this.updateMasterId();
-    this.toggleAddButton(true, '', false);
     this.updateVariantStatuses();
 
-    if (!this.currentVariant) {
-      this.toggleAddButton(true, '', true);
-      this.setUnavailable();
-    } else {
-      this.updateVariantInput();
+    if (this.currentVariant) {
       this.renderProductInfo();
     }
   }
@@ -35,10 +31,6 @@ class BlockVariantPicker extends HTMLElement {
     });
   }
 
-  updateLocales() {
-    this.locales ||= JSON.parse(this.querySelector('[type="application/json"][data-locales-json]').textContent);
-  }
-
   updateMasterId() {
     this.currentVariant = this.getVariantData().find((variant) => {
       return !variant.options
@@ -52,24 +44,6 @@ class BlockVariantPicker extends HTMLElement {
   getVariantData() {
     this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"][data-variants-json]').textContent);
     return this.variantData;
-  }
-
-  toggleAddButton(disable = true, text, modifyClass = true) {
-    const productForm = document.getElementById(`product-form-${this.dataset.section}`);
-    if (!productForm) return;
-    const addButton = productForm.querySelector('[name="add"]');
-    const addButtonText = productForm.querySelector('[name="add"] > span');
-    if (!addButton) return;
-
-    if (disable) {
-      addButton.setAttribute('disabled', 'disabled');
-      if (text) addButtonText.textContent = text;
-    } else {
-      addButton.removeAttribute('disabled');
-      addButtonText.textContent = this.locales.addToCart;
-    }
-
-    if (!modifyClass) return;
   }
 
   updateVariantStatuses() {
@@ -103,32 +77,6 @@ class BlockVariantPicker extends HTMLElement {
     });
   }
 
-  updateVariantInput() {
-    const productForms = document.querySelectorAll(
-      `#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`
-    );
-    productForms.forEach((productForm) => {
-      const input = productForm.querySelector('input[name="id"]');
-      input.value = this.currentVariant.id;
-      input.dispatchEvent(new Event('change', { bubbles: true }));
-    });
-  }
-
-  setUnavailable() {
-    const button = document.getElementById(`product-form-${this.dataset.section}`);
-    const addButton = button.querySelector('[name="add"]');
-    const addButtonText = button.querySelector('[name="add"] > span');
-    const price = document.getElementById(`price-${this.dataset.section}`);
-    const inventory = document.getElementById(`Inventory-${this.dataset.section}`);
-    const sku = document.getElementById(`Sku-${this.dataset.section}`);
-
-    if (!addButton) return;
-    addButtonText.textContent = this.locales.unavailable;
-    if (price) price.classList.add('visibility-hidden');
-    if (inventory) inventory.classList.add('visibility-hidden');
-    if (sku) sku.classList.add('visibility-hidden');
-  }
-
   renderProductInfo() {
     const requestedVariantId = this.currentVariant.id;
     const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
@@ -144,40 +92,8 @@ class BlockVariantPicker extends HTMLElement {
         if (this.currentVariant.id !== requestedVariantId) return;
 
         const html = new DOMParser().parseFromString(responseText, 'text/html');
-        const destination = document.getElementById(`price-${this.dataset.section}`);
-        const source = html.getElementById(
-          `price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-        );
-        const skuSource = html.getElementById(
-          `Sku-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-        );
-        const skuDestination = document.getElementById(`Sku-${this.dataset.section}`);
-        const inventorySource = html.getElementById(
-          `Inventory-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`
-        );
-        const inventoryDestination = document.getElementById(`Inventory-${this.dataset.section}`);
 
-        if (source && destination) destination.innerHTML = source.innerHTML;
-        if (inventorySource && inventoryDestination) inventoryDestination.innerHTML = inventorySource.innerHTML;
-        if (skuSource && skuDestination) {
-          skuDestination.innerHTML = skuSource.innerHTML;
-          skuDestination.classList.toggle('visibility-hidden', skuSource.classList.contains('visibility-hidden'));
-        }
-
-        const price = document.getElementById(`price-${this.dataset.section}`);
-
-        if (price) price.classList.remove('visibility-hidden');
-
-        if (inventoryDestination)
-          inventoryDestination.classList.toggle('visibility-hidden', inventorySource.innerText === '');
-
-        const addButtonUpdated = html.getElementById(`ProductSubmitButton-${sectionId}`);
-        this.toggleAddButton(
-          addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true,
-          this.locales.soldOut
-        );
-
-        publish(event, {
+        publish(PUB_SUB_EVENTS.variantChange, {
           data: {
             sectionId,
             html,
