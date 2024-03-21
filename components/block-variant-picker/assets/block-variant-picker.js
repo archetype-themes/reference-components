@@ -1,4 +1,6 @@
-import { publish, PUB_SUB_EVENTS } from '@archetype-themes/scripts/utils/pubsub';
+import { publish } from '@archetype-themes/scripts/utils/pubsub';
+
+export const event = 'variant-change';
 
 class BlockVariantPicker extends HTMLElement {
   constructor() {
@@ -170,7 +172,7 @@ class BlockVariantPicker extends HTMLElement {
           window.theme.strings.soldOut
         );
 
-        publish(PUB_SUB_EVENTS.variantChange, {
+        publish(event, {
           data: {
             sectionId,
             html,

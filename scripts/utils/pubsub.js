@@ -1,9 +1,5 @@
 let subscribers = {};
 
-export const PUB_SUB_EVENTS = {
-  variantChange: 'variant-change',
-};
-
 export function subscribe(eventName, callback) {
   if (subscribers[eventName] === undefined) {
     subscribers[eventName] = [];
