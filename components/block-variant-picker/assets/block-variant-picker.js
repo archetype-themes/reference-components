@@ -16,6 +16,7 @@ class BlockVariantPicker extends HTMLElement {
     this.updateVariantStatuses();
 
     if (this.currentVariant) {
+      this.updateURL();
       this.getProductInfo();
     }
   }
@@ -73,6 +74,11 @@ class BlockVariantPicker extends HTMLElement {
           : this.locales.unavailable.replace('[value]', value);
       }
     });
+  }
+
+  updateURL() {
+    if (!this.currentVariant || !('updateUrl' in this.dataset)) return;
+    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
   }
 
   getProductInfo() {
