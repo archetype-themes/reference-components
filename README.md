@@ -7,7 +7,7 @@
   - Create a `setup/` folder (if needed) for component explorer setup
     - Create a `sections/` folder with the list of sections you want your component to render in
     - Create a `templates/` folder with a list of JSON templates that you want to view your component in
-- Each component represents an isolated piece of theme code. Some components are meant to be reusable while others are not.
+- Each component represents an isolated piece of theme code. Some components are meant to be reusable in other components while others are not.
 - Component Liquid file
   - Add documentation to the top of the file
     - Description of what the component does
@@ -16,17 +16,18 @@
   - Add attributes assignments
     - Each attribute should be overridable by passing the attribute to the component with the same name
     - Each attribute should also include fallbacks by using the `| default` Liquid filter. Fallbacks can include:
-      - Section-level settings
-      - Block-level settings
+      - Section-level setting
+      - Block-level setting
       - Global-level theme setting
       - And finally, a default hardcoded value
       - If an attribute is of a boolean value, you may need to include `| default: true, allow_false: true`
       - If an attribute is of an object type, the associated Shopify Liquid object should be specified
-    - All attributes defined at the top of the file should be the exclusive variables used within the file. For example, there should be no direct calls to setting values
+      - If an attribute is of any other type, e.g. string, these should be separate by a pipe as in `{'small'|'large'}`
+    - All attributes defined at the top of the file should be the exclusive variables used throughout the file. There should not be any calls to setting values directly
   - Slots
-    - When possible, components, like section components should be built so that you can slot content into it
-    - Slotted content can be anything but more often than not, it is a captured “rendered snippet” that is then passed as an attribute to that component
-    - This provides you with a way to modify any components, by passing them attributes, you may need before you slot them into another component
+    - When possible, components, like section components, should be built so that you can slot content into them
+    - Slotted content can be any value but more often than not, it is a captured “rendered snippet” that is then passed as an attribute to that component
+    - This provides you with a way to modify any components, by passing them attribute values, you may need before you slot them into a component
   - Island architecture
     - Some components can benefit from the island architecture, which loads in a component’s JavaScript based on some condition, e.g. interactivity, in view, etc.
     - Wrap code in `<is-land>` tag with an optional hydrate attribute reference, e.g. `on:visible`
@@ -36,8 +37,8 @@
   - Custom elements should be appropriately and uniquely named
   - Custom element JS file should be included in the `assets/` folder as `{componentName}.js`
   - Custom element JS file can import any shared JS files by referencing the paths to those files, defined in the repo’s root `importmap.json` file
-  - Components should communicate and pass data via custom web events
-    - Event should be appropriately and uniquely named, ideally with a namespace
+  - Components should communicate and pass data via custom events
+    - Event should be appropriately and uniquely named, ideally with a namespace prefix
     - Import the relevant methods from the `pubsub` ES module
     - In one component, publish an event (via the `publish(eventName, data)` with the data passed as an object
     - In another component, subscribe and listen to that event (via the `subscribe(eventName, callback)` and fire a callback function
