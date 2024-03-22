@@ -32,17 +32,15 @@ class BlockVariantPicker extends HTMLElement {
   }
 
   updateMasterId() {
-    this.currentVariant = this.getVariantData().find((variant) => {
-      return !variant.options
-        .map((option, index) => {
-          return this.options[index] === option;
-        })
-        .includes(false);
-    });
+    this.currentVariant = this.getVariantData().find((variant) => (
+      !variant.options
+        .map((option, index) => this.options[index] === option)
+        .includes(false)
+    ));
   }
 
   getVariantData() {
-    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"][data-variants-json]').textContent);
+    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
     return this.variantData;
   }
 
@@ -79,13 +77,8 @@ class BlockVariantPicker extends HTMLElement {
 
   getProductInfo() {
     const requestedVariantId = this.currentVariant.id;
-    const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
 
-    fetch(
-      `${this.dataset.url}?variant=${requestedVariantId}&section_id=${
-        this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section
-      }`
-    )
+    fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`)
       .then((response) => response.text())
       .then((responseText) => {
         // prevent unnecessary ui changes from abandoned selections
@@ -95,7 +88,7 @@ class BlockVariantPicker extends HTMLElement {
 
         publish(PUB_SUB_EVENTS.variantChange, {
           data: {
-            sectionId,
+            sectionId: this.dataset.sectionId,
             html,
             variant: this.currentVariant,
           },

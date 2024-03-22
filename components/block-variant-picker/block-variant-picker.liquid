@@ -17,10 +17,10 @@
   <block-variant-picker
     class="block-variant-picker"
     id="variant-selects-{{ section.id }}"
-    data-section="{{ section.id }}"
+    data-section-id="{{ section.id }}"
     data-url="{{ product.url }}"
-    {% if update_url == false %}
-      data-update-url="false"
+    {% if update_url %}
+      data-update-url=""
     {% endif %}
     {{ block.shopify_attributes }}
   >

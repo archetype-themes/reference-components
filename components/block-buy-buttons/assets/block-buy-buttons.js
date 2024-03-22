@@ -8,7 +8,6 @@ class BlockBuyButtons extends HTMLElement {
 
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
-      this.sectionId = event.data.sectionId;
       const { html, variant } = event.data;
       if (!variant) {
         this.setUnavailable();
@@ -20,7 +19,7 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   renderProductInfo(html) {
-    const addButtonUpdated = html.getElementById(`ProductSubmitButton-${this.sectionId}`);
+    const addButtonUpdated = html.getElementById(`ProductSubmitButton-${this.dataset.sectionId}`);
     this.toggleAddButton(
       addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true,
       this.getLocales().soldOut
@@ -28,11 +27,12 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   getLocales() {
-    return this.locales ||= JSON.parse(this.querySelector('[type="application/json"][data-locales-json]').textContent);
+    this.locales = this.locales || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+    return this.locales;
   }
 
   toggleAddButton(disable = true, text, modifyClass = true) {
-    const productForm = document.getElementById(`product-form-${this.sectionId}`);
+    const productForm = document.getElementById(`product-form-${this.dataset.sectionId}`);
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
     const addButtonText = productForm.querySelector('[name="add"] > span');
@@ -50,7 +50,7 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   setUnavailable() {
-    const button = document.getElementById(`product-form-${this.sectionId}`);
+    const button = document.getElementById(`product-form-${this.dataset.sectionId}`);
     const addButton = button.querySelector('[name="add"]');
     const addButtonText = button.querySelector('[name="add"] > span');
 
@@ -60,7 +60,7 @@ class BlockBuyButtons extends HTMLElement {
 
   updateVariantInput(variant) {
     const productForms = document.querySelectorAll(
-      `#product-form-${this.sectionId}, #product-form-installment-${this.sectionId}`
+      `#product-form-${this.dataset.sectionId}, #product-form-installment-${this.sectionId}`
     );
     productForms.forEach((productForm) => {
       const input = productForm.querySelector('input[name="id"]');
