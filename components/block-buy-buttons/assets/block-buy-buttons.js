@@ -18,6 +18,10 @@ class BlockBuyButtons extends HTMLElement {
     });
   }
 
+  disconnectedCallback() {
+    this.variantChangeUnsubscriber?.();
+  }
+
   renderProductInfo(html) {
     const addButtonUpdated = html.getElementById(`ProductSubmitButton-${this.dataset.sectionId}`);
     this.toggleAddButton(
