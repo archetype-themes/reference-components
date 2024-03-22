@@ -64,7 +64,7 @@ class BlockBuyButtons extends HTMLElement {
 
   updateVariantInput(variant) {
     const productForms = document.querySelectorAll(
-      `#product-form-${this.dataset.sectionId}, #product-form-installment-${this.sectionId}`
+      `#product-form-${this.dataset.sectionId}, #product-form-installment-${this.dataset.sectionId}`
     );
     productForms.forEach((productForm) => {
       const input = productForm.querySelector('input[name="id"]');
