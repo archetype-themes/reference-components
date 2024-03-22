@@ -1,4 +1,5 @@
 # Reference components checklist
+
 - New folder for component
   - Name the Liquid file same as folder name
   - Create a `main.css` (if needed)
@@ -19,9 +20,9 @@
       - Block-level settings
       - Global-level theme setting
       - And finally, a default hardcoded value
-      - If an attribute is of a boolean value, you may need to include `| default: true, allow_false: true` 
+      - If an attribute is of a boolean value, you may need to include `| default: true, allow_false: true`
       - If an attribute is of an object type, the associated Shopify Liquid object should be specified
-    - All attributes should be used within the same file as is
+    - All attributes defined at the top of the file should be the exclusive variables used within the file. For example, there should be no direct calls to setting values
   - Slots
     - When possible, components, like section components should be built so that you can slot content into it
     - Slotted content can be anything but more often than not, it is a captured “rendered snippet” that is then passed as an attribute to that component
