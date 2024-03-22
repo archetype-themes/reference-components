@@ -1,0 +1,48 @@
+# Reference components checklist
+- New folder for component
+  - Name the Liquid file same as folder name
+  - Create a `main.css` (if needed)
+  - Create an `assets/` folder (if needed) and add component JS or other assets, e.g. SVG, that require transformation
+  - Create a `setup/` folder (if needed) for component explorer setup
+    - Create a `sections/` folder with the list of sections you want your component to render in
+    - Create a `templates/` folder with a list of JSON templates that you want to view your component in
+- Each component represents an isolated piece of theme code. Some components are meant to be reusable while others are not.
+- Component Liquid file
+  - Add documentation to the top of the file
+    - Description of what the component does
+    - Attributes the component accepts. Each attribute should list its possible values and a description of what the attribute does
+    - An example of the component’s usage
+  - Add attributes assignments
+    - Each attribute should be overridable by passing the attribute to the component with the same name
+    - Each attribute should also include fallbacks by using the `| default` Liquid filter. Fallbacks can include:
+      - Section-level settings
+      - Block-level settings
+      - Global-level theme setting
+      - And finally, a default hardcoded value
+      - If an attribute is of a boolean value, you may need to include `| default: true, allow_false: true` 
+      - If an attribute is of an object type, the associated Shopify Liquid object should be specified
+    - All attributes should be used within the same file as is
+  - Slots
+    - When possible, components, like section components should be built so that you can slot content into it
+    - Slotted content can be anything but more often than not, it is a captured “rendered snippet” that is then passed as an attribute to that component
+    - This provides you with a way to modify any components, by passing them attributes, you may need before you slot them into another component
+  - Island architecture
+    - Some components can benefit from the island architecture, which loads in a component’s JavaScript based on some condition, e.g. interactivity, in view, etc.
+    - Wrap code in `<is-land>` tag with an optional hydrate attribute reference, e.g. `on:visible`
+    - The `<script>` reference to the component’s ES module should be wrapped inside of a `<template data-island>...</template>` tag, and should be included right above the closing `</is-land>` tag
+- Custom elements and JavaScript
+  - Component can include custom elements
+  - Custom elements should be appropriately and uniquely named
+  - Custom element JS file should be included in the `assets/` folder as `{componentName}.js`
+  - Custom element JS file can import any shared JS files by referencing the paths to those files, defined in the repo’s root `importmap.json` file
+  - Components should communicate and pass data via custom web events
+    - Event should be appropriately and uniquely named, ideally with a namespace
+    - Import the relevant methods from the `pubsub` ES module
+    - In one component, publish an event (via the `publish(eventName, data)` with the data passed as an object
+    - In another component, subscribe and listen to that event (via the `subscribe(eventName, callback)` and fire a callback function
+- Component CSS
+  - Resides in the component’s `main.css` file
+  - CSS file can import any shared CSS files by referencing the paths to those files, typically from the repo’s root `styles/` folder
+  - CSS can leverage custom variables defined in any part of the theme’s CSS code, but typically will leverage the custom variables defined inside of the `css-variables.liquid` component
+  - Modern CSS syntax can be used as these files are processed with PostCSS
+  - Any CSS can be overridden by including a CSS file within the theme that overrides CSS already defined in components
