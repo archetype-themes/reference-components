@@ -1,0 +1,46 @@
+{%- comment -%}
+  Renders the product title
+
+  @param {block} block - The block object
+  @param {product} product - The product object
+
+  @example
+  {% render 'block-title' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign title_default = 'labels.example_product' | t
+  assign title = product.title | default: title_default
+  assign current_variant = product.selected_or_first_available_variant
+  assign vendor_enable = block.settings.vendor_enable
+  assign sku_enable = block.settings.sku_enable
+-%}
+
+<div class="block-title">
+  <h1 class="h2 block-title__heading">
+    {{- title -}}
+  </h1>
+
+  {%- if vendor_enable or sku_enable -%}
+    <div class="block-title__vendor-sku">
+      {%- if vendor_enable -%}
+        <span class="block-title__vendor">
+          {%- assign vendor_handle = product.vendor | handleize -%}
+          {%- if collections[vendor_handle] != empty -%}
+            <a href="{{ routes.collections_url }}/{{ collections[vendor_handle].handle }}">
+              {{ collections[vendor_handle].title }}
+            </a>
+          {%- else -%}
+            {{ product.vendor | link_to_vendor }}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+
+      {%- if sku_enable and current_variant.sku != blank -%}
+        <span data-sku class="block-title__sku">
+          SKU: <span data-sku-id>{{ current_variant.sku }}</span>
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>

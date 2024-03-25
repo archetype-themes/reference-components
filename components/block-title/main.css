@@ -1,0 +1,5 @@
+.block-title__heading {
+  &.h2 {
+    margin-bottom: 10px;
+  }
+}
