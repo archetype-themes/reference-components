@@ -35,7 +35,7 @@ class BlockBuyButtons extends HTMLElement {
     return this.locales;
   }
 
-  toggleAddButton(disable = true, text, modifyClass = true) {
+  toggleAddButton(disable = true, text) {
     const productForm = document.getElementById(`product-form-${this.dataset.sectionId}`);
     if (!productForm) return;
     const addButton = productForm.querySelector('[name="add"]');
@@ -49,8 +49,6 @@ class BlockBuyButtons extends HTMLElement {
       addButton.removeAttribute('disabled');
       addButtonText.textContent = this.getLocales().addToCart;
     }
-
-    if (!modifyClass) return;
   }
 
   setUnavailable() {
