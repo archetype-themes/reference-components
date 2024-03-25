@@ -1,0 +1,25 @@
+@import "../../styles/helpers/visibility.css";
+@import "../../styles/helpers/display.css";
+
+.block-price {
+  display: block;
+}
+
+.block-price__regular {
+  [data-on-sale] & {
+    display: none;
+  }
+}
+
+.block-price__sale {
+  display: none;
+
+  [data-on-sale] & {
+    display: block;
+  }
+}
+
+.block-price__container {
+  display: flex;
+  gap: 5px;
+}

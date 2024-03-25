@@ -1,0 +1,4 @@
+.hide,
+[data-hide] {
+  display: none;
+}

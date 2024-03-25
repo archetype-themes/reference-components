@@ -1,0 +1,96 @@
+{%- liquid
+  assign use_variant = use_variant | default: true
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price | default: 1999
+  assign available = target.available | default: false
+  assign money_price = price | money
+  assign product_save_amount = settings.product_save_amount
+  if settings.currency_code_enabled
+    assign money_price = price | money_with_currency
+  endif
+
+  if target == product and product.price_varies
+    assign money_price = 'labels.from_price_html' | t: price: money_price
+  endif
+-%}
+
+<block-price
+  class="block-price"
+  {% if available == false %}
+    data-sold-out=""
+  {% endif %}
+  {% if compare_at_price > price %}
+    data-on-sale=""
+  {% endif %}
+  {% if product.price_varies == false and product.compare_at_price_varies %}
+    data-no-compare=""
+  {% endif %}
+>
+  <div class="block-price__container">
+    <div class="block-price__regular">
+      <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
+      <span class="">
+        {{ money_price }}
+      </span>
+    </div>
+    <div class="block-price__sale">
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+        <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
+        <span>
+          <s class="">
+            {% if settings.currency_code_enabled %}
+              {{ compare_at_price | money_with_currency }}
+            {% else %}
+              {{ compare_at_price | money }}
+            {% endif %}
+          </s>
+        </span>
+      {%- endunless -%}
+      <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
+      <span class="">
+        {{ money_price }}
+      </span>
+    </div>
+    <small
+      class=""
+      {% if product.selected_or_first_available_variant.unit_price_measurement == nil %}
+        data-hide=""
+      {% endif %}
+    >
+      <span class="">
+        <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+        <span>/</span>
+        <span>
+          {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+            {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+          {%- endif -%}
+          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+        </span>
+      </span>
+    </small>
+    {%- if product_save_amount and use_variant -%}
+      {%- if product_save_type == 'dollar' -%}
+        {%- capture saved_amount -%}{{ target.compare_at_price | minus: target.price | money_without_trailing_zeros }}{%- endcapture -%}
+      {%- else -%}
+        {%- capture saved_amount -%}{{ target.compare_at_price | minus: target.price | times: 100.0 | divided_by: target.compare_at_price | round }}%{%- endcapture -%}
+      {%- endif -%}
+      <span
+        class=""
+        data-save-price
+        {% if hide_sale_price %}
+          data-hide=""
+        {% endif %}
+      >
+        {%- unless hide_sale_price -%}
+          {{ 'info.save_amount' | t: saved_amount: saved_amount }}
+        {%- endunless -%}
+      </span>
+    {%- endif -%}
+  </div>
+</block-price>
