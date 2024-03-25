@@ -3,11 +3,34 @@
     "media_with_text_1": {
       "type": "media-with-text",
       "blocks": {
-        "video": {
-          "type": "video",
+        "image": {
+          "type": "image",
           "settings": {
-            "video": "shopify:\/\/files\/videos\/file_example_MP4_1920_18MG.mp4"
+            "media_crop": "portrait"
           }
+        }
+      },
+      "block_order": [
+        "image"
+      ],
+      "settings": {
+        "full_width": false,
+        "media_width": "33",
+        "layout": "left",
+        "content_alignment": "center",
+        "subheading": "Travel Essentials",
+        "heading": "Pack for adventure",
+        "heading_size": "h2",
+        "text": "<p>Your journey begins with the essentials. Our premium travel gear combines style and functionality to accompany you to any destination.<\/p>",
+        "button_text": "Organize in style",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "media_with_text_2": {
+      "type": "media-with-text",
+      "blocks": {
+        "video": {
+          "type": "video"
         }
       },
       "block_order": [
@@ -25,7 +48,7 @@
         "color_scheme": "scheme-1"
       }
     },
-    "media_with_text_2": {
+    "media_with_text_3": {
       "type": "media-with-text",
       "blocks": {
         "video": {
@@ -52,7 +75,7 @@
         "button_link": "https:\/\/vimeo.com\/823359582"
       }
     },
-    "media_with_text_3": {
+    "media_with_text_4": {
       "type": "media-with-text",
       "blocks": {
         "video": {
@@ -73,11 +96,36 @@
         "button_text": "Find your bliss",
         "color_scheme": "scheme-1"
       }
+    },
+    "media_with_text_5": {
+      "type": "media-with-text",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "product": "cap-lamp"
+          }
+        }
+      },
+      "block_order": [
+        "model"
+      ],
+      "settings": {
+        "full_width": false,
+        "layout": "left",
+        "subheading": "Next-gen products",
+        "heading": "Innovate <em>boldly<\/em>",
+        "heading_size": "h2",
+        "text": "<p>Step into the future with our collection of 3D models designed to inspire and excite. From the intricacies of a digital world to the sleek curves of modern aesthetics, find the perfect model to ignite your next project.<\/p>",
+        "button_text": "Explore models"
+      }
     }
   },
   "order": [
     "media_with_text_1",
     "media_with_text_2",
-    "media_with_text_3"
+    "media_with_text_3",
+    "media_with_text_4",
+    "media_with_text_5"
   ]
 }
