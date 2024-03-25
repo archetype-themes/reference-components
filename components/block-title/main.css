@@ -3,3 +3,9 @@
     margin-bottom: 10px;
   }
 }
+
+.block-title__sku,
+.block-title__vendor {
+  display: inline-block;
+  margin-right: 20px;
+}

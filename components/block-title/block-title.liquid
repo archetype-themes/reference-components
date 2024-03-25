@@ -14,9 +14,14 @@
   assign current_variant = product.selected_or_first_available_variant
   assign vendor_enable = block.settings.vendor_enable
   assign sku_enable = block.settings.sku_enable
+  assign vendor = product.vendor
+  assign collection_handle = vendor | handleize
+  assign collection_for_vendor = collections[collection_handle]
+  assign vendor_url_default = vendor | url_for_vendor
+  assign vendor_url = collection_for_vendor.url | default: vendor_url_default
 -%}
 
-<div class="block-title">
+<block-title class="block-title" data-section-id="{{ section.id }}">
   <h1 class="h2 block-title__heading">
     {{- title -}}
   </h1>
@@ -24,23 +29,19 @@
   {%- if vendor_enable or sku_enable -%}
     <div class="block-title__vendor-sku">
       {%- if vendor_enable -%}
-        <span class="block-title__vendor">
-          {%- assign vendor_handle = product.vendor | handleize -%}
-          {%- if collections[vendor_handle] != empty -%}
-            <a href="{{ routes.collections_url }}/{{ collections[vendor_handle].handle }}">
-              {{ collections[vendor_handle].title }}
-            </a>
-          {%- else -%}
-            {{ product.vendor | link_to_vendor }}
-          {%- endif -%}
-        </span>
+        <a class="block-title__vendor" href="{{ vendor_url }}">
+          {{- vendor -}}
+        </a>
       {%- endif -%}
 
-      {%- if sku_enable and current_variant.sku != blank -%}
-        <span data-sku class="block-title__sku">
-          SKU: <span data-sku-id>{{ current_variant.sku }}</span>
+        <span class="block-title__sku" data-sku-id>
+          {%- if sku_enable and current_variant.sku != blank -%}
+            SKU: {{ current_variant.sku }}
+          {%- endif -%}
         </span>
-      {%- endif -%}
     </div>
   {%- endif -%}
-</div>
+</block-title>
+<script type="module">
+  import 'components/block-title';
+</script>
