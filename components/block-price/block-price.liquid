@@ -1,3 +1,14 @@
+{%- comment -%}
+  Renders the price of a product
+
+  @param {block} block - The block object
+  @param {product} [product] - The product object
+  @param {boolean} [use_variant] - Whether to use the first available variant or the product itself
+
+  @example
+  {% render 'block-price' block: block %}
+{%- endcomment -%}
+
 {%- liquid
   assign use_variant = use_variant | default: true
   assign target = product
