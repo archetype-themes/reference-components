@@ -43,7 +43,12 @@
         }}
       </video-media>
     {%- elsif external_video != blank -%}
-      <video-media host="{{ external_video.type }}">
+      <video-media
+        host="{{ external_video.type }}"
+        {% if autoplay %}
+          autoplay
+        {% endif %}
+      >
         <template>
           {%- if external_video.type == 'youtube' -%}
             <iframe

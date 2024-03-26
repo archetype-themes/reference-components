@@ -14,13 +14,19 @@ export default class extends HTMLElement {
     };
 
     this.player = new Proxy(this.getPlayerTarget(), handler);
+    this.pausedByUser = false;
+    this.playingWhenLastViewed = false;
 
-    if (this.autoplay) {
-      inView(this, () => {
+    inView(this, () => {
+      if ((this.autoplay && !this.pausedByUser) || this.playingWhenLastViewed) {
         this.play();
-        return () => this.pause();
-      });
-    }
+      }
+
+      return () => {
+        this.playingWhenLastViewed = this.playing;
+        this.pause();
+      };
+    });
   }
 
   static get observedAttributes() {
@@ -38,11 +44,16 @@ export default class extends HTMLElement {
   }
 
   play() {
+    this.pausedByUser = false;
+
     if (this.playing) return;
     this.player.play();
+    this.playingWhenLastViewed = true;
   }
 
   pause() {
+    this.pausedByUser = true;
+
     if (!this.playing) return;
     this.player.pause();
   }
