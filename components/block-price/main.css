@@ -11,10 +11,27 @@
   }
 }
 
+.block-price__save {
+  display: none;
+
+  [data-on-sale] & {
+    display: block;
+  }
+}
+
 .block-price__sale {
   display: none;
 
   [data-on-sale] & {
+    display: flex;;
+    gap: 5px;
+  }
+}
+
+.block-price__unit-price {
+  display: none;
+
+  [data-unit-price] & {
     display: block;
   }
 }
