@@ -17,19 +17,19 @@
   endif
 -%}
 
-<block-price
-  class="block-price"
-  {% unless available %}
-    data-sold-out=""
-  {% endunless %}
-  {% if compare_at_price > price %}
-    data-on-sale=""
-  {% endif %}
-  {% if product.selected_or_first_available_variant.unit_price_measurement %}
-    data-unit-price=""
-  {% endif %}
->
-  <div class="block-price__container">
+<block-price class="block-price" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
+  <div
+    class="block-price__container"
+    {% unless available %}
+      data-sold-out=""
+    {% endunless %}
+    {% if compare_at_price > price %}
+      data-on-sale=""
+    {% endif %}
+    {% if product.selected_or_first_available_variant.unit_price_measurement %}
+      data-unit-price=""
+    {% endif %}
+  >
     <div class="block-price__regular">
       <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
       <span class="">
@@ -71,3 +71,6 @@
     {%- endif -%}
   </div>
 </block-price>
+<script type="module">
+  import 'components/block-price';
+</script>
