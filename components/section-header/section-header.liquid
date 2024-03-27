@@ -20,7 +20,7 @@
 
 <div class="color-{{ color_scheme }}">
   <div class="page-width">
-    <header class="main-header">
+    <header class="main-header main-header--{{ menu_position | replace: '_', '-' }}">
       {%- if request.page_type == 'index' -%}
         <h1 class="main-header__logo">
           <a href="{{ routes.root_url }}">

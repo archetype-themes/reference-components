@@ -18,4 +18,20 @@
 
 <a href="{{ routes.cart_url }}" class="cart-icon">
   {%- render 'icon', name: name -%}
+
+  <div class="cart-count">
+    <cart-count
+      class="cart-count__text"
+      aria-hidden="true"
+      {% if cart.item_count == 0 %}
+        hidden
+      {% endif %}
+    >
+      {{- cart.item_count -}}
+    </cart-count>
+  </div>
 </a>
+
+<script type="module">
+  import 'components/cart-icon';
+</script>

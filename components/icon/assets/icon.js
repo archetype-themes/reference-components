@@ -10,7 +10,6 @@ class xIcon extends HTMLElement {
     if (!this.src) return;
 
     try {
-      console.log(this.src);
       const response = await fetch(this.src);
       const svg = await response.text();
 
