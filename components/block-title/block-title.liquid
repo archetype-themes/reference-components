@@ -21,7 +21,7 @@
   assign vendor_url = collection_for_vendor.url | default: vendor_url_default
 -%}
 
-<block-title class="block-title" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
+<div class="block-title" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
   <h1 class="h2 block-title__heading">
     {{- title -}}
   </h1>
@@ -34,14 +34,11 @@
         </a>
       {%- endif -%}
 
-        <span class="block-title__sku" data-sku-id>
-          {%- if sku_enable and current_variant.sku != blank -%}
-            SKU: {{ current_variant.sku }}
-          {%- endif -%}
-        </span>
+      {%- if sku_enable -%}
+        <div class="block-title__sku">
+          {%- render 'variant-sku' variant: current_variant -%}
+        </div>
+      {%- endif -%}
     </div>
   {%- endif -%}
-</block-title>
-<script type="module">
-  import 'components/block-title';
-</script>
+</div>
