@@ -2,4 +2,3 @@
 type = "collection"
 name = "Components"
 locales-path = "https://github.com/archetype-themes/locales.git"
-theme-path = "https://github.com/archetype-themes/reference-theme.git"
