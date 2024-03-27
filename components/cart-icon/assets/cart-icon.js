@@ -7,7 +7,7 @@ class CartCount extends HTMLElement {
       BUY_BUTTON_PUB_SUB_EVENTS.variantAdded,
       (event) => {
         const { cart } = event.data;
-        this.itemCount = cart.quantity;
+        this.itemCount = cart.item_count;
       }
     );
   }

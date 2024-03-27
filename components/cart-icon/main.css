@@ -27,6 +27,8 @@ cart-count {
   color: rgb(var(--color-background));
   background-color: rgb(var(--color-foreground));
   border-radius: var(--radius-rounded);
+  padding-inline-start: var(--space-1);
+  padding-inline-end: var(--space-1);
   line-height: 1;
 }
 

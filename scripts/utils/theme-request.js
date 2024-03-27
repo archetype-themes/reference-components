@@ -21,17 +21,3 @@ export async function fetchDataFromEndpoint(endpoint) {
 
   return response;
 }
-
-export async function submitCartData(formData) {
-  const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
-    body: formData,
-    method: "POST",
-    headers: { "X-Requested-With": "XMLHttpRequest" },
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to submit form data`);
-  }
-
-  return response.json();
-}
