@@ -20,18 +20,11 @@ class CartCount extends HTMLElement {
     return parseInt(this.innerText);
   }
 
-  set itemCount(newCount) {
-    if (this.itemCount === newCount) return;
+  set itemCount(count) {
+    if (this.itemCount === count) return;
 
-    if (newCount === 0) {
-      this.innerText = newCount;
-      this.hidden = true;
-    } else if (this.itemCount === 0) {
-      this.innerText = newCount;
-      this.hidden = false;
-    } else {
-      this.innerText = newCount;
-    }
+    this.innerText = count.toString();
+    this.hidden = count === 0;
   }
 }
 
