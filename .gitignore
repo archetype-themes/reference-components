@@ -2,6 +2,7 @@ build
 node_modules
 .explorer
 .locales
+test-results
 
 #MacOS
 .DS_Store
