@@ -10,6 +10,7 @@
   @media (--medium-up) {
     gap: var(--space-10);
     grid-template-columns: 60% 1fr;
+    padding-top: var(--space-16);
   }
 }
 
