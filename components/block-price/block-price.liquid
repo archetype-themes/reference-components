@@ -29,8 +29,11 @@
 -%}
 
 <block-price class="block-price" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
+  <span>
+    {{- 'labels.price' | t -}}
+  </span>
   <div
-    class="block-price__container"
+    class="block-price__container heading-font-stack h4"
     {% unless available %}
       data-sold-out=""
     {% endunless %}
