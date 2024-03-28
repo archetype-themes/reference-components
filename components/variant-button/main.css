@@ -17,7 +17,7 @@
     justify-content: center;
     font-weight: normal;
     padding: var(--space-2) var(--space-3);
-    margin: 0 var(--space-2) var(--space-2) 0;
+    margin: 0 var(--space-2) var(--space-3) 0;
     min-width: var(--space-10);
     background-color: var(--colorBody);
     box-shadow: 0 0 0 1px var(--colorBorder);
