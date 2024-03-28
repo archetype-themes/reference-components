@@ -5,7 +5,18 @@
   display: block;
 
   .shopify-payment-button {
-    margin-top: 10px;
+    margin-top: var(--space-3);
+
+    @media (--medium-up) {
+      margin-top: var(--space-5);
+    }
+  }
+
+  .shopify-payment-button__button {
+    font: inherit;
+    border-radius: 4px;
+    overflow: hidden;
+    min-height: 57.7px;
   }
 }
 

@@ -5,9 +5,10 @@
 .main-product {
   display: grid;
   width: 100%;
-  gap: var(--grid-gutter);
+  gap: var(--space-8);
 
   @media (--medium-up) {
+    gap: var(--space-10);
     grid-template-columns: 60% 1fr;
   }
 }
@@ -21,9 +22,10 @@
   padding: 0 var(--pageWidthPadding);
   display: flex;
   flex-direction: column;
-  gap: var(--grid-gutter);
+  gap: var(--space-6);
 
   @media (--medium-up) {
-    padding: 65px 0 0 45px;
+    padding: var(--space-12) 0 0 0;
+    gap: var(--space-8);
   }
 }

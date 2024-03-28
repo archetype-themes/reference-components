@@ -1,11 +1,18 @@
+@import "../../styles/helpers/typography.css";
+
 .block-title__heading {
   &.h2 {
-    margin-bottom: 10px;
+    margin-bottom: var(--space-2);
+    font-size: 24px;
+
+    @media (--medium-up) {
+      font-size: 32px;
+    }
   }
 }
 
 .block-title__sku,
 .block-title__vendor {
   display: inline-block;
-  margin-right: 20px;
+  margin-right: var(--space-5);
 }
