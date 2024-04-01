@@ -68,8 +68,6 @@ class BlockVariantPicker extends HTMLElement {
 
       if (element.tagName === 'INPUT') {
         element.toggleAttribute('data-disabled', !availableElement);
-      } else if (element.tagName === 'OPTION') {
-        // TODO: add dropdown support
       }
     });
   }

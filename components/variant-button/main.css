@@ -62,7 +62,10 @@
 }
 
 .variant-button__label {
+  padding: 0;
   display: block;
   margin-bottom: var(--space-2);
+  font-weight: var(--typeHeaderWeight);
+  font-size: calc(var(--typeBaseSize) + 1px);
   cursor: default;
 }

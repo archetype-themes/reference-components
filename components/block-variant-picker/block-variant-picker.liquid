@@ -28,7 +28,7 @@
       {%- if block.settings.picker_type == 'button' -%}
         {%- render 'variant-button', option: option -%}
       {%- else -%}
-        {%- # TODO: add dropdown support -%}
+        {%- render 'variant-dropdown', option: option -%}
       {%- endif -%}
     {%- endfor -%}
     <script type="application/json">

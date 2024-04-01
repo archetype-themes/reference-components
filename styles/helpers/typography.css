@@ -100,7 +100,7 @@ label:not(.variant__button-label):not(.text-label),
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-2);
 }
 
 .text-label a {
