@@ -12,6 +12,7 @@ class BlockBuyButtons extends HTMLElement {
       ({ data: { html, variant } }) => {
         if (!variant) {
           this.setUnavailable();
+          this.toggleAddButton(true, '');
           return;
         }
 

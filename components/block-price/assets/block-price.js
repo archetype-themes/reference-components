@@ -8,7 +8,11 @@ class BlockPrice extends HTMLElement {
 
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
-      const { html } = event.data;
+      const { html, variant } = event.data;
+      if (!variant) {
+        this.querySelector('div').innerHTML = '&nbsp;';
+        return;
+      }
       const priceSource = html.querySelector(`block-price[data-section-id="${this.dataset.sectionId}"] div`);
       const priceDestination = this.querySelector('div');
       if (priceSource && priceDestination) {

@@ -18,6 +18,14 @@ class BlockVariantPicker extends HTMLElement {
     if (this.currentVariant) {
       this.updateURL();
       this.getProductInfo();
+    } else {
+      publish(PUB_SUB_EVENTS.variantChange, {
+        data: {
+          sectionId: this.dataset.sectionId,
+          html: null,
+          variant: null,
+        },
+      });
     }
   }
 

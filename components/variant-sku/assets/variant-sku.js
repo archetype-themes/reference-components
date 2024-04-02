@@ -8,7 +8,11 @@ class VariantSku extends HTMLElement {
 
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
-      const { html, sectionId } = event.data;
+      const { html, sectionId, variant } = event.data;
+      if (!variant) {
+        this.textContent = '';
+        return;
+      }
       const skuSource = html.querySelector(`[data-section-id="${sectionId}"] variant-sku`);
       if (skuSource) {
         this.textContent = skuSource.textContent;
