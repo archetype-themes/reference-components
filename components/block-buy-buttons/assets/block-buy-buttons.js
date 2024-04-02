@@ -11,8 +11,7 @@ class BlockBuyButtons extends HTMLElement {
       VARIANT_PICKER_PUB_SUB_EVENTS.variantChange,
       ({ data: { html, variant } }) => {
         if (!variant) {
-          this.setUnavailable();
-          this.toggleAddButton(true, '');
+          this.toggleAddButton(true, this.getLocales().unavailable);
           return;
         }
 
@@ -68,17 +67,6 @@ class BlockBuyButtons extends HTMLElement {
       addButton.removeAttribute("disabled");
       addButtonText.textContent = this.getLocales().addToCart;
     }
-  }
-
-  setUnavailable() {
-    const button = document.getElementById(
-      `product-form-${this.dataset.sectionId}`
-    );
-    const addButton = button.querySelector('[name="add"]');
-    const addButtonText = button.querySelector('[name="add"] > span');
-
-    if (!addButton) return;
-    addButtonText.textContent = this.getLocales().unavailable;
   }
 
   updateVariantInput(variant) {
