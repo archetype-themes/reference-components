@@ -1,0 +1,10 @@
+<div {{ block.shopify_attributes }}>
+  <button type="submit" class="button" name="checkout">Checkout</button>
+</div>
+
+{%- if shop.enabled_currencies.size > 0 -%}
+  <div>We accept</div>
+  {%- for type in shop.enabled_payment_types -%}
+    {{- type | payment_type_svg_tag -}}
+  {%- endfor -%}
+{%- endif -%}

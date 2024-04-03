@@ -1,0 +1,87 @@
+@import "../../styles/vendor/normalize.css";
+@import "../../styles/variables.css";
+@import "../../styles/layout/page-width.css";
+
+.cart h1 {
+  font-weight: bold;
+}
+
+.main-cart {
+  display: grid;
+  gap: var(--space-8);
+
+  @media (--medium-up) {
+    gap: var(--space-10);
+    grid-template-columns: 65% 1fr;
+    padding-top: var(--space-16);
+  }
+}
+
+.line-item__image {
+  position: relative;
+  width: 150px;
+  height: auto;
+  min-width: 150px;
+}
+
+.line-item {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.line-item a:first-child {
+  font-weight: bold;
+}
+
+table thead th:last-child,
+table tbody td:last-child {
+  text-align: end;
+}
+
+table tr:first-child td {
+  padding-block-start: var(--space-8);
+}
+
+table tr:last-child td {
+  padding-block-end: var(--space-8);
+}
+
+table td:first-child {
+  width: 60%;
+}
+
+table td {
+  padding-block-end: var(--space-6);
+}
+
+.line-item__info {
+  display: grid;
+  justify-items: start;
+}
+
+table {
+  border-collapse: collapse;
+  text-indent: 0;
+}
+
+table thead {
+  display: table-header-group;
+}
+
+table th {
+  border-style: solid;
+  border-width: 0;
+  border-color: rgba(var(--color-foreground) / 0.1);
+  text-align: start;
+  border-block-end-width: 1px;
+  padding-block-start: var(--space-6);
+  padding-block-end: var(--space-6);
+}
+
+.cart-note {
+  width: 100%;
+  border: 1px solid rgba(var(--color-foreground) / 0.2);
+  padding: var(--space-2);
+  resize: vertical;
+}

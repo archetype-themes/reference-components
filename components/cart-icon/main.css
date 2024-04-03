@@ -12,7 +12,7 @@ cart-count {
 
 .cart-count {
   position: absolute;
-  left: 1.25rem;
+  left: 1.1rem;
   top: calc(-1 * var(--space-1));
 }
 
@@ -34,15 +34,4 @@ cart-count {
 
 .cart-count__text[hidden] {
   display: none;
-}
-
-.icon {
-  --icon-line-caps: round;
-
-  display: inline-block;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 3px;
-  stroke-linecap: var(--icon-line-caps);
-  stroke-linejoin: var(--icon-line-caps);
 }

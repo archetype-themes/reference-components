@@ -21,3 +21,18 @@ export async function fetchDataFromEndpoint(endpoint) {
 
   return response;
 }
+
+export async function updateCart(body) {
+  const response = await fetch(`${window.Shopify.routes.root}cart/update.js`, {
+    method: "POST",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(body),
+    keepalive: true,
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update cart");
+  }
+
+  return response;
+}

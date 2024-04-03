@@ -104,6 +104,8 @@ class BlockBuyButtons extends HTMLElement {
     const sectionToBundle = [];
     const formData = this.getFormDataWithSections(sectionToBundle);
 
+    console.log(formData);
+
     const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
       method: "POST",
       headers: { "X-Requested-With": "XMLHttpRequest" },

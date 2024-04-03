@@ -1,0 +1,27 @@
+{%- comment -%}
+  Renders the final price of a line item
+
+  Accepts the following attributes:
+  - line_item {line_item} - Line item object
+  - key {string} - Line item key
+  - price {number} - Price to render
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+{%- endcomment -%}
+
+{% liquid
+  assign key = key | default: line_item.key
+  assign price = price | default: line_item.final_line_price | money
+  assign hydration = hydration | default: 'on:visible'
+%}
+
+<is-land {{ hydration }}>
+  <line-item-price key="{{ key }}">
+    {{- price -}}
+  </line-item-price>
+
+  <template data-island>
+    <script type="module">
+      import 'components/line-item-price';
+    </script>
+  </template>
+</is-land>

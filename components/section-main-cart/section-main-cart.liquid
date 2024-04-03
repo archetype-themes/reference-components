@@ -1,0 +1,31 @@
+<section class="main-cart page-width page-width--flush-small color-scheme-2">
+  {%- if cart.item_count == 0 -%}
+    {{ 'info.cart_empty' | t }}
+  {%- else -%}
+    <table>
+      <thead>
+        <tr>
+          <th>{{ 'labels.product' | t }}</th>
+          <th>{{ 'labels.quantity' | t }}</th>
+          <th>{{ 'labels.total' | t }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {%- for line_item in cart.items -%}
+          <tr>
+            <td>{%- render 'line-item', line_item: line_item -%}</td>
+            <td>{%- render 'line-item-quantity', line_item: line_item -%}</td>
+            <td>{%- render 'line-item-price', line_item: line_item -%}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+
+    <div class="cart-blocks">
+      <form action="{{ routes.cart_url }}" method="POST">
+        {{ slot }}
+      </form>
+    </div>
+  {%- endif -%}
+</section>

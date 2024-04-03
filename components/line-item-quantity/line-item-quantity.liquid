@@ -1,0 +1,28 @@
+{%- comment -%}
+  Renders the first 3D model of a product
+
+  Accepts the following attributes:
+  - line_item {line_item} - Line item object
+  - key {string} - Line item key
+  - quantity {number} - Line item quantity
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+{%- endcomment -%}
+
+{% liquid
+  assign key = key | default: line_item.key
+  assign quantity = quantity | default: line_item.quantity
+  assign hydration = hydration | default: 'on:visible'
+%}
+
+<is-land {{ hydration }}>
+  <line-item-quantity key="{{ key }}">
+    <input type="number" value="{{ quantity }}">
+    {{ 'actions.remove' | t | link_to: line_item.url_to_remove }}
+
+    <template data-island>
+      <script type="module">
+        import 'components/line-item-quantity';
+      </script>
+    </template>
+  </line-item-quantity>
+</is-land>

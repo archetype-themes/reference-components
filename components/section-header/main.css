@@ -20,6 +20,10 @@
 .main-header--logo-left-menu-center {
   @media (--medium-up) {
     grid-template-columns: minmax(0, 1fr) fit-content(50%) minmax(0, 1fr);
+
+    .main-header__menu {
+      justify-content: center;
+    }
   }
 }
 

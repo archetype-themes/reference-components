@@ -1,0 +1,51 @@
+<div class="line-item">
+  {%- if line_item.image != blank -%}
+    {{-
+      line_item.image
+      | image_url: width: line_item.image.width
+      | image_tag:
+        loading: 'lazy',
+        sizes: '(max-width: 768px) 100px, 150px',
+        widths: '100,150,200,300',
+        class: 'line-item__image'
+    -}}
+  {%- endif -%}
+
+  <div class="line-item__info">
+    {%- if line_item.url != blank -%}
+      <a href="{{ line_item.url }}">
+        {{ line_item.product.title | default: line_item.title }}
+      </a>
+    {%- else -%}
+      {{ line_item.product.title | default: line_item.title }}
+    {%- endif -%}
+
+    {%- render 'price', price: line_item.final_price -%}
+
+    {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
+      {{ line_item.variant.title }}
+    {%- endunless -%}
+
+    {%- if line_item.properties != blank -%}
+      <ul>
+        {%- for property in line_item.properties -%}
+          {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+
+          {%- if property.last == blank or first_character_in_key == '_' -%}
+            {%- continue -%}
+          {%- endif -%}
+
+          <li>
+            {%- if property.last contains '/uploads/' -%}
+              <a href="{{ property.last }}">
+                {{ property.last | split: '/' | last }}
+              </a>
+            {%- else -%}
+              {{ property.first }}: {{ property.last }}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
