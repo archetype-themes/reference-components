@@ -1,11 +1,11 @@
-  {%- liquid
-    for block in section.blocks
-      case block.type
-        when 'variant_picker'
-          render 'block-variant-picker', block: block
-      endcase
-    endfor
-  -%}
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'variant_picker'
+        render 'block-variant-picker', block: block
+    endcase
+  endfor
+-%}
 
 {% schema %}
 {
