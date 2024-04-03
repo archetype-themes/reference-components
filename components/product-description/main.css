@@ -1,5 +1,4 @@
-@import "../../styles/vendor/normalize.css";
-@import "../../styles/variables.css";
+@import "../../styles/variables";
 @import "../../styles/modules/rte.css";
 @import "../../styles/helpers/clearfix.css";
 @import "../../styles/helpers/typography.css";
