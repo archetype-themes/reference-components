@@ -14,10 +14,9 @@
   assign current_variant = product.selected_or_first_available_variant
   assign vendor_enable = block.settings.vendor_enable
   assign sku_enable = block.settings.sku_enable
-  assign vendor = product.vendor
-  assign collection_handle = vendor | handleize
+  assign collection_handle = vendor_enable | handleize
   assign collection_for_vendor = collections[collection_handle]
-  assign vendor_url_default = vendor | url_for_vendor
+  assign vendor_url_default = vendor_enable | url_for_vendor
   assign vendor_url = collection_for_vendor.url | default: vendor_url_default
 -%}
 
@@ -28,9 +27,9 @@
 
   {%- if vendor_enable or sku_enable -%}
     <div class="block-title__vendor-sku">
-      {%- if vendor_enable -%}
+      {%- if vendor_enable != blank -%}
         <a class="block-title__vendor" href="{{ vendor_url }}">
-          {{- vendor -}}
+          {{- vendor_enable -}}
         </a>
       {%- endif -%}
 
