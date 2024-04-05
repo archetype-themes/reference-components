@@ -20,7 +20,7 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.variantChangeUnsubscriber?.();
+    this.variantChangeUnsubscriber();
   }
 
   renderProductInfo(html) {

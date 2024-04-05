@@ -1,5 +1,5 @@
-import { subscribe } from '@archetype-themes/scripts/utils/pubsub';
-import { PUB_SUB_EVENTS } from 'components/block-variant-picker';
+import { subscribe } from "@archetype-themes/scripts/utils/pubsub";
+import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
 
 class VariantSku extends HTMLElement {
   constructor() {
@@ -7,17 +7,25 @@ class VariantSku extends HTMLElement {
   }
 
   connectedCallback() {
-    this.variantChangeUnsubscriber = subscribe(PUB_SUB_EVENTS.variantChange, (event) => {
-      const { html, sectionId, variant } = event.data;
-      if (!variant) {
-        this.textContent = '';
-        return;
+    this.variantChangeUnsubscriber = subscribe(
+      PUB_SUB_EVENTS.variantChange,
+      (event) => {
+        const { html, sectionId, variant } = event.data;
+
+        if (!variant) {
+          this.textContent = "";
+          return;
+        }
+
+        const skuSource = html.querySelector(
+          `[data-section-id="${sectionId}"] variant-sku`
+        );
+
+        if (skuSource) {
+          this.textContent = skuSource.textContent;
+        }
       }
-      const skuSource = html.querySelector(`[data-section-id="${sectionId}"] variant-sku`);
-      if (skuSource) {
-        this.textContent = skuSource.textContent;
-      }
-    });
+    );
   }
 
   disconnectedCallback() {
@@ -25,4 +33,4 @@ class VariantSku extends HTMLElement {
   }
 }
 
-customElements.define('variant-sku', VariantSku);
+customElements.define("variant-sku", VariantSku);

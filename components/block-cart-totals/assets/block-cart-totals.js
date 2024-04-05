@@ -10,7 +10,7 @@ export class CartTotalPrice extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.cartChangeUnsubscriber?.();
+    this.cartChangeUnsubscriber();
   }
 
   handleLineItemChange({ data }) {
