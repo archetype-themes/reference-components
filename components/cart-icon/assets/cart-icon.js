@@ -6,7 +6,7 @@ class CartCount extends HTMLElement {
     this.cartChangeUnsubscriber = subscribe(
       PUB_SUB_EVENTS.cartChange,
       (event) => {
-        const { cart } = event.data;
+        const { cart } = event.detail;
         this.itemCount = cart.item_count;
       }
     );

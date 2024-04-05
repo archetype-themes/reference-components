@@ -19,7 +19,7 @@ export class LineItemQuantity extends HTMLElement {
     );
 
     publish(PUB_SUB_EVENTS.lineItemChange, {
-      data: {
+      detail: {
         html,
         index: this.index,
         quantity: target.value,
@@ -27,7 +27,7 @@ export class LineItemQuantity extends HTMLElement {
     });
 
     publish(PUB_SUB_EVENTS.cartChange, {
-      data: {
+      detail: {
         cart: responseJson,
         item: "items" in responseJson ? responseJson["items"] : [responseJson],
       },

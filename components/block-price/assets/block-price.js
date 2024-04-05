@@ -10,7 +10,7 @@ class BlockPrice extends HTMLElement {
     this.variantChangeUnsubscriber = subscribe(
       PUB_SUB_EVENTS.variantChange,
       (event) => {
-        const { html, variant } = event.data;
+        const { html, variant } = event.detail;
 
         if (!variant) {
           this.querySelector("div").innerHTML = "&nbsp;";

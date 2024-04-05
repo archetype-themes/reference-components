@@ -5,7 +5,9 @@ class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(
       PUB_SUB_EVENTS.variantChange,
-      ({ data: { html, variant } }) => {
+      (event) => {
+        const { html, variant } = event.detail;
+
         if (!variant) {
           this.toggleAddButton(true, this.getLocales().unavailable);
           return;
@@ -118,7 +120,7 @@ class BlockBuyButtons extends HTMLElement {
 
   publishCartUpdate(cart, responseJson) {
     publish(PUB_SUB_EVENTS.cartChange, {
-      data: {
+      detail: {
         cart,
         item: "items" in responseJson ? responseJson["items"] : [responseJson],
       },

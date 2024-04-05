@@ -10,7 +10,7 @@ class VariantSku extends HTMLElement {
     this.variantChangeUnsubscriber = subscribe(
       PUB_SUB_EVENTS.variantChange,
       (event) => {
-        const { html, sectionId, variant } = event.data;
+        const { html, sectionId, variant } = event.detail;
 
         if (!variant) {
           this.textContent = "";

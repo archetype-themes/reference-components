@@ -17,7 +17,7 @@ class BlockVariantPicker extends HTMLElement {
       this.getProductInfo();
     } else {
       publish(PUB_SUB_EVENTS.variantChange, {
-        data: {
+        detail: {
           sectionId: this.dataset.sectionId,
           html: null,
           variant: null,
@@ -115,7 +115,7 @@ class BlockVariantPicker extends HTMLElement {
         const html = new DOMParser().parseFromString(responseText, "text/html");
 
         publish(PUB_SUB_EVENTS.variantChange, {
-          data: {
+          detail: {
             sectionId: this.dataset.sectionId,
             html,
             variant: this.currentVariant,

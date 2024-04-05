@@ -13,8 +13,8 @@ export class LineItemPrice extends HTMLElement {
     this.cartChangeUnsubscriber();
   }
 
-  handleLineItemChange({ data }) {
-    const { html, index } = data;
+  handleLineItemChange({ detail }) {
+    const { html, index } = detail;
 
     if (index !== this.index) return;
 

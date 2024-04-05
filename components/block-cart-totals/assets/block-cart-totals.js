@@ -13,8 +13,8 @@ export class CartTotalPrice extends HTMLElement {
     this.cartChangeUnsubscriber();
   }
 
-  handleLineItemChange({ data }) {
-    const { html } = data;
+  handleLineItemChange({ detail }) {
+    const { html } = detail;
     const price = html.querySelector("cart-total-price")?.innerText;
 
     this.price = price || this.price;
