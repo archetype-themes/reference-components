@@ -236,10 +236,6 @@ cart-note {
   justify-content: center;
 }
 
-.cart-checkout-button__we-accept {
-  font-size: 0.75rem;
-}
-
 .cart-checkout-button__payment-types {
   display: flex;
   gap: var(--space-1);

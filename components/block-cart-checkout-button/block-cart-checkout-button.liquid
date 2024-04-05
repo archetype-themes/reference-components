@@ -3,10 +3,11 @@
 
   Accepts the following attributes:
   - block {block} - Block object
+  - taxes_included {boolean} - Checkout message changes based on whether taxes are included
 {%- endcomment -%}
 
 {% liquid
-  assign taxes_included = taxes_included | default: cart.taxes_included
+  assign taxes_included = taxes_included | default: cart.taxes_included, allow_false: true
 %}
 
 <div class="cart-checkout-button" {{ block.shopify_attributes }}>
@@ -21,13 +22,10 @@
   <button type="submit" class="button" name="checkout">Checkout</button>
 
   {%- if shop.enabled_currencies.size > 0 -%}
-    <div class="cart-checkout-button__we-accept">
-      <div>We accept</div>
-      <div class="cart-checkout-button__payment-types">
-        {%- for type in shop.enabled_payment_types -%}
-          {{- type | payment_type_svg_tag -}}
-        {%- endfor -%}
-      </div>
+    <div class="cart-checkout-button__payment-types">
+      {%- for type in shop.enabled_payment_types -%}
+        {{- type | payment_type_svg_tag -}}
+      {%- endfor -%}
     </div>
   {%- endif -%}
 </div>
