@@ -24,6 +24,7 @@ export function publish(eventName, data) {
 
 export const PUB_SUB_EVENTS = {
   cartChange: "cart:change",
+  cartError: "cart:error",
   lineItemChange: "line-item:change",
   variantChange: "variant:change",
 };

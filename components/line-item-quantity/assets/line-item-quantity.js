@@ -1,11 +1,27 @@
 import {
   PUB_SUB_EVENTS,
   publish,
+  subscribe,
 } from "@archetype-themes/scripts/utils/pubsub";
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {
-    this.addEventListener("change", this.onChange);
+    this.input = this.querySelector("input");
+    this.input.addEventListener("focus", this.onFocus.bind(this));
+    this.addEventListener("change", this.onChange.bind(this));
+
+    this.onCartErrorUnsubscriber = subscribe(
+      PUB_SUB_EVENTS.cartError,
+      this.handleCartError.bind(this)
+    );
+  }
+
+  disconnectedCallback() {
+    this.onCartErrorUnsubscriber();
+  }
+
+  onFocus({ target }) {
+    this.previousQuantityInputValue = target.value;
   }
 
   async onChange({ target }) {
@@ -13,27 +29,40 @@ export class LineItemQuantity extends HTMLElement {
 
     const responseJson = await this.changeCartQuantity(target.value);
 
+    if (!responseJson.errors) {
+      this.syncQuantityInputsInLineItem(this.index, target.value);
+
+      const html = new DOMParser().parseFromString(
+        responseJson?.sections[this.sectionId],
+        "text/html"
+      );
+
+      publish(PUB_SUB_EVENTS.lineItemChange, {
+        detail: {
+          html,
+          index: this.index,
+          quantity: target.value,
+        },
+      });
+
+      publish(PUB_SUB_EVENTS.cartChange, {
+        detail: {
+          cart: responseJson,
+          item:
+            "items" in responseJson ? responseJson["items"] : [responseJson],
+        },
+      });
+    } else {
+      publish(PUB_SUB_EVENTS.cartError, {
+        detail: {
+          errors: responseJson.errors,
+          index: this.index,
+          previousQuantityInputValue: this.previousQuantityInputValue,
+        },
+      });
+    }
+
     target.removeAttribute("disabled");
-
-    const html = new DOMParser().parseFromString(
-      responseJson?.sections[this.sectionId],
-      "text/html"
-    );
-
-    publish(PUB_SUB_EVENTS.lineItemChange, {
-      detail: {
-        html,
-        index: this.index,
-        quantity: target.value,
-      },
-    });
-
-    publish(PUB_SUB_EVENTS.cartChange, {
-      detail: {
-        cart: responseJson,
-        item: "items" in responseJson ? responseJson["items"] : [responseJson],
-      },
-    });
   }
 
   async changeCartQuantity(quantity) {
@@ -52,6 +81,20 @@ export class LineItemQuantity extends HTMLElement {
     });
 
     return response.json();
+  }
+
+  handleCartError({ detail }) {
+    const { index, previousQuantityInputValue } = detail;
+
+    this.syncQuantityInputsInLineItem(index, previousQuantityInputValue);
+  }
+
+  syncQuantityInputsInLineItem(index, value) {
+    const quantityInputs = document.querySelectorAll(
+      `[index="${index}"] > input`
+    );
+
+    quantityInputs.forEach((input) => (input.value = value));
   }
 
   get index() {
