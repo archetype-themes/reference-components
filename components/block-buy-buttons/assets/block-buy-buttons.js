@@ -117,7 +117,7 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   publishCartUpdate(cart, responseJson) {
-    publish(PUB_SUB_EVENTS.variantAdded, {
+    publish(PUB_SUB_EVENTS.cartChange, {
       data: {
         cart,
         item: "items" in responseJson ? responseJson["items"] : [responseJson],

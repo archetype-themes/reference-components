@@ -28,7 +28,7 @@ export class LineItemQuantity extends HTMLElement {
       },
     });
 
-    publish("variant:added", {
+    publish(PUB_SUB_EVENTS.cartChange, {
       data: {
         cart: responseJson,
         item: "items" in responseJson ? responseJson["items"] : [responseJson],

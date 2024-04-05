@@ -1,10 +1,10 @@
 import { subscribe } from "@archetype-themes/scripts/utils/pubsub";
-import { PUB_SUB_EVENTS as LINE_ITEM_QUANTITY_PUB_SUB_EVENTS } from "components/line-item-quantity";
+import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
 
 export class LineItemPrice extends HTMLElement {
   connectedCallback() {
     this.cartChangeUnsubscriber = subscribe(
-      LINE_ITEM_QUANTITY_PUB_SUB_EVENTS.lineItemChange,
+      PUB_SUB_EVENTS.lineItemChange,
       this.handleLineItemChange.bind(this)
     );
   }

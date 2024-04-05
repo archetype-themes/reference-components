@@ -1,10 +1,10 @@
 import { subscribe } from "@archetype-themes/scripts/utils/pubsub";
-import { PUB_SUB_EVENTS as BUY_BUTTON_PUB_SUB_EVENTS } from "components/block-buy-buttons";
+import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
 
 class CartCount extends HTMLElement {
   connectedCallback() {
-    this.variantAddedToCartUnsubscriber = subscribe(
-      BUY_BUTTON_PUB_SUB_EVENTS.variantAdded,
+    this.cartChangeUnsubscriber = subscribe(
+      PUB_SUB_EVENTS.cartChange,
       (event) => {
         const { cart } = event.data;
         this.itemCount = cart.item_count;
@@ -13,7 +13,7 @@ class CartCount extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.variantAddedToCartUnsubscriber?.();
+    this.cartChangeUnsubscriber();
   }
 
   get itemCount() {
