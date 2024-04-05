@@ -1,5 +1,7 @@
-import { subscribe } from "@archetype-themes/scripts/utils/pubsub";
-import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
+import {
+  PUB_SUB_EVENTS,
+  subscribe,
+} from "@archetype-themes/scripts/utils/pubsub";
 
 class CartCount extends HTMLElement {
   connectedCallback() {
