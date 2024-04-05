@@ -18,8 +18,6 @@ export class LineItemQuantity extends HTMLElement {
       "text/html"
     );
 
-    this.syncQuantityInputsInLineItem(this.index, target.value);
-
     publish(PUB_SUB_EVENTS.lineItemChange, {
       data: {
         html,
@@ -34,17 +32,6 @@ export class LineItemQuantity extends HTMLElement {
         item: "items" in responseJson ? responseJson["items"] : [responseJson],
       },
     });
-  }
-
-  syncQuantityInputsInLineItem(index, value) {
-    const lineItem = this.closest("tr");
-    const quantityInputs = Array.from(
-      lineItem.querySelectorAll(`line-item-quantity[index="${index}"] input`)
-    );
-
-    quantityInputs
-      .filter((input) => input.value !== value)
-      .forEach((input) => (input.value = value));
   }
 
   async changeCartQuantity(quantity) {
