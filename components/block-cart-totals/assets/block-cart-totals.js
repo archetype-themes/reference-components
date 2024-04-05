@@ -1,7 +1,7 @@
 import { subscribe } from "@archetype-themes/scripts/utils/pubsub";
 import { PUB_SUB_EVENTS as LINE_ITEM_QUANTITY_PUB_SUB_EVENTS } from "components/line-item-quantity";
 
-export class LineItemPrice extends HTMLElement {
+export class CartTotalPrice extends HTMLElement {
   connectedCallback() {
     this.cartChangeUnsubscriber = subscribe(
       LINE_ITEM_QUANTITY_PUB_SUB_EVENTS.lineItemChange,
@@ -14,19 +14,10 @@ export class LineItemPrice extends HTMLElement {
   }
 
   handleLineItemChange({ data }) {
-    const { html, index } = data;
+    const { html } = data;
+    const price = html.querySelector("cart-total-price")?.innerText;
 
-    if (index !== this.index) return;
-
-    const price = html.querySelector(
-      `line-item-price[index="${this.index}"]`
-    ).innerText;
-
-    this.price = price;
-  }
-
-  get index() {
-    return this.getAttribute("index");
+    this.price = price || this.price;
   }
 
   set price(count) {
@@ -34,4 +25,4 @@ export class LineItemPrice extends HTMLElement {
   }
 }
 
-customElements.define("line-item-price", LineItemPrice);
+customElements.define("cart-total-price", CartTotalPrice);

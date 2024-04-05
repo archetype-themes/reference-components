@@ -11,7 +11,7 @@
   --breakpoint-medium-up: 769px;
   --breakpoint-medium-down: 959px;
   --slideCurve: 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
-  --drawerBoxShadow: 0 10px 25px rgba(0,0,0,0.15);
+  --drawerBoxShadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 
   /*================ Product and collection grids ================*/
   /* Product grid margin is double this variable */
@@ -49,3 +49,4 @@
 @custom-media --small only screen and (max-width: 768px);
 @custom-media --medium-up only screen and (min-width: 769px);
 @custom-media --medium-down only screen and (max-width: 959px);
+@custom-media --large-up only screen and (min-width: 960px);

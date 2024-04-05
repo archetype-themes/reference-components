@@ -2,15 +2,7 @@ import { updateCart } from "@archetype-themes/scripts/utils/theme-request";
 
 export class CartNote extends HTMLElement {
   connectedCallback() {
-    this.controller = new AbortController();
-
-    this.addEventListener("change", this.onChange.bind(this), {
-      signal: this.controller.signal,
-    });
-  }
-
-  disconnectedCallback() {
-    this.controller.abort();
+    this.addEventListener("change", this.onChange);
   }
 
   async onChange({ target }) {
@@ -19,6 +11,4 @@ export class CartNote extends HTMLElement {
   }
 }
 
-if (!customElements.get("cart-note")) {
-  customElements.define("cart-note", CartNote);
-}
+customElements.define("cart-note", CartNote);

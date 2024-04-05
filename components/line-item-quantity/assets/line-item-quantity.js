@@ -17,14 +17,16 @@ export class LineItemQuantity extends HTMLElement {
     target.removeAttribute("disabled");
 
     const html = new DOMParser().parseFromString(
-      responseJson.sections["main-cart"],
+      responseJson?.sections[this.sectionId],
       "text/html"
     );
+
+    this.syncQuantityInputsInLineItem(this.index, target.value);
 
     publish(PUB_SUB_EVENTS.lineItemChange, {
       data: {
         html,
-        key: this.key,
+        index: this.index,
         quantity: target.value,
       },
     });
@@ -37,29 +39,42 @@ export class LineItemQuantity extends HTMLElement {
     });
   }
 
-  async changeCartQuantity(newQuantity) {
-    const sectionsToBundle = ["main-cart"];
-    const response = await fetch(
-      `${window.Shopify.routes.root}cart/change.js`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: this.key,
-          quantity: newQuantity,
-          sections: sectionsToBundle,
-        }),
-      }
+  syncQuantityInputsInLineItem(index, value) {
+    const lineItem = this.closest("tr");
+    const quantityInputs = Array.from(
+      lineItem.querySelectorAll(`line-item-quantity[index="${index}"] input`)
     );
+
+    quantityInputs
+      .filter((input) => input.value !== value)
+      .forEach((input) => (input.value = value));
+  }
+
+  async changeCartQuantity(quantity) {
+    const sectionsToBundle = [this.sectionId];
+    const response = await fetch(`${window.Shopify.routes.root}cart/change`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        line: this.index,
+        quantity,
+        sections: sectionsToBundle,
+      }),
+    });
 
     return response.json();
   }
 
-  get key() {
-    return this.getAttribute("key");
+  get index() {
+    return this.getAttribute("index");
+  }
+
+  get sectionId() {
+    return this.getAttribute("section-id");
   }
 }
 
-if (!customElements.get("line-item-quantity")) {
-  customElements.define("line-item-quantity", LineItemQuantity);
-}
+customElements.define("line-item-quantity", LineItemQuantity);

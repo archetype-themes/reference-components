@@ -101,8 +101,7 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   async addVariantToCart() {
-    const sectionToBundle = [];
-    const formData = this.getFormDataWithSections(sectionToBundle);
+    const formData = this.getFormDataWithSections();
 
     const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
       method: "POST",
@@ -130,14 +129,13 @@ class BlockBuyButtons extends HTMLElement {
     });
   }
 
-  getFormDataWithSections(sections) {
+  getFormDataWithSections() {
     const productForm = this.querySelector(
       `#product-form-${this.dataset.sectionId}`
     );
 
     const formData = new FormData(productForm);
 
-    formData.set("sections", sections.join(","));
     formData.set(
       "sections_url",
       `${window.Shopify.routes.root}variants/${productForm.id.value}`

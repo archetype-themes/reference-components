@@ -2,53 +2,104 @@
 @import "../../styles/variables.css";
 @import "../../styles/layout/page-width.css";
 
-.cart h1 {
+.page-empty {
+  display: grid;
+  place-items: center;
+  gap: var(--space-6);
+  padding-block-start: var(--space-10);
+  padding-block-end: var(--space-10);
+
+  @media (--medium-up) {
+    padding-block-start: var(--space-16);
+    padding-block-end: var(--space-16);
+  }
+}
+
+.page-empty h1 {
   font-weight: bold;
+  margin-bottom: 0;
 }
 
 .main-cart {
   display: grid;
   gap: var(--space-8);
+  font-size: 0.875rem;
+  padding-block-end: var(--space-16);
 
-  @media (--medium-up) {
+  @media (--large-up) {
     gap: var(--space-10);
-    grid-template-columns: 65% 1fr;
-    padding-top: var(--space-16);
+    grid-template-columns: 62.5% 1fr;
+    align-items: start;
   }
 }
 
 .line-item__image {
   position: relative;
-  width: 150px;
+  width: 100px;
   height: auto;
-  min-width: 150px;
 }
 
 .line-item {
   display: flex;
   gap: var(--space-8);
-  align-items: center;
+  align-items: start;
+
+  @media (--medium-up) {
+    align-items: center;
+  }
 }
 
-.line-item a:first-child {
-  font-weight: bold;
+.line-item__title {
+  font-size: 1.125rem;
 }
 
-table thead th:last-child,
+.line-item__variants {
+  margin-top: var(--space-3);
+  font-size: 0.75rem;
+}
+
+.line-item__quantity {
+  margin-top: var(--space-5);
+}
+
+@media (--medium-up) {
+  table thead th:last-child,
+  table tbody td:last-child {
+    text-align: end;
+  }
+}
+
 table tbody td:last-child {
-  text-align: end;
+  font-size: 1.125rem;
+
+  @media (--small) {
+    display: none;
+  }
 }
 
-table tr:first-child td {
-  padding-block-start: var(--space-8);
+@media (--small) {
+  table tbody td:nth-child(2) {
+    display: none;
+  }
 }
 
-table tr:last-child td {
-  padding-block-end: var(--space-8);
+table tr td {
+  padding-block-start: var(--space-4);
+  padding-block-end: var(--space-4);
+
+  @media (--medium-up) {
+    padding-inline-end: var(--space-4);
+  }
+}
+
+table tr td:last-child {
+  padding-inline-end: 0;
 }
 
 table td:first-child {
-  width: 60%;
+  @media (--medium-up) {
+    width: 60%;
+  }
 }
 
 table td {
@@ -66,7 +117,11 @@ table {
 }
 
 table thead {
-  display: table-header-group;
+  display: none;
+
+  @media (--medium-up) {
+    display: table-header-group;
+  }
 }
 
 table th {
@@ -75,8 +130,86 @@ table th {
   border-color: rgba(var(--color-foreground) / 0.1);
   text-align: start;
   border-block-end-width: 1px;
-  padding-block-start: var(--space-6);
-  padding-block-end: var(--space-6);
+  padding-block-start: var(--space-3);
+  padding-block-end: var(--space-3);
+}
+
+/* TODO: CLEAN THIS FILE UP */
+@media (--medium-up) {
+  .md\:hidden {
+    display: none;
+  }
+}
+
+.line-item-quantity {
+  display: grid;
+  justify-content: safe center;
+  gap: var(--space-2);
+  width: 0;
+
+  @media (--small) {
+    .line-item__quantity & {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+  }
+}
+
+.line-item-quantity input {
+  width: 48px;
+  padding-block-start: var(--space-2);
+  padding-block-end: var(--space-2);
+  text-align: center;
+  font-size: var(--text-xs);
+  -webkit-touch-callout: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border-width: 1px;
+  outline: none;
+
+  @media (--small) {
+    .line-item__quantity & {
+      width: 42px;
+      padding-block-start: var(--space-1);
+      padding-block-end: var(--space-1);
+    }
+  }
+}
+
+.line-item-quantity input:disabled {
+  opacity: 0.5;
+}
+
+.line-item-quantity__remove {
+  font-size: 0.75rem;
+}
+
+.line-item-quantity__remove:hover {
+  text-decoration: underline;
+}
+
+.cart-blocks {
+  background-color: rgba(var(--color-foreground) / 0.03);
+  padding-block: var(--space-8);
+  padding-inline: var(--space-6);
+}
+
+.cart-blocks__form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.cart-totals {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+cart-note {
+  display: block;
 }
 
 .cart-note {
@@ -84,4 +217,32 @@ table th {
   border: 1px solid rgba(var(--color-foreground) / 0.2);
   padding: var(--space-2);
   resize: vertical;
+}
+
+.cart-checkout-button {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-items: center;
+  gap: var(--space-4);
+}
+
+.cart-checkout-button__shipping-copy {
+  font-size: 0.75rem;
+}
+
+.cart-checkout-button button {
+  width: 100%;
+  justify-content: center;
+}
+
+.cart-checkout-button__we-accept {
+  font-size: 0.75rem;
+}
+
+.cart-checkout-button__payment-types {
+  display: flex;
+  gap: var(--space-1);
+  justify-content: center;
+  margin-block-start: var(--space-2);
 }

@@ -13,5 +13,5 @@ body {
 }
 
 details summary::-webkit-details-marker {
-  display:none;
+  display: none;
 }

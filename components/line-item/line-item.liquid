@@ -1,51 +1,42 @@
+{%- comment -%}
+  Renders a line item for the cart page
+
+  Accepts the following attributes:
+  - line_item {line_item} - Line item object
+{%- endcomment -%}
+
 <div class="line-item">
-  {%- if line_item.image != blank -%}
-    {{-
-      line_item.image
-      | image_url: width: line_item.image.width
-      | image_tag:
-        loading: 'lazy',
-        sizes: '(max-width: 768px) 100px, 150px',
-        widths: '100,150,200,300',
-        class: 'line-item__image'
-    -}}
-  {%- endif -%}
+  {%- liquid
+    assign loading = 'lazy'
+
+    if section.index == 1 and line_item.index == 0
+      assign loading = 'eager'
+    endif
+
+    if line_item.image != blank
+      echo line_item.image | image_url: width: line_item.image.width | image_tag: loading: loading, sizes: '100px', widths: '100, 200', class: 'line-item__image'
+    endif
+  -%}
 
   <div class="line-item__info">
-    {%- if line_item.url != blank -%}
-      <a href="{{ line_item.url }}">
-        {{ line_item.product.title | default: line_item.title }}
-      </a>
-    {%- else -%}
+    <a href="{{ line_item.url }}" class="line-item__title">
       {{ line_item.product.title | default: line_item.title }}
-    {%- endif -%}
+    </a>
 
-    {%- render 'price', price: line_item.final_price -%}
+    <div class="line-item__price">
+      {%- render 'price', price: line_item.final_price -%}
+    </div>
 
     {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
-      {{ line_item.variant.title }}
+      <div class="line-item__variants">
+        {%- for option in line_item.options_with_values -%}
+          <div>{{ option.name }}: {{ option.value }}</div>
+        {%- endfor -%}
+      </div>
     {%- endunless -%}
 
-    {%- if line_item.properties != blank -%}
-      <ul>
-        {%- for property in line_item.properties -%}
-          {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
-
-          {%- if property.last == blank or first_character_in_key == '_' -%}
-            {%- continue -%}
-          {%- endif -%}
-
-          <li>
-            {%- if property.last contains '/uploads/' -%}
-              <a href="{{ property.last }}">
-                {{ property.last | split: '/' | last }}
-              </a>
-            {%- else -%}
-              {{ property.first }}: {{ property.last }}
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
+    <div class="line-item__quantity md:hidden">
+      {%- render 'line-item-quantity', line_item: line_item -%}
+    </div>
   </div>
 </div>

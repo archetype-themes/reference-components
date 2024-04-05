@@ -1,31 +1,46 @@
-<section class="main-cart page-width page-width--flush-small color-scheme-2">
-  {%- if cart.item_count == 0 -%}
-    {{ 'info.cart_empty' | t }}
-  {%- else -%}
-    <table>
-      <thead>
-        <tr>
-          <th>{{ 'labels.product' | t }}</th>
-          <th>{{ 'labels.quantity' | t }}</th>
-          <th>{{ 'labels.total' | t }}</th>
-        </tr>
-      </thead>
+<section class="color-scheme-2">
+  <div class="page-width">
+    {%- if cart.item_count == 0 -%}
+      <div class="page-empty">
+        <h1>{{ 'labels.cart' | t }}</h1>
+        {{ 'info.cart_empty' | t }}
 
-      <tbody>
-        {%- for line_item in cart.items -%}
-          <tr>
-            <td>{%- render 'line-item', line_item: line_item -%}</td>
-            <td>{%- render 'line-item-quantity', line_item: line_item -%}</td>
-            <td>{%- render 'line-item-price', line_item: line_item -%}</td>
-          </tr>
-        {%- endfor -%}
-      </tbody>
-    </table>
+        <a href="{{ routes.root_url }}" class="button">
+          {{ 'actions.continue_shopping' | t }}
+        </a>
+      </div>
+    {%- else -%}
+      <div class="page-empty">
+        <h1>{{ 'labels.cart' | t }}</h1>
+      </div>
 
-    <div class="cart-blocks">
-      <form action="{{ routes.cart_url }}" method="POST">
-        {{ slot }}
-      </form>
-    </div>
-  {%- endif -%}
+      <div class="main-cart">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'labels.product' | t }}</th>
+              <th>{{ 'labels.quantity' | t }}</th>
+              <th>{{ 'labels.total' | t }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {%- for line_item in cart.items -%}
+              <tr>
+                <td>{%- render 'line-item', line_item: line_item -%}</td>
+                <td>{%- render 'line-item-quantity', line_item: line_item -%}</td>
+                <td>{%- render 'line-item-price', line_item: line_item -%}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <div class="cart-blocks">
+          <form action="{{ routes.cart_url }}" method="POST" class="cart-blocks__form">
+            {{- slot -}}
+          </form>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
 </section>

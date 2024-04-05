@@ -1,10 +1,22 @@
-<div {{ block.shopify_attributes }}>
-  <button type="submit" class="button" name="checkout">Checkout</button>
-</div>
+<div class="cart-checkout-button" {{ block.shopify_attributes }}>
+  <div class="cart-checkout-button__shipping-copy">
+    {%- if cart.taxes_included -%}
+      {{ 'info.shipping_at_checkout_taxes_included' | t }}
+    {%- else -%}
+      {{ 'info.shipping_at_checkout' | t }}
+    {%- endif -%}
+  </div>
 
-{%- if shop.enabled_currencies.size > 0 -%}
-  <div>We accept</div>
-  {%- for type in shop.enabled_payment_types -%}
-    {{- type | payment_type_svg_tag -}}
-  {%- endfor -%}
-{%- endif -%}
+  <button type="submit" class="button" name="checkout">Checkout</button>
+
+  {%- if shop.enabled_currencies.size > 0 -%}
+    <div class="cart-checkout-button__we-accept">
+      <div>We accept</div>
+      <div class="cart-checkout-button__payment-types">
+        {%- for type in shop.enabled_payment_types -%}
+          {{- type | payment_type_svg_tag -}}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
