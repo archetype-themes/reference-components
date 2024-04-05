@@ -90,7 +90,8 @@ export class LineItemQuantity extends HTMLElement {
   }
 
   syncQuantityInputsInLineItem(index, value) {
-    const quantityInputs = document.querySelectorAll(
+    const lineItem = this.closest("tr");
+    const quantityInputs = lineItem.querySelectorAll(
       `[index="${index}"] > input`
     );
 
