@@ -1,6 +1,17 @@
+{%- comment -%}
+  Renders the checkout button and payment icons if enabled
+
+  Accepts the following attributes:
+  - block {block} - Block object
+{%- endcomment -%}
+
+{% liquid
+  assign taxes_included = taxes_included | default: cart.taxes_included
+%}
+
 <div class="cart-checkout-button" {{ block.shopify_attributes }}>
   <div class="cart-checkout-button__shipping-copy">
-    {%- if cart.taxes_included -%}
+    {%- if taxes_included -%}
       {{ 'info.shipping_at_checkout_taxes_included' | t }}
     {%- else -%}
       {{ 'info.shipping_at_checkout' | t }}

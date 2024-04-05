@@ -1,3 +1,30 @@
+{%- comment -%}
+  Main cart section
+
+  Accepts the following attributes:
+  - slot {string} - Slot for block content
+
+  Usage:
+  {% liquid
+    capture blocks
+      for block in section.blocks
+        case block.type
+          when '@app'
+            render block
+          when 'totals'
+            render 'block-cart-totals', block: block
+          when 'note'
+            render 'block-cart-note', block: block
+          when 'checkout_button'
+            render 'block-cart-checkout-button', block: block
+        endcase
+      endfor
+    endcapture
+
+    render 'section-main-cart', slot: blocks
+  %}
+{%- endcomment -%}
+
 <section class="color-scheme-2">
   <div class="page-width">
     {%- if cart.item_count == 0 -%}
