@@ -1,0 +1,17 @@
+.status {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-size: 0.75rem;
+  color: rgb(255 0 0);
+  margin-bottom: var(--space-6);
+}
+
+.status .icon {
+  width: 1.25rem;
+  height: auto;
+}
+
+.status[hidden] {
+  display: none;
+}

@@ -27,6 +27,7 @@ export class LineItemQuantity extends HTMLElement {
   async onChange({ target }) {
     target.setAttribute("disabled", "disabled");
 
+    publish(PUB_SUB_EVENTS.cartBeforeChange);
     const responseJson = await this.changeCartQuantity(target.value);
 
     if (!responseJson.errors) {

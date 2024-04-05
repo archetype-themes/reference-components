@@ -63,6 +63,8 @@
         </table>
 
         <div class="cart-blocks">
+          {%- render 'cart-status-notifier' -%}
+
           <form action="{{ routes.cart_url }}" method="POST" class="cart-blocks__form">
             {{- slot -}}
           </form>

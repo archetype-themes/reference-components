@@ -1,0 +1,23 @@
+{%- comment -%}
+  Renders the cart status errors
+
+  Accepts the following attributes:
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+{%- endcomment -%}
+
+{%- liquid
+  assign hydration = hydration | default: 'on:visible'
+-%}
+
+<is-land {{ hydration }}>
+  <cart-status-notifier class="status" hidden>
+    {%- render 'icon', name: 'alert' -%}
+    <span></span>
+
+    <template data-island>
+      <script type="module">
+        import 'components/cart-status-notifier';
+      </script>
+    </template>
+  </cart-status-notifier>
+</is-land>
