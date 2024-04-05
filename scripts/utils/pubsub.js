@@ -21,3 +21,10 @@ export function publish(eventName, data) {
     });
   }
 }
+
+export const PUB_SUB_EVENTS = {
+  cartChange: "cart:change",
+  lineItemChange: "line-item:change",
+  variantAdded: "variant:added",
+  variantChange: "variant:change",
+};

@@ -1,13 +1,10 @@
-import { publish } from '@archetype-themes/scripts/utils/pubsub';
-
-export const PUB_SUB_EVENTS = {
-  variantChange: 'variant-change',
-};
+import { publish } from "@archetype-themes/scripts/utils/pubsub";
+import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
 
 class BlockVariantPicker extends HTMLElement {
   constructor() {
     super();
-    this.addEventListener('change', this.onVariantChange);
+    this.addEventListener("change", this.onVariantChange);
   }
 
   onVariantChange(event) {
@@ -30,40 +27,55 @@ class BlockVariantPicker extends HTMLElement {
   }
 
   updateOptions() {
-    this.options = Array.from(this.querySelectorAll('select, fieldset'), (element) => {
-      if (element.tagName === 'SELECT') {
-        return element.value;
+    this.options = Array.from(
+      this.querySelectorAll("select, fieldset"),
+      (element) => {
+        if (element.tagName === "SELECT") {
+          return element.value;
+        }
+        if (element.tagName === "FIELDSET") {
+          return Array.from(element.querySelectorAll("input")).find(
+            (radio) => radio.checked
+          )?.value;
+        }
       }
-      if (element.tagName === 'FIELDSET') {
-        return Array.from(element.querySelectorAll('input')).find((radio) => radio.checked)?.value;
-      }
-    });
+    );
   }
 
   updateMasterId() {
-    this.currentVariant = this.getVariantData().find((variant) => (
-      !variant.options
-        .map((option, index) => this.options[index] === option)
-        .includes(false)
-    ));
+    this.currentVariant = this.getVariantData().find(
+      (variant) =>
+        !variant.options
+          .map((option, index) => this.options[index] === option)
+          .includes(false)
+    );
   }
 
   getVariantData() {
-    this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+    this.variantData =
+      this.variantData ||
+      JSON.parse(this.querySelector('[type="application/json"]').textContent);
     return this.variantData;
   }
 
   updateVariantStatuses() {
     const selectedOptionOneVariants = this.variantData.filter(
-      (variant) => this.querySelector(':checked').value === variant.option1
+      (variant) => this.querySelector(":checked").value === variant.option1
     );
-    const inputWrappers = [...this.querySelectorAll('fieldset')];
+    const inputWrappers = [...this.querySelectorAll("fieldset")];
     inputWrappers.forEach((option, index) => {
       if (index === 0) return;
-      const optionInputs = [...option.querySelectorAll('input[type="radio"], option')];
-      const previousOptionSelected = inputWrappers[index - 1].querySelector(':checked').value;
+      const optionInputs = [
+        ...option.querySelectorAll('input[type="radio"], option'),
+      ];
+      const previousOptionSelected =
+        inputWrappers[index - 1].querySelector(":checked").value;
       const availableOptionInputsValue = selectedOptionOneVariants
-        .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
+        .filter(
+          (variant) =>
+            variant.available &&
+            variant[`option${index}`] === previousOptionSelected
+        )
         .map((variantOption) => variantOption[`option${index + 1}`]);
       this.setInputAvailability(optionInputs, availableOptionInputsValue);
     });
@@ -71,30 +83,36 @@ class BlockVariantPicker extends HTMLElement {
 
   setInputAvailability(elementList, availableValuesList) {
     elementList.forEach((element) => {
-      const value = element.getAttribute('value');
+      const value = element.getAttribute("value");
       const availableElement = availableValuesList.includes(value);
 
-      if (element.tagName === 'INPUT') {
-        element.toggleAttribute('data-disabled', !availableElement);
+      if (element.tagName === "INPUT") {
+        element.toggleAttribute("data-disabled", !availableElement);
       }
     });
   }
 
   updateURL() {
-    if (!this.currentVariant || !('updateUrl' in this.dataset)) return;
-    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+    if (!this.currentVariant || !("updateUrl" in this.dataset)) return;
+    window.history.replaceState(
+      {},
+      "",
+      `${this.dataset.url}?variant=${this.currentVariant.id}`
+    );
   }
 
   getProductInfo() {
     const requestedVariantId = this.currentVariant.id;
 
-    fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`)
+    fetch(
+      `${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`
+    )
       .then((response) => response.text())
       .then((responseText) => {
         // prevent unnecessary ui changes from abandoned selections
         if (this.currentVariant.id !== requestedVariantId) return;
 
-        const html = new DOMParser().parseFromString(responseText, 'text/html');
+        const html = new DOMParser().parseFromString(responseText, "text/html");
 
         publish(PUB_SUB_EVENTS.variantChange, {
           data: {
@@ -107,4 +125,4 @@ class BlockVariantPicker extends HTMLElement {
   }
 }
 
-customElements.define('block-variant-picker', BlockVariantPicker);
+customElements.define("block-variant-picker", BlockVariantPicker);

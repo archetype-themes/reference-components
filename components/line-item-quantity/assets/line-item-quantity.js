@@ -1,8 +1,5 @@
 import { publish } from "@archetype-themes/scripts/utils/pubsub";
-
-export const PUB_SUB_EVENTS = {
-  lineItemChange: "line-item:change",
-};
+import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {

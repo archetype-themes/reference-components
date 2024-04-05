@@ -1,14 +1,10 @@
 import { publish, subscribe } from "@archetype-themes/scripts/utils/pubsub";
-import { PUB_SUB_EVENTS as VARIANT_PICKER_PUB_SUB_EVENTS } from "components/block-variant-picker";
-
-export const PUB_SUB_EVENTS = {
-  variantAdded: "variant:added",
-};
+import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
 
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(
-      VARIANT_PICKER_PUB_SUB_EVENTS.variantChange,
+      PUB_SUB_EVENTS.variantChange,
       ({ data: { html, variant } }) => {
         if (!variant) {
           this.toggleAddButton(true, this.getLocales().unavailable);
