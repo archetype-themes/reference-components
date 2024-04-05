@@ -1,5 +1,8 @@
-import { publish, subscribe } from "@archetype-themes/scripts/utils/pubsub";
-import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
+import {
+  PUB_SUB_EVENTS,
+  publish,
+  subscribe,
+} from "@archetype-themes/scripts/utils/pubsub";
 
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {

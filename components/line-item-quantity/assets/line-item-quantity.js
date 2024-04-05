@@ -1,5 +1,7 @@
-import { publish } from "@archetype-themes/scripts/utils/pubsub";
-import { PUB_SUB_EVENTS } from "@archetype-themes/scripts/utils/pubsub";
+import {
+  PUB_SUB_EVENTS,
+  publish,
+} from "@archetype-themes/scripts/utils/pubsub";
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {
