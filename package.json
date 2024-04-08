@@ -6,7 +6,8 @@
   "scripts": {
     "build": "shopify theme component dev --no-watch",
     "deploy": "source .env && shopify theme push --path .explorer --theme $SHOPIFY_CLI_THEME_ID --allow-live",
-    "test": "npm run build && source .env && npm run deploy && playwright test --ui"
+    "test": "npm run build && source .env && npm run deploy && playwright test --ui",
+    "format": "prettier --write --cache ."
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
   "homepage": "https://github.com/archetype-themes/reference-components#readme",
   "devDependencies": {
     "@playwright/test": "^1.42.1",
-    "dotenv": "^16.4.5"
+    "@shopify/prettier-plugin-liquid": "^1.4.4",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.2.5"
   }
 }
