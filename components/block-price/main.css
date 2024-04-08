@@ -24,7 +24,7 @@
   display: none;
 
   [data-on-sale] & {
-    display: flex;;
+    display: flex;
     gap: var(--space-2);
   }
 }

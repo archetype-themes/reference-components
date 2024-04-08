@@ -1,37 +1,31 @@
-import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub";
+import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub"
 
 export class CartStatusNotifier extends HTMLElement {
   connectedCallback() {
-    this.cartBeforeChangeUnsubscriber = subscribe(
-      EVENTS.cartBeforeChange,
-      this.handleBeforeCartChange.bind(this)
-    );
+    this.cartBeforeChangeUnsubscriber = subscribe(EVENTS.cartBeforeChange, this.handleBeforeCartChange.bind(this))
 
-    this.cartErrorUnsubscriber = subscribe(
-      EVENTS.cartError,
-      this.handleCartError.bind(this)
-    );
+    this.cartErrorUnsubscriber = subscribe(EVENTS.cartError, this.handleCartError.bind(this))
   }
 
   disconnectedCallback() {
-    this.cartBeforeChangeUnsubscriber();
-    this.cartErrorUnsubscriber();
+    this.cartBeforeChangeUnsubscriber()
+    this.cartErrorUnsubscriber()
   }
 
   handleBeforeCartChange() {
-    this.hidden = true;
+    this.hidden = true
   }
 
   handleCartError({ detail }) {
-    const { errors } = detail;
-    this.querySelector("span").innerText = errors;
+    const { errors } = detail
+    this.querySelector("span").innerText = errors
 
-    this.hidden = false;
+    this.hidden = false
   }
 
   set text(text) {
-    this.innerText = text;
+    this.innerText = text
   }
 }
 
-customElements.define("cart-status-notifier", CartStatusNotifier);
+customElements.define("cart-status-notifier", CartStatusNotifier)

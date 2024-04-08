@@ -1,76 +1,76 @@
-import inView from "@archetype-themes/scripts/vendors/in-view";
+import inView from "@archetype-themes/scripts/vendors/in-view"
 
 export default class extends HTMLElement {
   constructor() {
-    super();
+    super()
 
     const handler = {
       get: (target, prop) => {
         return async () => {
-          target = await target;
-          this.playerHandler(target, prop);
-        };
-      },
-    };
+          target = await target
+          this.playerHandler(target, prop)
+        }
+      }
+    }
 
-    this.player = new Proxy(this.getPlayerTarget(), handler);
-    this.pausedByUser = false;
-    this.playingWhenLastViewed = false;
+    this.player = new Proxy(this.getPlayerTarget(), handler)
+    this.pausedByUser = false
+    this.playingWhenLastViewed = false
 
     inView(this, () => {
       if ((this.autoplay && !this.pausedByUser) || this.playingWhenLastViewed) {
-        this.play();
+        this.play()
       }
 
       return () => {
-        this.playingWhenLastViewed = this.playing;
-        this.pause();
-      };
-    });
+        this.playingWhenLastViewed = this.playing
+        this.pause()
+      }
+    })
   }
 
   static get observedAttributes() {
-    return ["playing"];
+    return ["playing"]
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name !== "playing") return;
+    if (name !== "playing") return
 
     if (oldValue === null && newValue === "") {
-      this.dispatchEvent(new CustomEvent("media:play", { bubbles: true }));
+      this.dispatchEvent(new CustomEvent("media:play", { bubbles: true }))
     } else if (newValue === null) {
-      this.dispatchEvent(new CustomEvent("media:pause", { bubbles: true }));
+      this.dispatchEvent(new CustomEvent("media:pause", { bubbles: true }))
     }
   }
 
   play() {
-    this.pausedByUser = false;
+    this.pausedByUser = false
 
-    if (this.playing) return;
-    this.player.play();
-    this.playingWhenLastViewed = true;
+    if (this.playing) return
+    this.player.play()
+    this.playingWhenLastViewed = true
   }
 
   pause() {
-    this.pausedByUser = true;
+    this.pausedByUser = true
 
-    if (!this.playing) return;
-    this.player.pause();
+    if (!this.playing) return
+    this.player.pause()
   }
 
   getPlayerTarget() {
-    throw new Error("getPlayerTarget must be implemented in a subclass");
+    throw new Error("getPlayerTarget must be implemented in a subclass")
   }
 
   playerHandler() {
-    throw new Error("playerHandler must be implemented in a subclass");
+    throw new Error("playerHandler must be implemented in a subclass")
   }
 
   get playing() {
-    return this.hasAttribute("playing");
+    return this.hasAttribute("playing")
   }
 
   get autoplay() {
-    return this.hasAttribute("autoplay");
+    return this.hasAttribute("autoplay")
   }
 }

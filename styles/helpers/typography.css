@@ -317,8 +317,7 @@ html[dir="rtl"] {
 
 /* TODO: remove CSS above this line */
 body {
-  font: var(--body-font-style) var(--body-font-weight) var(--text-base) / 1.65
-    var(--body-font-family);
+  font: var(--body-font-style) var(--body-font-weight) var(--text-base) / 1.65 var(--body-font-family);
 }
 
 hr {
@@ -342,8 +341,15 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    Liberation Mono, Courier New, monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    Liberation Mono,
+    Courier New,
+    monospace;
   font-size: 1em;
 }
 

@@ -1,35 +1,30 @@
-import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub";
+import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub"
 
 class VariantSku extends HTMLElement {
   constructor() {
-    super();
+    super()
   }
 
   connectedCallback() {
-    this.variantChangeUnsubscriber = subscribe(
-      EVENTS.variantChange,
-      (event) => {
-        const { html, sectionId, variant } = event.detail;
+    this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, (event) => {
+      const { html, sectionId, variant } = event.detail
 
-        if (!variant) {
-          this.textContent = "";
-          return;
-        }
-
-        const skuSource = html.querySelector(
-          `[data-section-id="${sectionId}"] variant-sku`
-        );
-
-        if (skuSource) {
-          this.textContent = skuSource.textContent;
-        }
+      if (!variant) {
+        this.textContent = ""
+        return
       }
-    );
+
+      const skuSource = html.querySelector(`[data-section-id="${sectionId}"] variant-sku`)
+
+      if (skuSource) {
+        this.textContent = skuSource.textContent
+      }
+    })
   }
 
   disconnectedCallback() {
-    this.variantChangeUnsubscriber?.();
+    this.variantChangeUnsubscriber?.()
   }
 }
 
-customElements.define("variant-sku", VariantSku);
+customElements.define("variant-sku", VariantSku)

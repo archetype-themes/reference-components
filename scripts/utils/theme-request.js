@@ -1,25 +1,25 @@
 export function getProductJSON(handle) {
-  return getJSONFromEndpoint(`products/${handle}.js`);
+  return getJSONFromEndpoint(`products/${handle}.js`)
 }
 
 export async function getJSONFromEndpoint(endpoint) {
-  const response = await fetchDataFromEndpoint(endpoint);
-  return response.json();
+  const response = await fetchDataFromEndpoint(endpoint)
+  return response.json()
 }
 
 export async function getTextFromEndpoint(endpoint) {
-  const response = await fetchDataFromEndpoint(endpoint);
-  return response.text();
+  const response = await fetchDataFromEndpoint(endpoint)
+  return response.text()
 }
 
 export async function fetchDataFromEndpoint(endpoint) {
-  const response = await fetch(`${window.Shopify.routes.root}${endpoint}`);
+  const response = await fetch(`${window.Shopify.routes.root}${endpoint}`)
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch data from endpoint: ${endpoint}`);
+    throw new Error(`Failed to fetch data from endpoint: ${endpoint}`)
   }
 
-  return response;
+  return response
 }
 
 export async function updateCart(body) {
@@ -27,12 +27,12 @@ export async function updateCart(body) {
     method: "POST",
     headers: { "Content-type": "application/json" },
     body: JSON.stringify(body),
-    keepalive: true,
-  });
+    keepalive: true
+  })
 
   if (!response.ok) {
-    throw new Error("Failed to update cart");
+    throw new Error("Failed to update cart")
   }
 
-  return response;
+  return response
 }

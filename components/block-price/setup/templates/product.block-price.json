@@ -7,12 +7,8 @@
           "type": "price"
         }
       },
-      "block_order": [
-        "price_1"
-      ]
+      "block_order": ["price_1"]
     }
   },
-  "order": [
-    "block_price"
-  ]
+  "order": ["block_price"]
 }

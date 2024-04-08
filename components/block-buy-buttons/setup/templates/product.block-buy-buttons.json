@@ -10,12 +10,8 @@
           }
         }
       },
-      "block_order": [
-        "buy_buttons_1"
-      ]
+      "block_order": ["buy_buttons_1"]
     }
   },
-  "order": [
-    "block_buy_buttons"
-  ]
+  "order": ["block_buy_buttons"]
 }

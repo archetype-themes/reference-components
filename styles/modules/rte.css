@@ -35,12 +35,22 @@
   }
 
   /*Add some top margin to headers from the rich text editor*/
-  & h1, & h2, & h3, & h4, & h5, & h6 {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
     margin-top: 60px;
     margin-bottom: 25px;
   }
 
-  & h1, & h2, & h3, & h4, & h5, & h6 {
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
     &:first-child {
       margin-top: 0;
     }
@@ -52,7 +62,12 @@
 
   /*In case merchants paste meta tags into their content by accident*/
   & meta:first-child {
-    & + h1, & + h2, & + h3, & + h4, & + h5, & + h6 {
+    & + h1,
+    & + h2,
+    & + h3,
+    & + h4,
+    & + h5,
+    & + h6 {
       margin-top: 0;
     }
   }

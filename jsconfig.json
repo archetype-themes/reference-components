@@ -4,9 +4,7 @@
     "lib": ["es2015", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@archetype-themes/scripts/custom-elements/*": [
-        "scripts/custom-elements/*"
-      ],
+      "@archetype-themes/scripts/custom-elements/*": ["scripts/custom-elements/*"],
       "components/block-variant-picker": ["components/block-variant-picker/assets/block-variant-picker.js"],
       "@archetype-themes/scripts/utils/*": ["scripts/utils/*"],
       "@archetype-themes/scripts/vendors/*": ["scripts/vendors/*"]

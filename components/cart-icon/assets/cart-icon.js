@@ -1,32 +1,29 @@
-import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub";
+import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub"
 
 class CartCount extends HTMLElement {
   connectedCallback() {
-    this.cartChangeUnsubscriber = subscribe(
-      EVENTS.cartChange,
-      this.handleCartChange.bind(this)
-    );
+    this.cartChangeUnsubscriber = subscribe(EVENTS.cartChange, this.handleCartChange.bind(this))
   }
 
   disconnectedCallback() {
-    this.cartChangeUnsubscriber();
+    this.cartChangeUnsubscriber()
   }
 
   handleCartChange({ detail }) {
-    const { cart } = detail;
-    this.itemCount = cart.item_count;
+    const { cart } = detail
+    this.itemCount = cart.item_count
   }
 
   get itemCount() {
-    return parseInt(this.innerText);
+    return parseInt(this.innerText)
   }
 
   set itemCount(count) {
-    if (this.itemCount === count) return;
+    if (this.itemCount === count) return
 
-    this.innerText = count.toString();
-    this.hidden = count === 0;
+    this.innerText = count.toString()
+    this.hidden = count === 0
   }
 }
 
-customElements.define("cart-count", CartCount);
+customElements.define("cart-count", CartCount)

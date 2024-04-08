@@ -4,52 +4,48 @@
  */
 const thresholds = {
   any: 0,
-  all: 1,
-};
+  all: 1
+}
 
-export default function inView(
-  elementOrSelector,
-  onStart,
-  { root, margin: rootMargin, amount = "any" } = {}
-) {
+export default function inView(elementOrSelector, onStart, { root, margin: rootMargin, amount = "any" } = {}) {
   if (typeof IntersectionObserver === "undefined") {
-    return () => {};
+    return () => {}
   }
 
-  let elements;
+  let elements
   if (typeof elementOrSelector === "string") {
-    elements = document.querySelectorAll(elementOrSelector);
+    elements = document.querySelectorAll(elementOrSelector)
   } else if (elementOrSelector instanceof Element) {
-    elements = [elementOrSelector];
+    elements = [elementOrSelector]
   } else {
-    elements = Array.from(elementOrSelector || []);
+    elements = Array.from(elementOrSelector || [])
   }
 
-  const activeIntersections = new WeakMap();
+  const activeIntersections = new WeakMap()
   const onIntersectionChange = (entries) => {
     entries.forEach((entry) => {
-      const onEnd = activeIntersections.get(entry.target);
-      if (entry.isIntersecting === Boolean(onEnd)) return;
+      const onEnd = activeIntersections.get(entry.target)
+      if (entry.isIntersecting === Boolean(onEnd)) return
       if (entry.isIntersecting) {
-        const newOnEnd = onStart(entry);
+        const newOnEnd = onStart(entry)
         if (typeof newOnEnd === "function") {
-          activeIntersections.set(entry.target, newOnEnd);
+          activeIntersections.set(entry.target, newOnEnd)
         } else {
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target)
         }
       } else if (onEnd) {
-        onEnd(entry);
-        activeIntersections.delete(entry.target);
+        onEnd(entry)
+        activeIntersections.delete(entry.target)
       }
-    });
-  };
+    })
+  }
 
   const observer = new IntersectionObserver(onIntersectionChange, {
     root,
     rootMargin,
-    threshold: typeof amount === "number" ? amount : thresholds[amount],
-  });
+    threshold: typeof amount === "number" ? amount : thresholds[amount]
+  })
 
-  elements.forEach((element) => observer.observe(element));
-  return () => observer.disconnect();
+  elements.forEach((element) => observer.observe(element))
+  return () => observer.disconnect()
 }

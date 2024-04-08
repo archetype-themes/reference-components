@@ -26,24 +26,24 @@
       padding: 0;
     }
 
-    [data-center-text='true'] & {
+    [data-center-text="true"] & {
       margin: 0 4px var(--labelBottomMargin);
     }
   }
 
-  input[type='radio']:focus + label {
+  input[type="radio"]:focus + label {
     box-shadow: 0 0 0 1px var(--colorTextBody);
     outline: 2px auto Highlight;
     outline: 2px auto -webkit-focus-ring-color;
     outline-offset: 1px;
   }
 
-  input[type='radio']:checked + label {
+  input[type="radio"]:checked + label {
     box-shadow: 0 0 0 2px var(--colorTextBody);
   }
 
-  input[type='radio'][data-disabled] + label,
-  input[type='checkbox'][data-disabled] + label {
+  input[type="radio"][data-disabled] + label,
+  input[type="checkbox"][data-disabled] + label {
     color: var(--colorBorder);
 
     &:after {

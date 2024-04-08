@@ -5,8 +5,7 @@
       "blocks": {
         "variant_picker_1": {
           "type": "variant_picker",
-          "settings": {
-          }
+          "settings": {}
         },
         "variant_picker_2": {
           "type": "variant_picker",
@@ -16,13 +15,8 @@
           }
         }
       },
-      "block_order": [
-        "variant_picker_1",
-        "variant_picker_2"
-      ]
+      "block_order": ["variant_picker_1", "variant_picker_2"]
     }
   },
-  "order": [
-    "variant_picker"
-  ]
+  "order": ["variant_picker"]
 }

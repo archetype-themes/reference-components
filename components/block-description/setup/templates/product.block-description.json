@@ -7,12 +7,8 @@
           "type": "description"
         }
       },
-      "block_order": [
-        "description_1"
-      ]
+      "block_order": ["description_1"]
     }
   },
-  "order": [
-    "block_description"
-  ]
+  "order": ["block_description"]
 }

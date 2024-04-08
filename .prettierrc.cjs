@@ -2,14 +2,13 @@
 module.exports = {
   printWidth: 120,
   semi: false,
-  singleQuote: true,
-  trailingComma: 'none',
-  plugins: [require.resolve('@shopify/prettier-plugin-liquid/standalone')],
+  trailingComma: "none",
+  plugins: [require.resolve("@shopify/prettier-plugin-liquid/standalone")],
   overrides: [
     {
-      files: '*.liquid',
+      files: "*.liquid",
       options: {
-        parser: 'liquid-html',
+        parser: "liquid-html",
         singleQuote: false
       }
     }

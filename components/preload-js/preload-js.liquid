@@ -4,17 +4,17 @@
 
 <script type="module">
   try {
-    const importMap = document.querySelector('script[type="importmap"]');
-    const importMapJson = JSON.parse(importMap.textContent);
-    const importMapModules = Object.values(importMapJson.imports);
+    const importMap = document.querySelector('script[type="importmap"]')
+    const importMapJson = JSON.parse(importMap.textContent)
+    const importMapModules = Object.values(importMapJson.imports)
 
     for (let i = 0; i < importMapModules.length; i++) {
-      const link = document.createElement('link');
-      link.rel = 'modulepreload';
-      link.href = importMapModules[i];
-      document.head.appendChild(link);
+      const link = document.createElement('link')
+      link.rel = 'modulepreload'
+      link.href = importMapModules[i]
+      document.head.appendChild(link)
     }
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
 </script>
