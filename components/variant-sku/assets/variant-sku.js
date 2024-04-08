@@ -1,7 +1,4 @@
-import {
-  PUB_SUB_EVENTS,
-  subscribe,
-} from "@archetype-themes/scripts/utils/pubsub";
+import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub";
 
 class VariantSku extends HTMLElement {
   constructor() {
@@ -10,7 +7,7 @@ class VariantSku extends HTMLElement {
 
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(
-      PUB_SUB_EVENTS.variantChange,
+      EVENTS.variantChange,
       (event) => {
         const { html, sectionId, variant } = event.detail;
 

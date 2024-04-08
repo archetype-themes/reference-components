@@ -1,7 +1,4 @@
-import {
-  PUB_SUB_EVENTS,
-  publish,
-} from "@archetype-themes/scripts/utils/pubsub";
+import { EVENTS, publish } from "@archetype-themes/scripts/utils/pubsub";
 
 class BlockVariantPicker extends HTMLElement {
   constructor() {
@@ -18,7 +15,7 @@ class BlockVariantPicker extends HTMLElement {
       this.updateURL();
       this.getProductInfo();
     } else {
-      publish(PUB_SUB_EVENTS.variantChange, {
+      publish(EVENTS.variantChange, {
         detail: {
           sectionId: this.dataset.sectionId,
           html: null,
@@ -116,7 +113,7 @@ class BlockVariantPicker extends HTMLElement {
 
         const html = new DOMParser().parseFromString(responseText, "text/html");
 
-        publish(PUB_SUB_EVENTS.variantChange, {
+        publish(EVENTS.variantChange, {
           detail: {
             sectionId: this.dataset.sectionId,
             html,

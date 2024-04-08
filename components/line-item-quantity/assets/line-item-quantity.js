@@ -1,5 +1,5 @@
 import {
-  PUB_SUB_EVENTS,
+  EVENTS,
   publish,
   subscribe,
 } from "@archetype-themes/scripts/utils/pubsub";
@@ -11,7 +11,7 @@ export class LineItemQuantity extends HTMLElement {
     this.addEventListener("change", this.onChange.bind(this));
 
     this.onCartErrorUnsubscriber = subscribe(
-      PUB_SUB_EVENTS.cartError,
+      EVENTS.cartError,
       this.handleCartError.bind(this)
     );
   }
@@ -27,7 +27,7 @@ export class LineItemQuantity extends HTMLElement {
   async onChange({ target }) {
     target.setAttribute("disabled", "disabled");
 
-    publish(PUB_SUB_EVENTS.cartBeforeChange);
+    publish(EVENTS.cartBeforeChange);
     const responseJson = await this.changeCartQuantity(target.value);
 
     if (!responseJson.errors) {
@@ -38,7 +38,7 @@ export class LineItemQuantity extends HTMLElement {
         "text/html"
       );
 
-      publish(PUB_SUB_EVENTS.lineItemChange, {
+      publish(EVENTS.lineItemChange, {
         detail: {
           html,
           index: this.index,
@@ -46,7 +46,7 @@ export class LineItemQuantity extends HTMLElement {
         },
       });
 
-      publish(PUB_SUB_EVENTS.cartChange, {
+      publish(EVENTS.cartChange, {
         detail: {
           cart: responseJson,
           item:
@@ -54,7 +54,7 @@ export class LineItemQuantity extends HTMLElement {
         },
       });
     } else {
-      publish(PUB_SUB_EVENTS.cartError, {
+      publish(EVENTS.cartError, {
         detail: {
           errors: responseJson.errors,
           index: this.index,

@@ -1,5 +1,5 @@
 import {
-  PUB_SUB_EVENTS,
+  EVENTS,
   publish,
   subscribe,
 } from "@archetype-themes/scripts/utils/pubsub";
@@ -7,7 +7,7 @@ import {
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
     this.variantChangeUnsubscriber = subscribe(
-      PUB_SUB_EVENTS.variantChange,
+      EVENTS.variantChange,
       (event) => {
         const { html, variant } = event.detail;
 
@@ -122,7 +122,7 @@ class BlockBuyButtons extends HTMLElement {
   }
 
   publishCartUpdate(cart, responseJson) {
-    publish(PUB_SUB_EVENTS.cartChange, {
+    publish(EVENTS.cartChange, {
       detail: {
         cart,
         item: "items" in responseJson ? responseJson["items"] : [responseJson],

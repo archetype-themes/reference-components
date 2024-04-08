@@ -1,25 +1,22 @@
-import {
-  PUB_SUB_EVENTS,
-  subscribe,
-} from "@archetype-themes/scripts/utils/pubsub";
+import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub";
 
 export class CartTotalPrice extends HTMLElement {
   connectedCallback() {
-    this.cartChangeUnsubscriber = subscribe(
-      PUB_SUB_EVENTS.lineItemChange,
+    this.lineItemChangeSubscriber = subscribe(
+      EVENTS.lineItemChange,
       this.handleLineItemChange.bind(this)
     );
   }
 
   disconnectedCallback() {
-    this.cartChangeUnsubscriber();
+    this.lineItemChangeSubscriber();
   }
 
   handleLineItemChange({ detail }) {
     const { html } = detail;
-    const price = html.querySelector("cart-total-price")?.innerText;
+    const price = html.querySelector("cart-total-price").innerText;
 
-    this.price = price || this.price;
+    this.price = price;
   }
 
   set price(count) {
