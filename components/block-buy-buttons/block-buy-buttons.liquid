@@ -10,9 +10,24 @@
 
 {%- liquid
   assign form_id = 'product-form-' | append: section.id
+
   assign show_dynamic_checkout = false
   if block.settings.show_dynamic_checkout
     assign show_dynamic_checkout = true
+  endif
+
+  assign check_against_inventory = true
+  assign quantity_rule_soldout = false
+  if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
+    assign check_against_inventory = false
+  endif
+  if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+    assign quantity_rule_soldout = true
+  endif
+
+  assign button_text = 'actions.add_to_cart' | t
+  if product.selected_or_first_available_variant.available == false or quantity_rule_soldout
+    assign button_text = 'info.sold_out' | t
   endif
 -%}
 
@@ -38,15 +53,6 @@
       {% endif %}
     >
     <div>
-      {%- liquid
-        assign check_against_inventory = true
-        if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-          assign check_against_inventory = false
-        endif
-        if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-          assign quantity_rule_soldout = true
-        endif
-      -%}
       <button
         id="ProductSubmitButton-{{ section.id }}"
         type="submit"
@@ -57,11 +63,7 @@
         {% endif %}
       >
         <span>
-          {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-            {{- 'info.sold_out' | t -}}
-          {%- else -%}
-            {{- 'actions.add_to_cart' | t -}}
-          {%- endif -%}
+          {{- button_text -}}
         </span>
       </button>
       {%- if show_dynamic_checkout -%}
