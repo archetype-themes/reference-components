@@ -24,8 +24,8 @@
   {% endif %}
   {{ block.shopify_attributes }}
 >
-  <div class="" role="alert" hidden>
-    <span class=""></span>
+  <div role="alert" hidden>
+    <span></span>
   </div>
 
   {%- form 'product', product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
@@ -36,9 +36,8 @@
       {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
         disabled
       {% endif %}
-      class=""
     >
-    <div class="">
+    <div>
       {%- liquid
         assign check_against_inventory = true
         if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'

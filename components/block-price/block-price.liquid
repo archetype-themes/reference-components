@@ -46,7 +46,7 @@
   >
     <div class="block-price__regular">
       <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
-      <span class="">
+      <span>
         {%- render 'price', price: price -%}
       </span>
     </div>
@@ -54,18 +54,18 @@
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
         <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
         <span>
-          <s class="">
+          <s>
             {%- render 'price', price: compare_at_price -%}
           </s>
         </span>
       {%- endunless -%}
       <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
-      <span class="">
+      <span>
         {%- render 'price', price: price -%}
       </span>
     </div>
     <small class="block-price__unit-price">
-      <span class="">
+      <span>
         <span>
           {%- render 'price', price: product.selected_or_first_available_variant.unit_price -%}
         </span>
