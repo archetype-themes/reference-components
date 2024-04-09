@@ -18,7 +18,7 @@
   assign main_menu = linklists[menu_link_list]
 -%}
 
-<div class="color-{{ color_scheme }}">
+<div data-color-scheme="{{ color_scheme }}">
   <div class="page-width">
     <header class="main-header main-header--{{ menu_position | replace: '_', '-' }}">
       {%- if request.page_type == 'index' -%}
