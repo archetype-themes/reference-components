@@ -3,7 +3,7 @@ input,
 textarea,
 select {
   font: var(--body-font-style) var(--body-font-weight) var(--text-base) / 1.65 var(--body-font-family);
-  letter-spacing: var(--typeBaseSpacing);
+  letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeSpeed;
@@ -129,7 +129,6 @@ sup {
   font-weight: var(--heading-font-weight);
   font-style: var(--heading-font-style);
   overflow-wrap: anywhere;
-  margin: 0;
 }
 
 .h1,

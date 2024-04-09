@@ -16,8 +16,8 @@
     justify-content: space-between;
 
     &.page-width {
-      padding-top: var(--pageWidthPadding);
-      padding-bottom: var(--pageWidthPadding);
+      padding-top: var(--page-width-padding);
+      padding-bottom: var(--page-width-padding);
     }
   }
 }

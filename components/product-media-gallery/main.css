@@ -9,11 +9,11 @@
   justify-content: flex-start;
   width: 100%;
   overflow-x: auto;
-  padding-left: var(--pageWidthPadding);
-  padding-right: var(--pageWidthPadding);
+  padding-left: var(--page-width-padding);
+  padding-right: var(--page-width-padding);
   scroll-snap-type: x mandatory;
-  scroll-padding-left: var(--pageWidthPadding);
-  scroll-padding-right: var(--pageWidthPadding);
+  scroll-padding-left: var(--page-width-padding);
+  scroll-padding-right: var(--page-width-padding);
   scroll-behavior: smooth;
 
   @media (--medium-up) {

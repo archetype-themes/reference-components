@@ -6,11 +6,7 @@
 
 .page-width,
 .page-full {
-  padding: 0 var(--pageWidthPadding);
-}
-
-.page-width--narrow {
-  max-width: var(--pageNarrow);
+  padding: 0 var(--page-width-padding);
 }
 
 .page-width--tiny {

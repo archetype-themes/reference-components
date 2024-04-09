@@ -52,7 +52,7 @@
 }
 
 .product-single__view-in-space-text {
-  font-size: calc(var(--typeBaseSize) * 0.85);
+  font-size: var(--text-sm);
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;

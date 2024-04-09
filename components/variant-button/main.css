@@ -63,7 +63,5 @@
   padding: 0;
   display: block;
   margin-bottom: var(--size-2);
-  font-weight: var(--typeHeaderWeight);
-  font-size: calc(var(--typeBaseSize) + 1px);
   cursor: default;
 }

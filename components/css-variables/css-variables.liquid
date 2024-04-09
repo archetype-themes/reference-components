@@ -1,7 +1,5 @@
 {%- style -%}
   :root {
-    --page-width: 1500px;
-
     /**
      * Default spacing scale based on Tailwind
      * More information: https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale
@@ -47,6 +45,10 @@
     --size-80: 20rem; /* 320px */
     --size-96: 24rem; /* 384px */
 
+    /* Layout */
+    --page-width: 1500px;
+    --page-width-padding: var(--size-10);
+
     /* Typography */
     --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
     --heading-font-weight: {{ settings.heading_font.weight }};
@@ -81,144 +83,17 @@
     /* TODO: remove CSS below this line */
     --colorBody: {{ settings.color_body_bg | default: "#fff" }};
     --colorBodyAlpha05: {{ settings.color_body_bg | default: "#fff" | color_modify: 'alpha', 0.05 }};
-    --colorBodyDim: {{ settings.color_body_bg | default: "#1c1d1d" | color_darken: 5 }};
 
     --colorBorder: {{ settings.color_borders | default: "#1c1d1d" }};
-
-    --colorBtnPrimary: {{ settings.color_button | default: "#000" }};
-    --colorBtnPrimaryLight: {{ settings.color_button | default: "#000" | color_lighten: 10 }};
-    --colorBtnPrimaryDim: {{ settings.color_button | default: "#000" | color_darken: 5 }};
-    --colorBtnPrimaryText: {{ settings.color_button_text | default: "#fff" }};
-
-    --colorCartDot: {{ settings.color_cart_dot | default: "#ff4f33" }};
-    --colorCartDotText: {{ settings.color_cart_dot_text | default: "#fff" }};
-
-    --colorFooter: {{ settings.color_footer | default: "#111" }};
-    --colorFooterBorder: {{ settings.color_footer_border | default: "#222" }};
-    --colorFooterText: {{ settings.color_footer_text | default: "#fff" }};
-
-    --colorLink: {{ settings.color_body_text | default: "#1c1d1d" }};
-
-    --colorModalBg: {{ settings.color_large_image_bg | default: "#1c1d1d" | color_modify: 'alpha', 0.6 }};
-
-    --colorNav: {{ settings.color_header | default: "#fff" }};
-    --colorNavSearch: {{ settings.color_header_search | default: "#fff" }};
-    --colorNavText: {{ settings.color_header_text | default: "#000" }};
-
-    --colorPrice: {{ settings.color_price | default: "#1c1d1d" }};
-
-    --colorSaleTag: {{ settings.color_sale_tag | default: "#1c1d1d" }};
-    --colorSaleTagText: {{ settings.color_sale_tag_text | default: "#ffffff" }};
-
-    --colorScheme1Text: {{ settings.color_scheme_1_text | default: "#000" }};
-    --colorScheme1Bg: {{ settings.color_scheme_1_bg | default: "#fff" }};
-    --colorScheme2Text: {{ settings.color_scheme_2_text | default: "#000" }};
-    --colorScheme2Bg: {{ settings.color_scheme_2_bg | default: "#fff" }};
-    --colorScheme3Text: {{ settings.color_scheme_3_text | default: "#000" }};
-    --colorScheme3Bg: {{ settings.color_scheme_3_bg | default: "#fff" }};
 
     --colorTextBody: {{ settings.color_body_text | default: "#1c1d1d" }};
     --colorTextBodyAlpha005: {{ settings.color_body_text | default: "#1c1d1d" | color_modify: 'alpha', 0.05 }};
     --colorTextBodyAlpha008: {{ settings.color_body_text | default: '#1c1d1d' | color_modify: 'alpha', 0.08 }};
-    --colorTextSavings: {{ settings.color_savings_text | default: "#1c1d1d" }};
-
-    --colorToolbar: {{ settings.color_announcement | default: "#fff" }};
-    --colorToolbarText: {{ settings.color_announcement_text | default: "#000" }};
-
-    --header-padding-bottom: 0;
-
-    --pageTopPadding: 35px;
-    --pageNarrow: 700px;
-    --pageWidthPadding: 40px;
-    --gridGutter: 22px;
-    --indexSectionPadding: 60px;
-    --sectionHeaderBottom: 40px;
-    --collapsibleIconWidth: 12px;
-
-    --sizeChartMargin: 30px 0;
-    --sizeChartIconMargin: 5px;
-
-    --newsletterReminderPadding: 20px 30px 20px 25px;
-
-    --textFrameMargin: 10px;
-
-    /*Shop Pay Installments*/
-    --color-body-text: {{ settings.color_body_text | default: "#1c1d1d" }};
-    --color-body: {{ settings.color_body_bg | default: "#fff" }};
-    --color-bg: {{ settings.color_body_bg | default: "#fff" }};
-
-    --typeHeaderPrimary: {{ settings.type_header_font_family.family }};
-    --typeHeaderFallback: {{ settings.type_header_font_family.fallback_families }};
-    --typeHeaderSize: {{ settings.type_header_base_size | default: '32' | append: 'px' }};
-    --typeHeaderWeight: {{ settings.type_header_font_family.weight }};
-    --typeHeaderLineHeight: {{ settings.type_header_line_height | default: 1.4 }};
-    --typeHeaderSpacing: {{ settings.type_header_spacing | default: '25' | divided_by: 1000.00 | append: 'em' }};
-
-    --typeBasePrimary:{{ settings.type_base_font_family.family }};
-    --typeBaseFallback:{{ settings.type_base_font_family.fallback_families }};
-    --typeBaseSize: {{ settings.type_base_size | default: 16 | append: 'px' }};
-    --typeBaseWeight: {{ settings.type_base_font_family.weight }};
-    --typeBaseSpacing: {{ settings.type_base_spacing | default: '50' | divided_by: 1000.00 | append: 'em' }};
-    --typeBaseLineHeight: {{ settings.type_base_line_height | default: 1.4 }};
-
-    --colorSmallImageBg: {{ settings.color_small_image_bg | default: '#eee' }};
-    --colorSmallImageBgDark: {{ settings.color_small_image_bg | default: '#eee' | color_darken: 3 }};
-    --colorLargeImageBg: {{ settings.color_large_image_bg | default: '#1c1d1d' }};
-    --colorLargeImageBgLight: {{ settings.color_large_image_bg | default: '#1c1d1d' | color_lighten: 13 }};
-
-    --iconWeight: {{ settings.icon_weight | default: '5px' }};
-    --iconLinecaps: {{ settings.icon_linecaps | default: 'miter' }};
-
-    {% if settings.button_style == 'round-slight' %}
-      --buttonRadius: 3px;
-      --btnPadding: 11px 25px;
-    {% elsif settings.button_style == 'round' %}
-      --buttonRadius: 50px;
-      --btnPadding: 11px 25px;
-    {% else %}
-      --buttonRadius: 0;
-      --btnPadding: 11px 20px;
-    {% endif %}
-
-    {% if settings.edges == 'round' %}
-      --roundness: 20px;
-    {% else %}
-      --roundness: 0;
-    {% endif %}
-
-    {% if settings.product_grid_style == 'gridlines-thick' %}
-      --gridThickness: 2px;
-    {% elsif settings.product_grid_style == 'gridlines-thin' %}
-      --gridThickness: 1px;
-    {% else %}
-      --gridThickness: 0;
-    {% endif %}
-
-    --productTileMargin: {{ settings.product_grid_image_margin | default: '10' }}%;
-    --collectionTileMargin: {{ settings.collection_grid_image_margin | default: '10' }}%;
-
-    --swatchSize: {{ settings.swatch_size | default: '40' }}px;
   }
 
   @media screen and (max-width: 768px) {
     :root {
-      --pageTopPadding: 15px;
-      --pageNarrow: 330px;
-      --pageWidthPadding: 17px;
-      --gridGutter: 16px;
-      --indexSectionPadding: 40px;
-      --sectionHeaderBottom: 25px;
-      --collapsibleIconWidth: 10px;
-      --textFrameMargin: 7px;
-      --typeBaseSize: {{ settings.type_base_size | default: 16 | minus: 2 | append: 'px' }};
-
-      {% if settings.edges == 'round' %}
-        --roundness: 15px;
-        --btnPadding: 9px 25px;
-      {% else %}
-        --roundness: 0;
-        --btnPadding: 9px 17px;
-      {% endif %}
+      --page-width-padding: var(--size-5);
     }
   }
 {%- endstyle -%}
