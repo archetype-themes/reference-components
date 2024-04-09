@@ -7,6 +7,7 @@ export class CartNote extends HTMLElement {
 
   async handleChange({ target }) {
     if (target.getAttribute("name") !== "note") return
+
     await updateCart({ note: target.value })
   }
 }

@@ -2,14 +2,17 @@ import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {
+    this.controller = new AbortController()
+
     this.input = this.querySelector("input")
-    this.input.addEventListener("focus", this.handleFocus.bind(this))
+    this.input.addEventListener("focus", this.handleFocus.bind(this), { signal: this.controller.signal })
     this.addEventListener("change", this.handleChange.bind(this))
 
     this.cartErrorUnsubscriber = subscribe(EVENTS.cartError, this.handleCartError.bind(this))
   }
 
   disconnectedCallback() {
+    this.controller.abort()
     this.cartErrorUnsubscriber()
   }
 

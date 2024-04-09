@@ -2,9 +2,9 @@ import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
 
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
-    this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, this.handleVariantChange.bind(this))
-
     this.addEventListener("submit", this.handleSubmit.bind(this))
+
+    this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, this.handleVariantChange.bind(this))
   }
 
   disconnectedCallback() {
@@ -33,7 +33,6 @@ class BlockBuyButtons extends HTMLElement {
 
   getLocales() {
     this.locales = this.locales || JSON.parse(this.querySelector('[type="application/json"]').textContent)
-
     return this.locales
   }
 

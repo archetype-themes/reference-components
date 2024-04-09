@@ -29,6 +29,7 @@ class BlockVariantPicker extends HTMLElement {
       if (element.tagName === "SELECT") {
         return element.value
       }
+
       if (element.tagName === "FIELDSET") {
         return Array.from(element.querySelectorAll("input")).find((radio) => radio.checked)?.value
       }
