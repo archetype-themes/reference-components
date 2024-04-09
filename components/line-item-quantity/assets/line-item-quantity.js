@@ -3,21 +3,21 @@ import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {
     this.input = this.querySelector("input")
-    this.input.addEventListener("focus", this.onFocus.bind(this))
-    this.addEventListener("change", this.onChange.bind(this))
+    this.input.addEventListener("focus", this.handleFocus.bind(this))
+    this.addEventListener("change", this.handleChange.bind(this))
 
-    this.onCartErrorUnsubscriber = subscribe(EVENTS.cartError, this.handleCartError.bind(this))
+    this.cartErrorUnsubscriber = subscribe(EVENTS.cartError, this.handleCartError.bind(this))
   }
 
   disconnectedCallback() {
-    this.onCartErrorUnsubscriber()
+    this.cartErrorUnsubscriber()
   }
 
-  onFocus({ target }) {
+  handleFocus({ target }) {
     this.previousQuantityInputValue = target.value
   }
 
-  async onChange({ target }) {
+  async handleChange({ target }) {
     target.setAttribute("disabled", "disabled")
 
     publish(EVENTS.cartBeforeChange)

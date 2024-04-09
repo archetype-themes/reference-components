@@ -14,7 +14,7 @@ class BlockBuyButtons extends HTMLElement {
       this.renderProductInfo(html)
     })
 
-    this.addEventListener("submit", this.onButtonSubmit)
+    this.addEventListener("submit", this.handleSubmit.bind(this))
   }
 
   disconnectedCallback() {
@@ -67,7 +67,7 @@ class BlockBuyButtons extends HTMLElement {
     })
   }
 
-  async onButtonSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
 
     this.disableAddToCartButton()

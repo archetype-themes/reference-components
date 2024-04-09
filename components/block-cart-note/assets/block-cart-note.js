@@ -2,10 +2,10 @@ import { updateCart } from "@archetype-themes/utils/theme-request"
 
 export class CartNote extends HTMLElement {
   connectedCallback() {
-    this.addEventListener("change", this.onChange)
+    this.addEventListener("change", this.handleChange.bind(this))
   }
 
-  async onChange({ target }) {
+  async handleChange({ target }) {
     if (target.getAttribute("name") !== "note") return
     await updateCart({ note: target.value })
   }

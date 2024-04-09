@@ -1,12 +1,11 @@
 import { EVENTS, publish } from "@archetype-themes/utils/pubsub"
 
 class BlockVariantPicker extends HTMLElement {
-  constructor() {
-    super()
-    this.addEventListener("change", this.onVariantChange)
+  connectedCallback() {
+    this.addEventListener("change", this.handleVariantChange.bind(this))
   }
 
-  onVariantChange(event) {
+  handleVariantChange() {
     this.updateOptions()
     this.updateMasterId()
     this.updateVariantStatuses()
