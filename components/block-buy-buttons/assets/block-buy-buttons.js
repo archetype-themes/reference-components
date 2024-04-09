@@ -5,6 +5,7 @@ class BlockBuyButtons extends HTMLElement {
     this.addEventListener("submit", this.handleSubmit.bind(this))
 
     this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, this.handleVariantChange.bind(this))
+    this.cartChangeUnsubscriber = subscribe(EVENTS.cartChange, this.handleCartChange.bind(this))
   }
 
   disconnectedCallback() {
@@ -21,6 +22,10 @@ class BlockBuyButtons extends HTMLElement {
 
     this.updateVariantInput(variant)
     this.renderProductInfo(html)
+  }
+
+  handleCartChange() {
+    window.location.href = `${window.Shopify.routes.root}cart`
   }
 
   renderProductInfo(html) {
