@@ -1,5 +1,5 @@
-import BaseMedia from "@archetype-themes/scripts/custom-elements/base-media"
-import loadProduct from "@archetype-themes/scripts/utils/product-loader"
+import BaseMedia from "@archetype-themes/custom-elements/base-media"
+import loadProduct from "@archetype-themes/utils/product-loader"
 
 export class ModelMedia extends BaseMedia {
   getPlayerTarget() {

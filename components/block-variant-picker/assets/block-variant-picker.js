@@ -1,4 +1,4 @@
-import { EVENTS, publish } from "@archetype-themes/scripts/utils/pubsub"
+import { EVENTS, publish } from "@archetype-themes/utils/pubsub"
 
 class BlockVariantPicker extends HTMLElement {
   constructor() {

@@ -1,5 +1,5 @@
-import BaseMedia from "@archetype-themes/scripts/custom-elements/base-media"
-import loadScript from "@archetype-themes/scripts/utils/script-loader"
+import BaseMedia from "@archetype-themes/custom-elements/base-media"
+import loadScript from "@archetype-themes/utils/script-loader"
 
 const onYouTubePromise = new Promise((resolve) => {
   window.onYouTubeIframeAPIReady = () => resolve()

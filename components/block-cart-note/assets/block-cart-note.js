@@ -1,4 +1,4 @@
-import { updateCart } from "@archetype-themes/scripts/utils/theme-request"
+import { updateCart } from "@archetype-themes/utils/theme-request"
 
 export class CartNote extends HTMLElement {
   connectedCallback() {

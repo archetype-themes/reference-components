@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub"
+import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
 
 export class LineItemPrice extends HTMLElement {
   connectedCallback() {

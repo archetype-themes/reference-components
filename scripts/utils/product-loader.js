@@ -1,4 +1,4 @@
-import { getProductJSON } from "@archetype-themes/scripts/utils/theme-request"
+import { getProductJSON } from "@archetype-themes/utils/theme-request"
 
 const loadedProducts = new Map()
 

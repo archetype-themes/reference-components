@@ -1,4 +1,4 @@
-import { EVENTS, publish, subscribe } from "@archetype-themes/scripts/utils/pubsub"
+import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {

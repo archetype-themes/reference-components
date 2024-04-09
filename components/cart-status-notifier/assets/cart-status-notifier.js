@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/scripts/utils/pubsub"
+import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
 
 export class CartStatusNotifier extends HTMLElement {
   connectedCallback() {
