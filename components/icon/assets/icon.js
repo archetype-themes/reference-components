@@ -1,13 +1,8 @@
-class xIcon extends HTMLElement {
-  constructor() {
-    super()
-
-    this.src = this.getAttribute("src")
-    this.name = this.getAttribute("data-name")
-  }
-
+class Icon extends HTMLElement {
   async connectedCallback() {
-    if (!this.src) return
+    if (!this.src || !this.name) {
+      throw new Error("src and name attributes are required for x-icon element")
+    }
 
     try {
       const response = await fetch(this.src)
@@ -19,6 +14,14 @@ class xIcon extends HTMLElement {
       console.log(`Error: ${error}`)
     }
   }
+
+  get src() {
+    return this.getAttribute("src")
+  }
+
+  get name() {
+    return this.getAttribute("name")
+  }
 }
 
-customElements.define("x-icon", xIcon)
+customElements.define("x-icon", Icon)

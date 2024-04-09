@@ -2,23 +2,25 @@ import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
 
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
-    this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, (event) => {
-      const { html, variant } = event.detail
-
-      if (!variant) {
-        this.toggleAddButton(true, this.getLocales().unavailable)
-        return
-      }
-
-      this.updateVariantInput(variant)
-      this.renderProductInfo(html)
-    })
+    this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, this.handleVariantChange.bind(this))
 
     this.addEventListener("submit", this.handleSubmit.bind(this))
   }
 
   disconnectedCallback() {
     this.variantChangeUnsubscriber()
+  }
+
+  handleVariantChange({ detail }) {
+    const { html, variant } = detail
+
+    if (!variant) {
+      this.toggleAddButton(true, this.getLocales().unavailable)
+      return
+    }
+
+    this.updateVariantInput(variant)
+    this.renderProductInfo(html)
   }
 
   renderProductInfo(html) {
@@ -69,17 +71,20 @@ class BlockBuyButtons extends HTMLElement {
 
   async handleSubmit(event) {
     event.preventDefault()
-
     this.disableAddToCartButton()
 
     try {
-      // TODO: determine if we want to fetch sections when adding to cart
       const responseJson = await this.addVariantToCart()
       const cart = await this.fetchCart()
 
-      this.publishCartUpdate(cart, responseJson)
+      publish(EVENTS.cartChange, {
+        detail: {
+          cart,
+          items: "items" in responseJson ? responseJson["items"] : [responseJson]
+        }
+      })
     } catch (error) {
-      console.error("Error adding to cart:", error)
+      console.error(`Error adding to cart: ${error}`)
     } finally {
       this.enableAddToCartButton()
     }
@@ -105,18 +110,8 @@ class BlockBuyButtons extends HTMLElement {
     return (await fetch(`${window.Shopify.routes.root}cart.js`)).json()
   }
 
-  publishCartUpdate(cart, responseJson) {
-    publish(EVENTS.cartChange, {
-      detail: {
-        cart,
-        item: "items" in responseJson ? responseJson["items"] : [responseJson]
-      }
-    })
-  }
-
   getFormDataWithSections() {
     const productForm = this.querySelector(`#product-form-${this.dataset.sectionId}`)
-
     const formData = new FormData(productForm)
 
     formData.set("sections_url", `${window.Shopify.routes.root}variants/${productForm.id.value}`)

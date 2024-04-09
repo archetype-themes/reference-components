@@ -12,10 +12,6 @@ body {
   color: #1c1d1d;
 }
 
-details summary::-webkit-details-marker {
-  display: none;
-}
-
 [hidden] {
   display: none;
 }

@@ -10,7 +10,7 @@
     appearance: none;
   }
 
-  .icon-caret {
+  .icon--caret {
     position: absolute;
     top: 50%;
     right: var(--size-3-5);
