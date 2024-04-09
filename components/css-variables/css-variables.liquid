@@ -1,9 +1,5 @@
 {%- style -%}
   :root {
-    /**
-     * Default spacing scale based on Tailwind
-     * More information: https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale
-     */
     --size-0-5: 0.125rem; /* 2px */
     --size-1: 0.25rem; /* 4px */
     --size-1-5: 0.375rem; /* 6px */
@@ -71,7 +67,7 @@
     --text-8xl: 4rem;
     --text-9xl: 5rem;
 
-    /* Element styles */
+    /* Border radiuses */
     --radius-xs: 0.25rem;
     --radius-sm: 0.5rem;
     --radius-md: 0.75rem;
@@ -79,16 +75,6 @@
     --radius-xl: 1.5rem;
     --radius-2xl: 2rem;
     --radius-rounded: 9999px;
-
-    /* TODO: remove CSS below this line */
-    --colorBody: {{ settings.color_body_bg | default: "#fff" }};
-    --colorBodyAlpha05: {{ settings.color_body_bg | default: "#fff" | color_modify: 'alpha', 0.05 }};
-
-    --colorBorder: {{ settings.color_borders | default: "#1c1d1d" }};
-
-    --colorTextBody: {{ settings.color_body_text | default: "#1c1d1d" }};
-    --colorTextBodyAlpha005: {{ settings.color_body_text | default: "#1c1d1d" | color_modify: 'alpha', 0.05 }};
-    --colorTextBodyAlpha008: {{ settings.color_body_text | default: '#1c1d1d' | color_modify: 'alpha', 0.08 }};
   }
 
   @media screen and (max-width: 768px) {
