@@ -17,8 +17,7 @@
     padding: var(--size-2) var(--size-3);
     margin: 0 var(--size-2) var(--size-3) 0;
     min-width: var(--size-10);
-    background-color: #fff;
-    box-shadow: 0 0 0 1px #1c1d1d;
+    box-shadow: 0 0 0 1px rgba(var(--color-foreground) / 0.2);
     border-radius: 1px;
     overflow: hidden;
 
@@ -44,7 +43,7 @@
 
   input[type="radio"][data-disabled] + label,
   input[type="checkbox"][data-disabled] + label {
-    color: #1c1d1d;
+    color: rgba(var(--color-foreground) / 0.2);
 
     &:after {
       position: absolute;
@@ -53,7 +52,7 @@
       top: 0;
       bottom: 0;
       border-left: 2px solid;
-      border-color: #1c1d1d;
+      border-color: rgba(var(--color-foreground) / 0.2);
       transform: rotate(45deg);
     }
   }

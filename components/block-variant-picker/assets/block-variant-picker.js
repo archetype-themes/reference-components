@@ -54,11 +54,13 @@ class BlockVariantPicker extends HTMLElement {
     const inputWrappers = [...this.querySelectorAll("fieldset")]
     inputWrappers.forEach((option, index) => {
       if (index === 0) return
+
       const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
       const previousOptionSelected = inputWrappers[index - 1].querySelector(":checked").value
       const availableOptionInputsValue = selectedOptionOneVariants
         .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
         .map((variantOption) => variantOption[`option${index + 1}`])
+
       this.setInputAvailability(optionInputs, availableOptionInputsValue)
     })
   }

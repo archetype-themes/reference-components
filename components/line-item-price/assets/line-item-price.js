@@ -11,12 +11,9 @@ export class LineItemPrice extends HTMLElement {
 
   handleLineItemChange({ detail }) {
     const { html, index } = detail
-
     if (index !== this.index) return
 
-    const price = html.querySelector(`line-item-price[index="${this.index}"]`).innerText
-
-    this.price = price
+    this.price = html.querySelector(`line-item-price[index="${this.index}"]`).innerText
   }
 
   get index() {
