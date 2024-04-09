@@ -1,49 +1,51 @@
 {%- style -%}
   :root {
+    --page-width: 1500px;
+
     /**
      * Default spacing scale based on Tailwind
      * More information: https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale
      */
-    --space-0-5: 0.125rem; /* 2px */
-    --space-1: 0.25rem; /* 4px */
-    --space-1-5: 0.375rem; /* 6px */
-    --space-2: 0.5rem; /* 8px */
-    --space-2-5: 0.625rem; /* 10px */
-    --space-3: 0.75rem; /* 12px */
-    --space-3-5: 0.875rem; /* 14px */
-    --space-4: 1rem; /* 16px */
-    --space-4-5: 1.125rem; /* 18px */
-    --space-5: 1.25rem; /* 20px */
-    --space-5-5: 1.375rem; /* 22px */
-    --space-6: 1.5rem; /* 24px */
-    --space-6-5: 1.625rem; /* 26px */
-    --space-7: 1.75rem; /* 28px */
-    --space-7-5: 1.875rem; /* 30px */
-    --space-8: 2rem; /* 32px */
-    --space-8-5: 2.125rem; /* 34px */
-    --space-9: 2.25rem; /* 36px */
-    --space-9-5: 2.375rem; /* 38px */
-    --space-10: 2.5rem; /* 40px */
-    --space-11: 2.75rem; /* 44px */
-    --space-12: 3rem; /* 48px */
-    --space-14: 3.5rem; /* 56px */
-    --space-16: 4rem; /* 64px */
-    --space-18: 4.5rem; /* 72px */
-    --space-20: 5rem; /* 80px */
-    --space-24: 6rem; /* 96px */
-    --space-28: 7rem; /* 112px */
-    --space-32: 8rem; /* 128px */
-    --space-36: 9rem; /* 144px */
-    --space-40: 10rem; /* 160px */
-    --space-44: 11rem; /* 176px */
-    --space-48: 12rem; /* 192px */
-    --space-52: 13rem; /* 208px */
-    --space-56: 14rem; /* 224px */
-    --space-60: 15rem; /* 240px */
-    --space-64: 16rem; /* 256px */
-    --space-72: 18rem; /* 288px */
-    --space-80: 20rem; /* 320px */
-    --space-96: 24rem; /* 384px */
+    --size-0-5: 0.125rem; /* 2px */
+    --size-1: 0.25rem; /* 4px */
+    --size-1-5: 0.375rem; /* 6px */
+    --size-2: 0.5rem; /* 8px */
+    --size-2-5: 0.625rem; /* 10px */
+    --size-3: 0.75rem; /* 12px */
+    --size-3-5: 0.875rem; /* 14px */
+    --size-4: 1rem; /* 16px */
+    --size-4-5: 1.125rem; /* 18px */
+    --size-5: 1.25rem; /* 20px */
+    --size-5-5: 1.375rem; /* 22px */
+    --size-6: 1.5rem; /* 24px */
+    --size-6-5: 1.625rem; /* 26px */
+    --size-7: 1.75rem; /* 28px */
+    --size-7-5: 1.875rem; /* 30px */
+    --size-8: 2rem; /* 32px */
+    --size-8-5: 2.125rem; /* 34px */
+    --size-9: 2.25rem; /* 36px */
+    --size-9-5: 2.375rem; /* 38px */
+    --size-10: 2.5rem; /* 40px */
+    --size-11: 2.75rem; /* 44px */
+    --size-12: 3rem; /* 48px */
+    --size-14: 3.5rem; /* 56px */
+    --size-16: 4rem; /* 64px */
+    --size-18: 4.5rem; /* 72px */
+    --size-20: 5rem; /* 80px */
+    --size-24: 6rem; /* 96px */
+    --size-28: 7rem; /* 112px */
+    --size-32: 8rem; /* 128px */
+    --size-36: 9rem; /* 144px */
+    --size-40: 10rem; /* 160px */
+    --size-44: 11rem; /* 176px */
+    --size-48: 12rem; /* 192px */
+    --size-52: 13rem; /* 208px */
+    --size-56: 14rem; /* 224px */
+    --size-60: 15rem; /* 240px */
+    --size-64: 16rem; /* 256px */
+    --size-72: 18rem; /* 288px */
+    --size-80: 20rem; /* 320px */
+    --size-96: 24rem; /* 384px */
 
     /* Typography */
     --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
@@ -52,13 +54,6 @@
     --body-font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
     --body-font-weight: {{ settings.body_font.weight }};
     --body-font-style: {{ settings.body_font.style }};
-
-    --text-h1: clamp(1.375rem, 1.1667rem + 1.0417vw, 2rem);
-    --text-h2: clamp(1.25rem, 1.0833rem + 0.8333vw, 1.75rem);
-    --text-h3: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
-    --text-h4: clamp(1rem, 0.9167rem + 0.4167vw, 1.25rem);
-    --text-h5: clamp(0.875rem, 0.8333rem + 0.2083vw, 1rem);
-    --text-h6: clamp(0.75rem, 0.75rem + 0.0833vw, 0.875rem);
 
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
@@ -73,13 +68,6 @@
     --text-7xl: 3.5rem;
     --text-8xl: 4rem;
     --text-9xl: 5rem;
-
-    --line-height-100: 1;
-    --line-height-200: 1.1;
-    --line-height-300: 1.2;
-    --line-height-400: 1.5;
-    --line-height-500: 1.7;
-    --line-height-600: 2;
 
     /* Element styles */
     --radius-xs: 0.25rem;

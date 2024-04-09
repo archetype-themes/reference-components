@@ -1,14 +1,14 @@
-@import "../../styles/variables.css";
+@import "../../styles/layout/breakpoints.css";
 @import "../../styles/modules/button.css";
 
 .block-buy-buttons {
   display: block;
 
   .shopify-payment-button {
-    margin-top: var(--space-3);
+    margin-top: var(--size-3);
 
     @media (--medium-up) {
-      margin-top: var(--space-5);
+      margin-top: var(--size-5);
     }
   }
 

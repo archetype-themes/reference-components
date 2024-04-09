@@ -2,7 +2,7 @@
 
 .block-title__heading {
   &.h2 {
-    margin-bottom: var(--space-2);
+    margin-bottom: var(--size-2);
     font-size: 24px;
 
     @media (--medium-up) {
@@ -14,5 +14,5 @@
 .block-title__sku,
 .block-title__vendor {
   display: inline-block;
-  margin-right: var(--space-5);
+  margin-right: var(--size-5);
 }

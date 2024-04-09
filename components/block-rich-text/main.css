@@ -3,7 +3,7 @@
 .rich-text {
   display: flex;
   flex-direction: column;
-  row-gap: var(--space-5);
+  row-gap: var(--size-5);
 }
 
 .rich-text > * {

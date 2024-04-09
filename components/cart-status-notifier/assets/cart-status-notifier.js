@@ -3,7 +3,6 @@ import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
 export class CartStatusNotifier extends HTMLElement {
   connectedCallback() {
     this.cartBeforeChangeUnsubscriber = subscribe(EVENTS.cartBeforeChange, this.handleBeforeCartChange.bind(this))
-
     this.cartErrorUnsubscriber = subscribe(EVENTS.cartError, this.handleCartError.bind(this))
   }
 

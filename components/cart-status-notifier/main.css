@@ -1,10 +1,10 @@
 .status {
   display: flex;
-  gap: var(--space-2);
+  gap: var(--size-2);
   align-items: center;
   font-size: 0.75rem;
   color: rgb(255 0 0);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--size-6);
 }
 
 .status .icon {

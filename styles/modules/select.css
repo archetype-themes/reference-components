@@ -4,7 +4,7 @@
   border: 1px solid currentColor;
 
   select {
-    padding: var(--space-2) calc(var(--space-3) + var(--space-3-5)) var(--space-2) var(--space-3);
+    padding: var(--size-2) calc(var(--size-3) + var(--size-3-5)) var(--size-2) var(--size-3);
     border: none;
     background-color: transparent;
     appearance: none;
@@ -13,10 +13,10 @@
   .icon-caret {
     position: absolute;
     top: 50%;
-    right: var(--space-3-5);
+    right: var(--size-3-5);
     display: block;
-    width: var(--space-3-5);
-    height: var(--space-3);
+    width: var(--size-3-5);
+    height: var(--size-3);
     transform: translate(50%, -50%);
     stroke-width: 0.05;
   }

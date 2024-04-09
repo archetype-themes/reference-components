@@ -5,6 +5,6 @@
   color: rgb(var(--color-background));
   text-decoration: none;
   font-size: 1.125rem;
-  padding: var(--space-3) var(--space-6);
+  padding: var(--size-3) var(--size-6);
   border-radius: 4px;
 }

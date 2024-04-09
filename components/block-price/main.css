@@ -3,7 +3,7 @@
 
 .block-price {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--size-2);
 }
 
 .block-price__regular {
@@ -25,7 +25,7 @@
 
   [data-on-sale] & {
     display: flex;
-    gap: var(--space-2);
+    gap: var(--size-2);
   }
 }
 
@@ -39,7 +39,7 @@
 
 .block-price__container {
   display: flex;
-  gap: var(--space-2);
+  gap: var(--size-2);
   margin: 0;
   font-size: 20px;
 }

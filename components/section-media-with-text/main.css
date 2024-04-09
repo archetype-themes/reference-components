@@ -1,5 +1,5 @@
 @import "../../styles/vendor/normalize.css";
-@import "../../styles/variables.css";
+@import "../../styles/layout/breakpoints.css";
 @import "../../styles/helpers/aspect-ratio.css";
 @import "../../styles/helpers/placeholder-svg.css";
 @import "../../styles/helpers/position.css";
