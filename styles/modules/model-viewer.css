@@ -1,72 +1,12 @@
-.shopify-model-viewer-ui .shopify-model-viewer-ui__controls-area {
-  opacity: 1;
-  background: #fff;
-  border-color: rgb(28 29 29 / 0.05);
-  border-radius: 50px;
-}
-
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button {
-  color: #1c1d1d;
-}
-
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--control:hover {
-  color: #1c1d1d;
-}
-
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--control:active,
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--control.focus-visible:focus {
-  color: #1c1d1d;
-  background-color: rgb(28 29 29 / 0.05);
-}
-
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--control:not(:last-child):after {
-  border-color: rgb(28 29 29 / 0.05);
-}
-
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--poster {
-  background-color: #1c1d1d;
-  color: #fff;
-  border-radius: 100%;
-  border: 1px solid;
-  border-color: rgba(255 255 255 / 0.05);
-}
-
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--poster:hover,
-.shopify-model-viewer-ui .shopify-model-viewer-ui__button--poster:focus {
-  color: #fff;
-}
-
-/*View in space button*/
-.product-single__view-in-space {
-  display: block;
-  color: #1c1d1d;
-  background-color: rgb(28 29 29 / 0.08);
-  width: 80%;
-  width: calc(80% - 4px); /*4px = right margin on product-image-main*/
-  margin: 40px 10% 10px;
-  padding: 5px 10px 10px;
-}
-
-.product-single__view-in-space[data-shopify-xr-hidden] {
-  display: none;
-}
-
-.product-single__view-in-space-text {
-  font-size: var(--text-sm);
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 5px;
-}
-
 .shopify-model-viewer-ui,
 .shopify-model-viewer-ui model-viewer {
   display: block;
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
+
 .shopify-model-viewer-ui__button[hidden] {
   display: none;
 }
