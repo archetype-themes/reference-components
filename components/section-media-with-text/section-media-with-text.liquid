@@ -37,8 +37,20 @@
   assign color_scheme = color_scheme | default: section.settings.color_scheme | default: 'scheme-1'
 %}
 
-<section class="media-with-text media-with-text--{{ layout }} media-with-text-media--{{ media_width }} {% unless full_width %}page-width{% endunless %} color-{{ color_scheme }}">
-  <div class="media-with-text__text justify-{{ content_position }} text-{{ content_alignment }}">
+<section
+  class="media-with-text"
+  data-media-layout="{{ layout }}"
+  data-media-width="{{ media_width }}"
+  {% unless full_width %}
+    data-page-width=""
+  {% endunless %}
+  data-color-scheme="{{ color_scheme }}"
+>
+  <div
+    class="media-with-text__text"
+    data-text="{{ content_alignment }}"
+    data-justify="{{ content_position }}"
+  >
     {% render 'block-rich-text' %}
   </div>
 

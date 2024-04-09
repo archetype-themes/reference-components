@@ -1,4 +1,5 @@
-.page-width {
+.page-width,
+[data-page-width] {
   max-width: var(--page-width);
   margin: 0 auto;
 }

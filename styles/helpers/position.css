@@ -2,26 +2,32 @@
   position: relative;
 }
 
-.text-left {
+.text-left,
+[data-text="left"] {
   text-align: start;
 }
 
-.text-center {
+.text-center,
+[data-text="center"] {
   text-align: center;
 }
 
-.text-right {
+.text-right,
+[data-text="right"] {
   text-align: end;
 }
 
-.justify-top {
+.justify-top,
+[data-justify="top"] {
   justify-content: flex-start;
 }
 
-.justify-center {
+.justify-center,
+[data-justify="center"] {
   justify-content: center;
 }
 
-.justify-bottom {
+.justify-bottom,
+[data-justify="bottom"] {
   justify-content: flex-end;
 }
