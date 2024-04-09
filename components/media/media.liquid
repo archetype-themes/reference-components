@@ -1,11 +1,12 @@
 {%- comment %}
   Renders product media
 
-  @param {media} media - The media object to be rendered
-  @param {boolean} [preload] - Whether or not to preload the image
-  @param {string} [sizes] - The sizes attribute for the image tag
+  Accepts the following attributes:
+  - media {media} - Media object
+  - preload {boolean} - Whether or not to preload the image
+  - sizes {string} - Sizes attribute for the image tag
 
-  @example
+  Usage:
   {% render 'media', media: media %}
 {%- endcomment %}
 

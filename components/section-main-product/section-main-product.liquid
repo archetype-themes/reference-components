@@ -1,10 +1,11 @@
 {%- comment -%}
   Main product section
 
-  @param {string} slot - Content for product info
-  @param {string} [product_media_gallery] - Content for the product media gallery
+  Accepts the following attributes:
+  - slot {string} - Content for product info
+  - product_media_gallery {string} - Content for the product media gallery
 
-  @example
+  Usage:
   {% liquid
     capture blocks
       for block in section.blocks
@@ -14,6 +15,7 @@
         endcase
       endfor
     endcapture
+
     render 'main-product', slot: blocks
   %}
 {%- endcomment -%}
@@ -28,6 +30,7 @@
   <div class="main-product__media-gallery">
     {{- product_media_gallery | default: product_media_gallery_default -}}
   </div>
+
   <div class="main-product__info">
     {{- slot -}}
   </div>

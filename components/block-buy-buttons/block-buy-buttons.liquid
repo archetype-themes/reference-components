@@ -1,10 +1,11 @@
 {% comment %}
-  Renders product buy-buttons
+  Renders product buy buttons
 
-  @param {block} block - Block object
-  @param {product} [product] - Product object
+  Accepts the following attributes:
+  - block {block} - Block object
+  - product {product} - Product object
 
-  @example
+  Usage:
   {% render 'block-buy-buttons', block: block %}
 {% endcomment %}
 
@@ -12,15 +13,18 @@
   assign form_id = 'product-form-' | append: section.id
 
   assign show_dynamic_checkout = false
+
   if block.settings.show_dynamic_checkout
     assign show_dynamic_checkout = true
   endif
 
   assign check_against_inventory = true
   assign quantity_rule_soldout = false
+
   if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
     assign check_against_inventory = false
   endif
+
   if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
     assign quantity_rule_soldout = true
   endif
@@ -66,11 +70,13 @@
           {{- button_text -}}
         </span>
       </button>
+
       {%- if show_dynamic_checkout -%}
         {{- form | payment_button -}}
       {%- endif -%}
     </div>
   {%- endform -%}
+
   <script type="application/json">
     {
       "addToCart": "{{ 'actions.add_to_cart' | t }}",
@@ -79,6 +85,7 @@
     }
   </script>
 </block-buy-buttons>
+
 <script type="module">
   import 'components/block-buy-buttons'
 </script>

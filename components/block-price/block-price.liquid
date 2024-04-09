@@ -1,17 +1,19 @@
 {%- comment -%}
-  Renders the price of a product
+  Renders the product price
 
-  @param {block} block - The block object
-  @param {product} [product] - The product object
-  @param {boolean} [use_variant] - Whether to use the first available variant or the product itself
+  Accepts the following attributes:
+  - block {block} - Block object
+  - product {product} - Product object
+  - use_variant {boolean} - Whether to use the first available variant or the product itself
 
-  @example
+  Usage:
   {% render 'block-price' block: block %}
 {%- endcomment -%}
 
 {%- liquid
   assign use_variant = use_variant | default: true
   assign target = product
+
   if use_variant
     assign target = product.selected_or_first_available_variant
   endif
@@ -19,10 +21,10 @@
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
   assign available = target.available | default: false
-
   assign product_save_amount = settings.product_save_amount
   assign product_save_type = settings.product_save_type
   assign saved_amount = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | times: 100.0 | divided_by: product.selected_or_first_available_variant.compare_at_price | round | append: '%'
+
   if product_save_type == 'dollar'
     assign saved_amount = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | money_without_trailing_zeros
   endif
@@ -50,6 +52,7 @@
         {%- render 'price', price: price -%}
       </span>
     </div>
+
     <div class="block-price__sale">
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
         <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
@@ -59,11 +62,14 @@
           </s>
         </span>
       {%- endunless -%}
+
       <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
+
       <span>
         {%- render 'price', price: price -%}
       </span>
     </div>
+
     <small class="block-price__unit-price">
       <span>
         <span>
@@ -78,6 +84,7 @@
         </span>
       </span>
     </small>
+
     {%- if product_save_amount -%}
       <span class="block-price__save">
         {{- 'info.save_amount' | t: saved_amount: saved_amount -}}
@@ -85,6 +92,7 @@
     {%- endif -%}
   </div>
 </block-price>
+
 <script type="module">
   import 'components/block-price'
 </script>

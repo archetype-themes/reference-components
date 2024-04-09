@@ -1,11 +1,12 @@
 {%- comment -%}
   Renders product variant-picker
 
-  @param {block} block - Block object
-  @param {product} [product] - Product object
-  @param {boolean} [update_url] - Whether to update the URL when the variant is changed
+  Accepts the following attributes:
+  - block {block} - Block object
+  - product {product} - Product object
+  - update_url {boolean} - Whether to update the URL when the variant is changed
 
-  @example
+  Usage:
   {% render 'block-variant-picker', block: block %}
 {%- endcomment -%}
 

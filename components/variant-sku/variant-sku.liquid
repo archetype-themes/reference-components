@@ -1,9 +1,10 @@
 {%- comment -%}
   Renders the SKU of a given variant
 
-  @param {variant} variant - The variant object
+  Accepts the following attributes:
+  - variant {variant} - Variant object
 
-  @example
+  Usage:
   {% render 'variant-sku', variant: variant %}
 {%- endcomment -%}
 
@@ -12,6 +13,7 @@
     SKU: {{ variant.sku }}
   {%- endif -%}
 </variant-sku>
+
 <script type="module">
   import 'components/variant-sku'
 </script>

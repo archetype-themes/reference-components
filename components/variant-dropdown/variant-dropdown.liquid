@@ -1,11 +1,12 @@
 {%- comment -%}
   Renders a select dropdown for a product option
 
-  @param {product_option} option - Product option object
-  @param {forloop} [forloop] - Parent loop object
-  @param {product} [product] - Product object
+  Accepts the following attributes:
+  - option {product_option} - Product option object
+  - forloop {forloop} - Parent loop object
+  - product {product} - Product object
 
-  @example
+  Usage:
   {% render 'variant-dropdown', option: option %}
 {%- endcomment -%}
 
@@ -13,6 +14,7 @@
   <label for="Option-{{ section.id }}-{{ forloop.index0 }}">
     {{- option.name -}}
   </label>
+
   <div class="select">
     <select
       id="Option-{{ section.id }}-{{ forloop.index0 }}"
@@ -30,6 +32,7 @@
         </option>
       {%- endfor -%}
     </select>
+
     {%- render 'icon', name: 'caret' -%}
   </div>
 </div>
