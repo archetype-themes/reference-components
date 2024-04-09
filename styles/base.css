@@ -15,3 +15,7 @@ body {
 details summary::-webkit-details-marker {
   display: none;
 }
+
+[hidden] {
+  display: none;
+}

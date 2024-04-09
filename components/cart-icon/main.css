@@ -31,7 +31,3 @@ cart-count {
   padding-inline-end: var(--size-1);
   line-height: 1;
 }
-
-.cart-count__text[hidden] {
-  display: none;
-}
