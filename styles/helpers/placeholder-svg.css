@@ -1,3 +1,9 @@
+div:has(.placeholder-svg) {
+  position: relative;
+  background-color: rgba(var(--color-foreground) / 0.02);
+  fill: rgba(var(--color-foreground) / 0.5);
+}
+
 .placeholder-svg {
   position: absolute;
   left: 50%;

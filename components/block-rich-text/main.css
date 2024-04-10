@@ -25,3 +25,11 @@
   font-size: clamp(0.875rem, 0.2692rem + 6.1538vw, 1.25rem);
   line-height: clamp(22px, 0.2692rem + 6.1538vw, 32px);
 }
+
+.rich-text__text p {
+  margin-top: 0;
+
+  @media (--small) {
+    font-size: var(--size-3-5);
+  }
+}
