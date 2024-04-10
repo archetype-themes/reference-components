@@ -15,6 +15,12 @@
   }
 }
 
+.page-empty {
+  display: grid;
+  place-items: center;
+  gap: var(--size-6);
+}
+
 @media (--small) {
   .page-width--flush-small {
     padding: 0;

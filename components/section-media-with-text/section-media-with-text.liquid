@@ -38,11 +38,11 @@
 %}
 
 <section
-  class="media-with-text"
+  class="media-with-text page-width"
   data-media-layout="{{ layout }}"
   data-media-width="{{ media_width }}"
   {% unless full_width %}
-    data-page-width=""
+    data-page-width
   {% endunless %}
   data-color-scheme="{{ color_scheme }}"
 >
@@ -55,6 +55,6 @@
   </div>
 
   <div class="media-with-text__media">
-    {{ slot }}
+    {{- slot -}}
   </div>
 </section>

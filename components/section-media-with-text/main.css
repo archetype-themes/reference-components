@@ -15,7 +15,7 @@
     display: grid;
     justify-content: space-between;
 
-    &.page-width {
+    &[data-page-width] {
       padding-top: var(--page-width-padding);
       padding-bottom: var(--page-width-padding);
     }

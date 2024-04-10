@@ -5,12 +5,14 @@
   - name {string} - Name of the icon
   - directory {string} - Directory of the icon (optional)
   - prepend {boolean} - Prepends the icon name with a string (optional)
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 {% endcomment %}
 
 {%- liquid
   assign name = name
   assign directory = directory | default: settings.icon_directory | default: 'theme-assets'
   assign prepend = prepend | default: false
+  assign hydration = hydration | default: 'on:visible'
 
   if prepend == false
     assign file_name = name | append: '.svg'
@@ -26,12 +28,16 @@
   endif
 -%}
 
-<x-icon
-  src="{{ url }}"
-  name="{{ name }}"
->
-</x-icon>
+<is-land {{ hydration }}>
+  <x-icon
+    src="{{ url }}"
+    name="{{ name }}"
+  >
+  </x-icon>
 
-<script type="module">
-  import 'components/icon'
-</script>
+  <template data-island>
+    <script type="module">
+      import 'components/icon'
+    </script>
+  </template>
+</is-land>
