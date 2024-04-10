@@ -5,12 +5,14 @@
   - block {block} - Block object
   - product {product} - Product object
   - use_variant {boolean} - Whether to use the first available variant or the product itself
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 
   Usage:
   {% render 'block-price' block: block %}
 {%- endcomment -%}
 
 {%- liquid
+  assign hydration = hydration | default: 'on:idle'
   assign use_variant = use_variant | default: true
   assign target = product
 
@@ -30,69 +32,73 @@
   endif
 -%}
 
-<block-price class="block-price" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
-  <span>
-    {{- 'labels.price' | t -}}
-  </span>
-  <div
-    class="block-price__container heading-font-stack h4"
-    {% unless available %}
-      data-sold-out=""
-    {% endunless %}
-    {% if compare_at_price > price %}
-      data-on-sale=""
-    {% endif %}
-    {% if product.selected_or_first_available_variant.unit_price_measurement %}
-      data-unit-price=""
-    {% endif %}
-  >
-    <div class="block-price__regular">
-      <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
-      <span>
-        {%- render 'price', price: price -%}
-      </span>
-    </div>
-
-    <div class="block-price__sale">
-      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+<is-land {{ hydration }}>
+  <block-price class="block-price" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
+    <span>
+      {{- 'labels.price' | t -}}
+    </span>
+    <div
+      class="block-price__container heading-font-stack h4"
+      {% unless available %}
+        data-sold-out=""
+      {% endunless %}
+      {% if compare_at_price > price %}
+        data-on-sale=""
+      {% endif %}
+      {% if product.selected_or_first_available_variant.unit_price_measurement %}
+        data-unit-price=""
+      {% endif %}
+    >
+      <div class="block-price__regular">
         <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
         <span>
-          <s>
-            {%- render 'price', price: compare_at_price -%}
-          </s>
+          {%- render 'price', price: price -%}
         </span>
-      {%- endunless -%}
+      </div>
 
-      <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
+      <div class="block-price__sale">
+        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+          <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
+          <span>
+            <s>
+              {%- render 'price', price: compare_at_price -%}
+            </s>
+          </span>
+        {%- endunless -%}
 
-      <span>
-        {%- render 'price', price: price -%}
-      </span>
+        <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
+
+        <span>
+          {%- render 'price', price: price -%}
+        </span>
+      </div>
+
+      <small class="block-price__unit-price">
+        <span>
+          <span>
+            {%- render 'price', price: product.selected_or_first_available_variant.unit_price -%}
+          </span>
+          <span>/</span>
+          <span>
+            {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+              {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+          </span>
+        </span>
+      </small>
+
+      {%- if product_save_amount -%}
+        <span class="block-price__save">
+          {{- 'info.save_amount' | t: saved_amount: saved_amount -}}
+        </span>
+      {%- endif -%}
     </div>
+  </block-price>
 
-    <small class="block-price__unit-price">
-      <span>
-        <span>
-          {%- render 'price', price: product.selected_or_first_available_variant.unit_price -%}
-        </span>
-        <span>/</span>
-        <span>
-          {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
-            {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
-          {%- endif -%}
-          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
-        </span>
-      </span>
-    </small>
-
-    {%- if product_save_amount -%}
-      <span class="block-price__save">
-        {{- 'info.save_amount' | t: saved_amount: saved_amount -}}
-      </span>
-    {%- endif -%}
-  </div>
-</block-price>
-
-<script type="module">
-  import 'components/block-price'
-</script>
+  <template data-island>
+    <script type="module">
+      import 'components/block-price'
+    </script>
+  </template>
+</is-land>
