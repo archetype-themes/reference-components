@@ -5,38 +5,44 @@
   - block {block} - Block object
   - product {product} - Product object
   - update_url {boolean} - Whether to update the URL when the variant is changed
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 
   Usage:
   {% render 'block-variant-picker', block: block %}
 {%- endcomment -%}
 
 {%- liquid
+  assign hydration = hydration | default: 'on:idle'
   assign update_url = update_url | default: true
 -%}
 
 {%- unless product.has_only_default_variant -%}
-  <block-variant-picker
-    class="block-variant-picker"
-    id="variant-selects-{{ section.id }}"
-    data-section-id="{{ section.id }}"
-    data-url="{{ product.url }}"
-    {% if update_url %}
-      data-update-url=""
-    {% endif %}
-    {{ block.shopify_attributes }}
-  >
-    {%- for option in product.options_with_values -%}
-      {%- if block.settings.picker_type == 'button' -%}
-        {%- render 'variant-button', option: option -%}
-      {%- else -%}
-        {%- render 'variant-dropdown', option: option -%}
-      {%- endif -%}
-    {%- endfor -%}
-    <script type="application/json">
-      {{ product.variants | json }}
-    </script>
-  </block-variant-picker>
-  <script type="module">
-    import 'components/block-variant-picker'
-  </script>
+  <is-land {{ hydration }}>
+    <block-variant-picker
+      class="block-variant-picker"
+      id="variant-selects-{{ section.id }}"
+      data-section-id="{{ section.id }}"
+      data-url="{{ product.url }}"
+      {% if update_url %}
+        data-update-url=""
+      {% endif %}
+      {{ block.shopify_attributes }}
+    >
+      {%- for option in product.options_with_values -%}
+        {%- if block.settings.picker_type == 'button' -%}
+          {%- render 'variant-button', option: option -%}
+        {%- else -%}
+          {%- render 'variant-dropdown', option: option -%}
+        {%- endif -%}
+      {%- endfor -%}
+      <script type="application/json">
+        {{ product.variants | json }}
+      </script>
+    </block-variant-picker>
+    <template data-island>
+      <script type="module">
+        import 'components/block-variant-picker'
+      </script>
+    </template>
+  </is-land>
 {%- endunless -%}
