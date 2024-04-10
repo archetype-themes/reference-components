@@ -2,17 +2,58 @@ import { EVENTS, publish } from "@archetype-themes/utils/pubsub"
 
 class BlockVariantPicker extends HTMLElement {
   connectedCallback() {
+    this.productInfo = new Map()
+
     this.addEventListener("change", this.handleVariantChange.bind(this))
+    this.addEventListener("touchstart", this.handleElementEvent.bind(this))
+    this.addEventListener("mousedown", this.handleElementEvent.bind(this))
+
+    // TODO: remove click tests
+    this.times = new Map()
+    this.addEventListener("click", (e) => {
+      if (e.target.tagName !== "INPUT") return
+      // measure the time between the click event and the touchstart, mousedown events
+      this.times.set("click", +new Date())
+      const diffTouchstart = this.times.get("click") - this.times.get("touchstart") || "∞"
+      const diffMousedown = this.times.get("click") - this.times.get("mousedown") || "∞"
+      console.log(`click - touchstart = ${diffTouchstart} ms`)
+      console.log(`click - mousedown = ${diffMousedown} ms`)
+    })
   }
 
-  handleVariantChange() {
+  handleElementEvent(event) {
+    // TODO: create a custom dropdown so that touchstart and mousedown events are listened to start preloading
+    const target = event.target.previousElementSibling
+    if (target?.tagName !== "INPUT") {
+      return
+    }
+
+    // TODO: remove click tests
+    if (event.type === "touchstart") this.times.set("touchstart", +new Date())
+    if (event.type === "mousedown") this.times.set("mousedown", +new Date())
+
+    this.updateOptions(target)
+    this.updateMasterId()
+    // start preloading
+    this.currentVariant && this.getProductInfo()
+  }
+
+  async handleVariantChange() {
     this.updateOptions()
     this.updateMasterId()
     this.updateVariantStatuses()
 
     if (this.currentVariant) {
       this.updateURL()
-      this.getProductInfo()
+      const html = await this.getProductInfo()
+
+      publish(EVENTS.variantChange, {
+        detail: {
+          sectionId: this.dataset.sectionId,
+          html,
+          variant: this.currentVariant
+        }
+      })
     } else {
       publish(EVENTS.variantChange, {
         detail: {
@@ -24,14 +65,16 @@ class BlockVariantPicker extends HTMLElement {
     }
   }
 
-  updateOptions() {
+  updateOptions(target) {
     this.options = Array.from(this.querySelectorAll("select, fieldset"), (element) => {
       if (element.tagName === "SELECT") {
         return element.value
       }
 
       if (element.tagName === "FIELDSET") {
-        return Array.from(element.querySelectorAll("input")).find((radio) => radio.checked)?.value
+        return Array.from(element.querySelectorAll("input")).find(
+          (radio) => (target && radio === target) ?? radio.checked
+        )?.value
       }
     })
   }
@@ -83,23 +126,18 @@ class BlockVariantPicker extends HTMLElement {
 
   getProductInfo() {
     const requestedVariantId = this.currentVariant.id
+    if (this.productInfo.has(requestedVariantId)) {
+      return this.productInfo.get(requestedVariantId)
+    }
 
-    fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`)
-      .then((response) => response.text())
-      .then((responseText) => {
-        // prevent unnecessary ui changes from abandoned selections
-        if (this.currentVariant.id !== requestedVariantId) return
+    this.productInfo.set(
+      requestedVariantId,
+      fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`)
+        .then((response) => response.text())
+        .then((responseText) => new DOMParser().parseFromString(responseText, "text/html"))
+    )
 
-        const html = new DOMParser().parseFromString(responseText, "text/html")
-
-        publish(EVENTS.variantChange, {
-          detail: {
-            sectionId: this.dataset.sectionId,
-            html,
-            variant: this.currentVariant
-          }
-        })
-      })
+    return this.productInfo.get(requestedVariantId)
   }
 }
 
