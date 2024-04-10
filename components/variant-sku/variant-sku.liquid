@@ -3,17 +3,26 @@
 
   Accepts the following attributes:
   - variant {variant} - Variant object
+  - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 
   Usage:
   {% render 'variant-sku', variant: variant %}
 {%- endcomment -%}
 
-<variant-sku>
-  {%- if variant.sku != blank -%}
-    SKU: {{ variant.sku }}
-  {%- endif -%}
-</variant-sku>
+{%- liquid
+  assign hydration = hydration | default: 'on:idle'
+-%}
 
-<script type="module">
-  import 'components/variant-sku'
-</script>
+<is-land {{ hydration }}>
+  <variant-sku>
+    {%- if variant.sku != blank -%}
+      SKU: {{ variant.sku }}
+    {%- endif -%}
+  </variant-sku>
+
+  <template data-island>
+    <script type="module">
+      import 'components/variant-sku'
+    </script>
+  </template>
+</is-land>
