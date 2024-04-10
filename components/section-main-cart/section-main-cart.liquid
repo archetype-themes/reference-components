@@ -28,8 +28,8 @@
 <section data-color-scheme="scheme-2">
   <div class="page-width">
     {%- if cart.item_count == 0 -%}
-      <div class="page-empty">
-        <h1>{{ 'labels.cart' | t }}</h1>
+      <div class="page-empty page-padding">
+        <h1 class="text-3xl">{{ 'labels.cart' | t }}</h1>
         {{ 'info.cart_empty' | t }}
 
         <a href="{{ routes.root_url }}" class="button">
@@ -37,8 +37,8 @@
         </a>
       </div>
     {%- else -%}
-      <div class="page-empty">
-        <h1>{{ 'labels.cart' | t }}</h1>
+      <div class="page-padding text-center">
+        <h1 class="text-3xl">{{ 'labels.cart' | t }}</h1>
       </div>
 
       <div class="main-cart">

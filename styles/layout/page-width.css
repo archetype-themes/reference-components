@@ -1,16 +1,18 @@
 .page-width,
 [data-page-width] {
+  padding-inline: var(--page-width-padding);
   max-width: var(--page-width);
   margin: 0 auto;
 }
 
-.page-width,
-.page-full {
-  padding: 0 var(--page-width-padding);
-}
+.page-padding {
+  padding-block-start: var(--size-10);
+  padding-block-end: var(--size-10);
 
-.page-width--tiny {
-  max-width: 450px;
+  @media (--medium-up) {
+    padding-block-start: var(--size-16);
+    padding-block-end: var(--size-16);
+  }
 }
 
 @media (--small) {

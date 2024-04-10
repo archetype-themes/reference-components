@@ -8,8 +8,8 @@ html[dir="rtl"] {
 
 html,
 body {
-  background-color: #fff;
-  color: #1c1d1d;
+  background-color: rgb(243 243 243);
+  color: rgb(18 18 18);
 }
 
 [hidden] {
