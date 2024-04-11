@@ -1,25 +1,15 @@
-let subscribers = {}
-
 export function subscribe(eventName, callback) {
-  if (subscribers[eventName] === undefined) {
-    subscribers[eventName] = []
-  }
+  let cb = (event) => callback(event)
 
-  subscribers[eventName] = [...subscribers[eventName], callback]
+  document.addEventListener(eventName, cb)
 
   return function unsubscribe() {
-    subscribers[eventName] = subscribers[eventName].filter((cb) => {
-      return cb !== callback
-    })
+    document.removeEventListener(eventName, cb)
   }
 }
 
-export function publish(eventName, data) {
-  if (subscribers[eventName]) {
-    subscribers[eventName].forEach((callback) => {
-      callback(data)
-    })
-  }
+export function publish(eventName, options) {
+  document.dispatchEvent(new CustomEvent(eventName, options))
 }
 
 export const EVENTS = {
