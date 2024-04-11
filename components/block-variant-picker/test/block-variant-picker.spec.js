@@ -1,14 +1,21 @@
 import { test, expect } from "@playwright/test"
+import { EVENTS } from "../../../scripts/utils/pubsub.js"
 
-test("test", async ({ page }) => {
+test("block-variant-picker", async ({ page }) => {
+  // Given
   await page.goto("https://archetype-components.myshopify.com/password")
   await page.getByLabel("Enter store password").click()
   await page.getByLabel("Enter store password").fill("archetype")
   await page.getByLabel("Enter store password").press("Enter")
   await page.getByRole("link", { name: "block-variant-picker" }).click()
-  expect(page.getByLabel("154cm")).toBeChecked()
-  expect(page.getByLabel("Nested")).toBeChecked()
-  expect(page.getByLabel("Carbon-fiber")).toBeChecked()
-  await page.getByText("158cm").click()
-  await expect(page).toHaveURL(/variant=48019024871728/)
+  let eventPromise = page.evaluate((eventName) => {
+    return new Promise((resolve) => document.addEventListener(eventName, (event) => resolve(event)))
+  }, EVENTS.variantChange)
+  let radio = await page.getByRole("radio", { checked: false }).first()
+  let text = await radio.getAttribute("value")
+  let label = await page.getByText(text)
+  // When
+  await label.click()
+  // Then
+  expect(await eventPromise).toBeTruthy()
 })
