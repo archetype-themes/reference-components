@@ -3,10 +3,7 @@ import { EVENTS } from "../../../scripts/utils/pubsub.js"
 
 test("block-variant-picker", async ({ page }) => {
   // Given
-  await page.goto("https://archetype-components.myshopify.com/password")
-  await page.getByLabel("Enter store password").click()
-  await page.getByLabel("Enter store password").fill("archetype")
-  await page.getByLabel("Enter store password").press("Enter")
+  await page.goto("/")
   await page.getByRole("link", { name: "block-variant-picker" }).click()
   let eventPromise = page.evaluate((eventName) => {
     return new Promise((resolve) => document.addEventListener(eventName, (event) => resolve(event)))
