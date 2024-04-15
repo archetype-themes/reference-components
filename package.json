@@ -14,7 +14,7 @@
     "url": "git+https://github.com/archetype-themes/reference-components.git"
   },
   "author": "Archetype Themes LP",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/archetype-themes/reference-components/issues"
   },
