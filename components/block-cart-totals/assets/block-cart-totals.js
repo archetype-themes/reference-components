@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, subscribe } from '@archetype-themes/utils/pubsub'
 
 export class CartTotalPrice extends HTMLElement {
   connectedCallback() {
@@ -11,7 +11,7 @@ export class CartTotalPrice extends HTMLElement {
 
   handleLineItemChange({ detail }) {
     const { html } = detail
-    const price = html.querySelector("cart-total-price").innerText
+    const price = html.querySelector('cart-total-price').innerText
 
     this.price = price
   }
@@ -21,4 +21,4 @@ export class CartTotalPrice extends HTMLElement {
   }
 }
 
-customElements.define("cart-total-price", CartTotalPrice)
+customElements.define('cart-total-price', CartTotalPrice)

@@ -1,5 +1,5 @@
-@import "../../styles/helpers/visibility.css";
-@import "../../styles/helpers/typography.css";
+@import '../../styles/helpers/visibility.css';
+@import '../../styles/helpers/typography.css';
 
 .block-price {
   display: grid;

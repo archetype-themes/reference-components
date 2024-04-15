@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, subscribe } from '@archetype-themes/utils/pubsub'
 
 export class LineItemPrice extends HTMLElement {
   connectedCallback() {
@@ -17,7 +17,7 @@ export class LineItemPrice extends HTMLElement {
   }
 
   get index() {
-    return this.getAttribute("index")
+    return this.getAttribute('index')
   }
 
   set price(count) {
@@ -25,4 +25,4 @@ export class LineItemPrice extends HTMLElement {
   }
 }
 
-customElements.define("line-item-price", LineItemPrice)
+customElements.define('line-item-price', LineItemPrice)

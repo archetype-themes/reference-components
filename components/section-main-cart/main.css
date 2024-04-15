@@ -1,7 +1,7 @@
-@import "../../styles/vendor/normalize.css";
-@import "../../styles/layout/breakpoints.css";
-@import "../../styles/layout/page-width.css";
-@import "../../styles/modules/table.css";
+@import '../../styles/vendor/normalize.css';
+@import '../../styles/layout/breakpoints.css';
+@import '../../styles/layout/page-width.css';
+@import '../../styles/modules/table.css';
 
 .main-cart {
   display: grid;

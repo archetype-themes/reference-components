@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, subscribe } from '@archetype-themes/utils/pubsub'
 
 export class CartStatusNotifier extends HTMLElement {
   connectedCallback() {
@@ -17,7 +17,7 @@ export class CartStatusNotifier extends HTMLElement {
 
   handleCartError({ detail }) {
     const { errors } = detail
-    this.querySelector("span").innerText = errors
+    this.querySelector('span').innerText = errors
 
     this.hidden = false
   }
@@ -27,4 +27,4 @@ export class CartStatusNotifier extends HTMLElement {
   }
 }
 
-customElements.define("cart-status-notifier", CartStatusNotifier)
+customElements.define('cart-status-notifier', CartStatusNotifier)

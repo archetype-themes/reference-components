@@ -2,7 +2,7 @@ html {
   touch-action: manipulation;
 }
 
-html[dir="rtl"] {
+html[dir='rtl'] {
   direction: rtl;
 }
 

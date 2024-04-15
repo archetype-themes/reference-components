@@ -1,5 +1,5 @@
-@import "../../styles/layout/breakpoints.css";
-@import "../../styles/helpers/visibility";
+@import '../../styles/layout/breakpoints.css';
+@import '../../styles/helpers/visibility';
 
 .variant-button {
   --labelBottomMargin: 12px;
@@ -25,29 +25,29 @@
       padding: 0;
     }
 
-    [data-center-text="true"] & {
+    [data-center-text='true'] & {
       margin: 0 4px var(--labelBottomMargin);
     }
   }
 
-  input[type="radio"]:focus + label {
+  input[type='radio']:focus + label {
     box-shadow: 0 0 0 1px #1c1d1d;
     outline: 2px auto Highlight;
     outline: 2px auto -webkit-focus-ring-color;
     outline-offset: 1px;
   }
 
-  input[type="radio"]:checked + label {
+  input[type='radio']:checked + label {
     box-shadow: 0 0 0 2px #1c1d1d;
   }
 
-  input[type="radio"][data-disabled] + label,
-  input[type="checkbox"][data-disabled] + label {
+  input[type='radio'][data-disabled] + label,
+  input[type='checkbox'][data-disabled] + label {
     color: rgba(var(--color-foreground) / 0.2);
 
     &:after {
       position: absolute;
-      content: "";
+      content: '';
       left: 50%;
       top: 0;
       bottom: 0;

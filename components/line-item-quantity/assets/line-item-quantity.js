@@ -1,12 +1,12 @@
-import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, publish, subscribe } from '@archetype-themes/utils/pubsub'
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {
     this.controller = new AbortController()
 
-    this.input = this.querySelector("input")
-    this.input.addEventListener("focus", this.handleFocus.bind(this), { signal: this.controller.signal })
-    this.addEventListener("change", this.handleChange.bind(this))
+    this.input = this.querySelector('input')
+    this.input.addEventListener('focus', this.handleFocus.bind(this), { signal: this.controller.signal })
+    this.addEventListener('change', this.handleChange.bind(this))
 
     this.cartErrorUnsubscriber = subscribe(EVENTS.cartError, this.handleCartError.bind(this))
   }
@@ -21,7 +21,7 @@ export class LineItemQuantity extends HTMLElement {
   }
 
   async handleChange({ target }) {
-    target.setAttribute("disabled", "disabled")
+    target.setAttribute('disabled', 'disabled')
 
     publish(EVENTS.cartBeforeChange)
     const responseJson = await this.changeCartQuantity(target.value)
@@ -29,7 +29,7 @@ export class LineItemQuantity extends HTMLElement {
     if (!responseJson.errors) {
       this.syncQuantityInputsInLineItem(this.index, target.value)
 
-      const html = new DOMParser().parseFromString(responseJson?.sections[this.sectionId], "text/html")
+      const html = new DOMParser().parseFromString(responseJson?.sections[this.sectionId], 'text/html')
 
       publish(EVENTS.lineItemChange, {
         detail: {
@@ -42,7 +42,7 @@ export class LineItemQuantity extends HTMLElement {
       publish(EVENTS.cartChange, {
         detail: {
           cart: responseJson,
-          item: "items" in responseJson ? responseJson["items"] : [responseJson]
+          item: 'items' in responseJson ? responseJson['items'] : [responseJson]
         }
       })
     } else {
@@ -55,16 +55,16 @@ export class LineItemQuantity extends HTMLElement {
       })
     }
 
-    target.removeAttribute("disabled")
+    target.removeAttribute('disabled')
   }
 
   async changeCartQuantity(quantity) {
     const sectionsToBundle = [this.sectionId]
     const response = await fetch(`${window.Shopify.routes.root}cart/change`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
       },
       body: JSON.stringify({
         line: this.index,
@@ -83,19 +83,19 @@ export class LineItemQuantity extends HTMLElement {
   }
 
   syncQuantityInputsInLineItem(index, value) {
-    const lineItem = this.closest("tr")
+    const lineItem = this.closest('tr')
     const quantityInputs = lineItem.querySelectorAll(`[index="${index}"] > input`)
 
     quantityInputs.forEach((input) => (input.value = value))
   }
 
   get index() {
-    return this.getAttribute("index")
+    return this.getAttribute('index')
   }
 
   get sectionId() {
-    return this.getAttribute("section-id")
+    return this.getAttribute('section-id')
   }
 }
 
-customElements.define("line-item-quantity", LineItemQuantity)
+customElements.define('line-item-quantity', LineItemQuantity)

@@ -1,5 +1,5 @@
-import BaseMedia from "@archetype-themes/custom-elements/base-media"
-import loadScript from "@archetype-themes/utils/script-loader"
+import BaseMedia from '@archetype-themes/custom-elements/base-media'
+import loadScript from '@archetype-themes/utils/script-loader'
 
 const onYouTubePromise = new Promise((resolve) => {
   window.onYouTubeIframeAPIReady = () => resolve()
@@ -8,12 +8,12 @@ const onYouTubePromise = new Promise((resolve) => {
 export class VideoMedia extends BaseMedia {
   connectedCallback() {
     if (!this.autoplay) {
-      this.addEventListener("click", this.play.bind(this), { once: true })
+      this.addEventListener('click', this.play.bind(this), { once: true })
     }
   }
 
   getPlayerTarget() {
-    this.setAttribute("loaded", "")
+    this.setAttribute('loaded', '')
 
     if (this.host) {
       return this.setupThirdPartyVideoElement()
@@ -23,8 +23,8 @@ export class VideoMedia extends BaseMedia {
   }
 
   playerHandler(target, prop) {
-    if (this.host === "youtube") {
-      prop === "play" ? target.playVideo() : target.pauseVideo()
+    if (this.host === 'youtube') {
+      prop === 'play' ? target.playVideo() : target.pauseVideo()
     } else {
       target[prop]()
     }
@@ -32,13 +32,13 @@ export class VideoMedia extends BaseMedia {
 
   async setupThirdPartyVideoElement() {
     let player
-    const template = this.querySelector("template")
+    const template = this.querySelector('template')
 
     if (template) {
       template.replaceWith(template.content.firstElementChild.cloneNode(true))
     }
 
-    if (this.host === "youtube") {
+    if (this.host === 'youtube') {
       player = await this.setupYouTubePlayer()
     } else {
       player = await this.setupVimeoPlayer()
@@ -48,15 +48,15 @@ export class VideoMedia extends BaseMedia {
   }
 
   setupNativeVideoElement() {
-    const video = this.querySelector("video")
+    const video = this.querySelector('video')
 
-    video.addEventListener("play", () => {
-      this.setAttribute("playing", "")
+    video.addEventListener('play', () => {
+      this.setAttribute('playing', '')
     })
 
-    video.addEventListener("pause", () => {
+    video.addEventListener('pause', () => {
       if (video.paused && !video.seeking) {
-        this.removeAttribute("playing")
+        this.removeAttribute('playing')
       }
     })
 
@@ -66,21 +66,21 @@ export class VideoMedia extends BaseMedia {
   setupYouTubePlayer() {
     return new Promise(async (resolve) => {
       if (!window.YT?.Player) {
-        await loadScript("https://www.youtube.com/iframe_api")
+        await loadScript('https://www.youtube.com/iframe_api')
       }
 
       await onYouTubePromise
 
-      const player = new YT.Player(this.querySelector("iframe"), {
+      const player = new YT.Player(this.querySelector('iframe'), {
         events: {
           onReady: () => {
             resolve(player)
           },
           onStateChange: (event) => {
             if (event.data === YT.PlayerState.PLAYING) {
-              this.setAttribute("playing", "")
+              this.setAttribute('playing', '')
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-              this.removeAttribute("playing")
+              this.removeAttribute('playing')
             }
           }
         }
@@ -91,22 +91,22 @@ export class VideoMedia extends BaseMedia {
   setupVimeoPlayer() {
     return new Promise(async (resolve) => {
       if (!window.Vimeo?.Player) {
-        await loadScript("https://player.vimeo.com/api/player.js")
+        await loadScript('https://player.vimeo.com/api/player.js')
       }
 
-      const player = new Vimeo.Player(this.querySelector("iframe"))
+      const player = new Vimeo.Player(this.querySelector('iframe'))
 
-      player.on("play", () => this.setAttribute("playing", ""))
-      player.on("pause", () => this.removeAttribute("playing"))
-      player.on("ended", () => this.removeAttribute("playing"))
+      player.on('play', () => this.setAttribute('playing', ''))
+      player.on('pause', () => this.removeAttribute('playing'))
+      player.on('ended', () => this.removeAttribute('playing'))
 
       resolve(player)
     })
   }
 
   get host() {
-    return this.getAttribute("host")
+    return this.getAttribute('host')
   }
 }
 
-customElements.define("video-media", VideoMedia)
+customElements.define('video-media', VideoMedia)

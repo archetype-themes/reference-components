@@ -1,7 +1,7 @@
 class Icon extends HTMLElement {
   async connectedCallback() {
     if (!this.src || !this.name) {
-      throw new Error("src and name attributes are required for x-icon element")
+      throw new Error('src and name attributes are required for x-icon element')
     }
 
     try {
@@ -9,19 +9,19 @@ class Icon extends HTMLElement {
       const svg = await response.text()
 
       this.innerHTML = svg
-      this.querySelector("svg").classList.add("icon", `icon--${this.name}`)
+      this.querySelector('svg').classList.add('icon', `icon--${this.name}`)
     } catch (error) {
       console.log(`Error: ${error}`)
     }
   }
 
   get src() {
-    return this.getAttribute("src")
+    return this.getAttribute('src')
   }
 
   get name() {
-    return this.getAttribute("name")
+    return this.getAttribute('name')
   }
 }
 
-customElements.define("x-icon", Icon)
+customElements.define('x-icon', Icon)

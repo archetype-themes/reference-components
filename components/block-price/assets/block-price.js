@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, subscribe } from '@archetype-themes/utils/pubsub'
 
 class BlockPrice extends HTMLElement {
   connectedCallback() {
@@ -13,12 +13,12 @@ class BlockPrice extends HTMLElement {
     const { html, variant } = detail
 
     if (!variant) {
-      this.querySelector("div").innerHTML = "&nbsp;"
+      this.querySelector('div').innerHTML = '&nbsp;'
       return
     }
 
     const priceSource = html.querySelector(`block-price[data-section-id="${this.dataset.sectionId}"] div`)
-    const priceDestination = this.querySelector("div")
+    const priceDestination = this.querySelector('div')
 
     if (priceSource && priceDestination) {
       priceDestination.outerHTML = priceSource.outerHTML
@@ -26,4 +26,4 @@ class BlockPrice extends HTMLElement {
   }
 }
 
-customElements.define("block-price", BlockPrice)
+customElements.define('block-price', BlockPrice)

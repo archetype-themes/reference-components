@@ -1,6 +1,6 @@
-@import "../../styles/vendor/normalize.css";
-@import "../../styles/layout/breakpoints.css";
-@import "../../styles/layout/page-width.css";
+@import '../../styles/vendor/normalize.css';
+@import '../../styles/layout/breakpoints.css';
+@import '../../styles/layout/page-width.css';
 
 .main-product {
   display: grid;

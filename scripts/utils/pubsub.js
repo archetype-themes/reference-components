@@ -13,9 +13,9 @@ export function publish(eventName, options) {
 }
 
 export const EVENTS = {
-  cartBeforeChange: "cart:before-change",
-  cartChange: "cart:change",
-  cartError: "cart:error",
-  lineItemChange: "line-item:change",
-  variantChange: "variant:change"
+  cartBeforeChange: 'cart:before-change',
+  cartChange: 'cart:change',
+  cartError: 'cart:error',
+  lineItemChange: 'line-item:change',
+  variantChange: 'variant:change'
 }

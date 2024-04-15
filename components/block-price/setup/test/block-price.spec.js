@@ -1,12 +1,12 @@
-import { test, expect } from "@playwright/test"
-import { EVENTS } from "@archetype-themes/utils/pubsub"
+import { test, expect } from '@playwright/test'
+import { EVENTS } from '@archetype-themes/utils/pubsub'
 
-test("block-price", async ({ page }) => {
+test('block-price', async ({ page }) => {
   // Given
-  await page.goto("/")
-  await page.getByRole("link", { name: "block-price" }).click()
-  let el = await page.locator("block-price")
-  let sectionId = await el.getAttribute("data-section-id")
+  await page.goto('/')
+  await page.getByRole('link', { name: 'block-price' }).click()
+  let el = await page.locator('block-price')
+  let sectionId = await el.getAttribute('data-section-id')
   let data = { eventName: EVENTS.variantChange, options: { detail: { variant: {} } }, sectionId }
   // When
   await page.evaluate(({ eventName, options, sectionId }) => {
@@ -17,10 +17,10 @@ test("block-price", async ({ page }) => {
           <span class="visually-hidden">$100.00</span>
         </div>
       </block-price>`,
-      "text/html"
+      'text/html'
     )
     return Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 300))
   }, data)
   // Then
-  await expect(el).toContainText("$100.00")
+  await expect(el).toContainText('$100.00')
 })

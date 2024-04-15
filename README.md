@@ -29,9 +29,11 @@ Theme components aim to achieve the following value propositions:
 - [License]()
 
 ---
+
 ## Getting Started
 
 **Prerequisites**
+
 1. [Install Shopify CLI](https://shopify.dev/docs/themes/tools/cli/install) + [Shopify CLI Theme Component Plugin](https://github.com/archetype-themes/plugin-theme-component)
 2. Clone this repo to your dev machine
 
@@ -41,9 +43,10 @@ Theme components are developed separately from a theme using the `shopify theme 
 - **Develop theme components inside a theme** - `shopify theme component dev --theme-path ../reference-theme` to develop your components in the context of a specific theme
 
 ---
+
 ## Usage Guidelines
 
-Theme components are essentially Shopify snippets that import their own dependencies. They consist of vanilla theme files, including Liquid, CSS, JS, JSON, and other asset files like SVGs. 
+Theme components are essentially Shopify snippets that import their own dependencies. They consist of vanilla theme files, including Liquid, CSS, JS, JSON, and other asset files like SVGs.
 
 Similar to web components, they use parameters to be configured by their parent scope, slots to insert variable content, and emit events to communicate with other components.
 
@@ -58,37 +61,21 @@ Once the components are installed in your theme, you can develop your theme usin
 To use a component in the theme, simply include wherever it needs to be used and configure it through snippet parameters as needed:
 
 sections/header.liquid
+
 ```liquid
 {% render 'section-header' %}
 
 {% schema %}
-{
-  "name": "t:labels.header",
-  "class": "header-section",
-  "settings": [
-    {
-      "type": "select",
-      "id": "menu_position",
-      "label": "t:labels.layout",
-      "default": "logo_left_menu_left",
-      "options": [
-        {
-          "value": "logo_left_menu_left",
-          "label": "t:labels.logo_left_menu_left"
-        },
-        {
-          "value": "logo_left_menu_center",
-          "label": "t:labels.logo_left_menu_center"
-        }
-      ]
-    },
+{ "name": "t:labels.header", "class": "header-section", "settings": [ { "type": "select", "id": "menu_position",
+"label": "t:labels.layout", "default": "logo_left_menu_left", "options": [ { "value": "logo_left_menu_left", "label":
+"t:labels.logo_left_menu_left" }, { "value": "logo_left_menu_center", "label": "t:labels.logo_left_menu_center" } ] },
 ...
-
 ```
 
 Some components, like [section-header](https://github.com/archetype-themes/reference-components/blob/main/components/section-header/section-header.liquid)have parameters that can be passed via the `{% render %}` tag but also have helpful defaults to reduce the amount of boilerplate needed to use them. Let's take a closer look.
 
 components/section-header/section-header.liquid
+
 ```liquid
 {% comment %}
   Header section
@@ -113,6 +100,7 @@ As we can see, this component has 2 attributes that can be set when it rendered 
 ```
 
 Or we could expose this parameter inside the theme editor by assigning it's value to a setting:
+
 ```
 {% render 'section-header', menu_position: section.settings.menu_position %}
 ```
@@ -124,10 +112,11 @@ assign menu_position = menu_position | default: section.settings.menu_position |
 ```
 
 These defaults on variable assignment make the following code equivalent:
+
 ```liquid
 {% render 'section-header', menu_position: section.settings.menu_position %}
 
-{% comment} Is the same as {% endcomment %}
+{% comment %}
 
 {% render 'section-header' %}
 ```
@@ -137,6 +126,7 @@ These defaults on variable assignment make the following code equivalent:
 Slots allow components to output variable content in a specific location, allowing child content to be self-contained so the parent doesn't need manage configurations for itself and all it's children. The most common use for slots is sections that include blocks. Let's take a look at the [sections/main-product.liquid](https://github.com/archetype-themes/reference-theme/blob/main/sections/main-product.liquid) section to see how slots are used:
 
 [sections/main-product.liquid](https://github.com/archetype-themes/reference-theme/blob/main/sections/main-product.liquid)
+
 ```liquid
 {%- liquid
   capture blocks
@@ -162,9 +152,10 @@ Slots allow components to output variable content in a specific location, allowi
 -%}
 ```
 
-As you can see `section-main-product` includes a parameter called `slot`. To use this slot, we capture it's content using the `{% capture %}` tag,  in this case all the blocks that are included via the theme editor, as pass it to the `slot` parameter. The component then inserts this content where it needs to go!
+As you can see `section-main-product` includes a parameter called `slot`. To use this slot, we capture it's content using the `{% capture %}` tag, in this case all the blocks that are included via the theme editor, as pass it to the `slot` parameter. The component then inserts this content where it needs to go!
 
 [components/section-main-product/section-main-product.liquid](https://github.com/archetype-themes/reference-components/blob/main/components/section-main-product/section-main-product.liquid)
+
 ```
 <section class="main-product page-width page-width--flush-small" data-color-scheme="scheme-2">
   <div class="main-product__media-gallery">
@@ -180,10 +171,13 @@ As you can see `section-main-product` includes a parameter called `slot`. To use
 Slots prevent prop drilling and prevent the need to pass configurations through multiple levels of components
 
 ---
+
 ## Repository Structure
 
 Components represent an self-contained piece of theme code that explicitly import all the dependencies they need to render on a page.
+
 ### Component File Structure
+
 ```
 components/
 ├─ my-component/
@@ -195,7 +189,7 @@ components/
 │  │  ├─ sections/ -------------------------> Section files used render and configure components within the explorer
 │  │  │  ├─ my-component.liquid
 │  │  ├─ templates/ ------------------------> Template JSON files used to define section states across different page
-│  │  │  │                                    contexts. This allows multiple presets of a single component to be 
+│  │  │  │                                    contexts. This allows multiple presets of a single component to be
 │  │  │  │                                    previewed accross multiple page contexts
 │  │  │  ├─ index.my-component.json
 │  │  │  ├─ product.my-component.json
@@ -205,16 +199,17 @@ components/
 │  ├─ snippets/ ----------------------------> Snippets that are only relevant to this component are aren't worth
 │  │  │								          abstracting to a seperate component
 │  │  ├─ my-component.snippet-a.liquid
-│  ├─ my-component.liquid ------------------> The entrypoint for the component where all dependencies are declared 
+│  ├─ my-component.liquid ------------------> The entrypoint for the component where all dependencies are declared
 │  ├─ main.css
 │  ├─ README.md
 ```
 
 ### Component files vs Theme files
 
-Theme components control the presentation of state and they receive that state from parameters, theme editor settings, and a stores global Liquid objects. 
+Theme components control the presentation of state and they receive that state from parameters, theme editor settings, and a stores global Liquid objects.
 
 Files that control state are excluded from theme components and remain in control of a theme project, including:
+
 - `config/settings_schema.json` - Expose points of configuration in the Theme Editor that control state via global theme settings
 - `config/settings_data.json` - Records state of global theme settings
 - `layout/*.liquid` - The entrypoint for a theme where global state can be configured manually
@@ -222,26 +217,30 @@ Files that control state are excluded from theme components and remain in contro
 - `template/*.json` - Records state of section and block settings
 
 Theme files that don't control state and are used by components to manage presentation include:
+
 - `assets/*.js`
 - `assets/*.css`
 - `snippets/*.liquid`
+
 ### Main Liquid Component File
 
 ### Setup Files
 
 ### Test Files
 
-### Components types 
+### Components types
+
 - Section Components
 - Block Components
 - Utility Components
 - Generic Components
 
-
 ---
+
 ## Component Development Checklist
-   
+
 ### Component Liquid Entrypoint
+
 ```
 {%- comment -%}
   Header section
@@ -255,10 +254,11 @@ Theme files that don't control state and are used by components to manage presen
   {% render 'section-header' %}
 {%- endcomment -%}
 ```
+
 - [ ] Add documentation to the top of the file
-	- [ ] Description of what the component does
-	- [ ] Attributes the component accepts. Each attribute should list its possible values and a description of what the attribute does
-	- [ ] An example of the component’s usage
+  - [ ] Description of what the component does
+  - [ ] Attributes the component accepts. Each attribute should list its possible values and a description of what the attribute does
+  - [ ] An example of the component’s usage
 
 ```
 {%- liquid
@@ -267,13 +267,14 @@ Theme files that don't control state and are used by components to manage presen
   assign color_scheme = color_scheme | default: section.settings.color_scheme | default: 'scheme-1'
 -%}
 ```
+
 - [ ] Add component attributes assignments
-	- [ ] Each attribute should be overridable by passing the attribute to the component with the same name
-	- [ ] Each attribute should also include fallbacks by using the `| default` Liquid filter. Fallbacks can include:
-		- Section-level setting
-		- Block-level setting
-		- Global-level theme setting
-		- And finally, a default hardcoded value
+  - [ ] Each attribute should be overridable by passing the attribute to the component with the same name
+  - [ ] Each attribute should also include fallbacks by using the `| default` Liquid filter. Fallbacks can include:
+    - Section-level setting
+    - Block-level setting
+    - Global-level theme setting
+    - And finally, a default hardcoded value
     - [ ] If an attribute is of a boolean value, you may need to include `| default: true, allow_false: true`
     - [ ] If an attribute is of an object type, the associated Shopify Liquid object should be specified
     - [ ] If an attribute is of any other type, e.g. string, these should be separate by a pipe as in `{'small'|'large'}`
@@ -295,22 +296,24 @@ Theme files that don't control state and are used by components to manage presen
 		    endcase
 		endfor
 	endcapture
-	
+
 	render 'section-media-with-text', slot: block
  %}
 ```
+
 - [ ] Use slots to insert variable content outside the direct control of a component
-	- [ ] When possible, components, like section components, should be built so that you can slot content into them
-	- [ ] Slotted content can be any value but more often than not, it is a captured “rendered snippet” that is then passed as an attribute to that component
-	- [ ] This provides you with a way to modify any components, by passing them attribute values, you may need before you slot them into a component
- 
+  - [ ] When possible, components, like section components, should be built so that you can slot content into them
+  - [ ] Slotted content can be any value but more often than not, it is a captured “rendered snippet” that is then passed as an attribute to that component
+  - [ ] This provides you with a way to modify any components, by passing them attribute values, you may need before you slot them into a component
+
 ### Styles
-  - [ ] Resides in the component’s `main.css` file
-  - [ ] CSS file can import any shared CSS files by referencing the paths to those files, typically from the repo’s root `styles/` folder
-  - [ ] CSS can leverage custom variables defined in any part of the theme’s CSS code, but typically will leverage the custom variables defined inside of the `css-variables.liquid` component
-  - [ ] Modern CSS syntax can be used as these files are processed for browser compatibility with PostCSS
-  - [ ] Any CSS can be overridden by including a CSS file within the theme that overrides CSS already defined in components
-  
+
+- [ ] Resides in the component’s `main.css` file
+- [ ] CSS file can import any shared CSS files by referencing the paths to those files, typically from the repo’s root `styles/` folder
+- [ ] CSS can leverage custom variables defined in any part of the theme’s CSS code, but typically will leverage the custom variables defined inside of the `css-variables.liquid` component
+- [ ] Modern CSS syntax can be used as these files are processed for browser compatibility with PostCSS
+- [ ] Any CSS can be overridden by including a CSS file within the theme that overrides CSS already defined in components
+
 ### Custom Elements
 
 ### CSS Variables
@@ -322,9 +325,10 @@ Theme files that don't control state and are used by components to manage presen
 ### Import Maps
 
 ### Island architecture
-  - Some components can benefit from the island architecture, which loads in a component’s JavaScript based on some condition, e.g. interactivity, in view, etc.
-  - Wrap code in `<is-land>` tag with an optional hydrate attribute reference, e.g. `on:visible`
-  - The `<script>` reference to the component’s ES module should be wrapped inside of a `<template data-island>...</template>` tag, and should be included right above the closing `</is-land>` tag
+
+- Some components can benefit from the island architecture, which loads in a component’s JavaScript based on some condition, e.g. interactivity, in view, etc.
+- Wrap code in `<is-land>` tag with an optional hydrate attribute reference, e.g. `on:visible`
+- The `<script>` reference to the component’s ES module should be wrapped inside of a `<template data-island>...</template>` tag, and should be included right above the closing `</is-land>` tag
 - Custom elements
 - Component can include custom elements
 - Custom elements should be appropriately and uniquely named

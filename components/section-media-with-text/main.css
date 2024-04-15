@@ -1,11 +1,11 @@
-@import "../../styles/vendor/normalize.css";
-@import "../../styles/layout/breakpoints.css";
-@import "../../styles/helpers/aspect-ratio.css";
-@import "../../styles/helpers/placeholder-svg.css";
-@import "../../styles/helpers/position.css";
-@import "../../styles/modules/model-viewer.css";
-@import "../../styles/layout/page-width.css";
-@import "../../styles/base.css";
+@import '../../styles/vendor/normalize.css';
+@import '../../styles/layout/breakpoints.css';
+@import '../../styles/helpers/aspect-ratio.css';
+@import '../../styles/helpers/placeholder-svg.css';
+@import '../../styles/helpers/position.css';
+@import '../../styles/modules/model-viewer.css';
+@import '../../styles/layout/page-width.css';
+@import '../../styles/base.css';
 
 .media-with-text {
   display: flex;
@@ -22,17 +22,17 @@
   }
 }
 
-.media-with-text[data-media-width="33"],
-.media-with-text[data-media-width="66"][data-media-layout="left"] {
+.media-with-text[data-media-width='33'],
+.media-with-text[data-media-width='66'][data-media-layout='left'] {
   grid-template-columns: 2fr 1fr;
 }
 
-.media-with-text[data-media-width="50"] {
+.media-with-text[data-media-width='50'] {
   grid-template-columns: 1fr 1fr;
 }
 
-.media-with-text[data-media-width="66"],
-.media-with-text[data-media-width="33"][data-media-layout="left"] {
+.media-with-text[data-media-width='66'],
+.media-with-text[data-media-width='33'][data-media-layout='left'] {
   grid-template-columns: 1fr 2fr;
 }
 
@@ -42,11 +42,11 @@
 
 .media-with-text__media {
   @media (--small) {
-    .media-with-text[data-media-width="33"].page-width & {
+    .media-with-text[data-media-width='33'].page-width & {
       width: 50%;
     }
 
-    .media-with-text[data-media-width="50"].page-width & {
+    .media-with-text[data-media-width='50'].page-width & {
       width: 75%;
     }
   }
@@ -60,11 +60,11 @@
   @media (--small) {
     order: 1;
 
-    .media-with-text:has(&[data-text="center"]) {
+    .media-with-text:has(&[data-text='center']) {
       align-items: center;
     }
 
-    .media-with-text:has(&[data-text="right"]) {
+    .media-with-text:has(&[data-text='right']) {
       align-items: end;
     }
   }
@@ -73,7 +73,7 @@
     padding: 30px 60px;
   }
 
-  [data-media-layout="left"] & {
+  [data-media-layout='left'] & {
     order: 1;
   }
 }

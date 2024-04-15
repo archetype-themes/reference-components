@@ -1,5 +1,5 @@
-@import "../../styles/layout/breakpoints.css";
-@import "../../styles/modules/button.css";
+@import '../../styles/layout/breakpoints.css';
+@import '../../styles/modules/button.css';
 
 .block-buy-buttons {
   display: block;

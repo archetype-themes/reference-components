@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, subscribe } from '@archetype-themes/utils/pubsub'
 
 class CartCount extends HTMLElement {
   connectedCallback() {
@@ -26,4 +26,4 @@ class CartCount extends HTMLElement {
   }
 }
 
-customElements.define("cart-count", CartCount)
+customElements.define('cart-count', CartCount)

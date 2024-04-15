@@ -1,8 +1,8 @@
-import { EVENTS, publish, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, publish, subscribe } from '@archetype-themes/utils/pubsub'
 
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
-    this.addEventListener("submit", this.handleSubmit.bind(this))
+    this.addEventListener('submit', this.handleSubmit.bind(this))
 
     this.variantChangeUnsubscriber = subscribe(EVENTS.variantChange, this.handleVariantChange.bind(this))
     this.cartChangeUnsubscriber = subscribe(EVENTS.cartChange, this.handleCartChange.bind(this))
@@ -32,7 +32,7 @@ class BlockBuyButtons extends HTMLElement {
     const addButtonUpdated = html.getElementById(`ProductSubmitButton-${this.dataset.sectionId}`)
 
     if (addButtonUpdated) {
-      this.toggleAddButton(addButtonUpdated.hasAttribute("disabled"), this.getLocales().soldOut)
+      this.toggleAddButton(addButtonUpdated.hasAttribute('disabled'), this.getLocales().soldOut)
     }
   }
 
@@ -52,10 +52,10 @@ class BlockBuyButtons extends HTMLElement {
     if (!addButton) return
 
     if (disable) {
-      addButton.setAttribute("disabled", "disabled")
+      addButton.setAttribute('disabled', 'disabled')
       if (text) addButtonText.textContent = text
     } else {
-      addButton.removeAttribute("disabled")
+      addButton.removeAttribute('disabled')
       addButtonText.textContent = this.getLocales().addToCart
     }
   }
@@ -69,7 +69,7 @@ class BlockBuyButtons extends HTMLElement {
       const input = productForm.querySelector('input[name="id"]')
       input.value = variant.id
 
-      input.dispatchEvent(new Event("change", { bubbles: true }))
+      input.dispatchEvent(new Event('change', { bubbles: true }))
     })
   }
 
@@ -84,7 +84,7 @@ class BlockBuyButtons extends HTMLElement {
       publish(EVENTS.cartChange, {
         detail: {
           cart,
-          items: "items" in responseJson ? responseJson["items"] : [responseJson]
+          items: 'items' in responseJson ? responseJson['items'] : [responseJson]
         }
       })
     } catch (error) {
@@ -98,8 +98,8 @@ class BlockBuyButtons extends HTMLElement {
     const formData = this.getFormDataWithSections()
 
     const response = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
-      method: "POST",
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      method: 'POST',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
       body: formData
     })
 
@@ -118,7 +118,7 @@ class BlockBuyButtons extends HTMLElement {
     const productForm = this.querySelector(`#product-form-${this.dataset.sectionId}`)
     const formData = new FormData(productForm)
 
-    formData.set("sections_url", `${window.Shopify.routes.root}variants/${productForm.id.value}`)
+    formData.set('sections_url', `${window.Shopify.routes.root}variants/${productForm.id.value}`)
 
     return formData
   }
@@ -129,8 +129,8 @@ class BlockBuyButtons extends HTMLElement {
     if (!productForm) return
 
     const addButton = productForm.querySelector('[name="add"]')
-    addButton.removeAttribute("disabled")
-    addButton.removeAttribute("aria-busy")
+    addButton.removeAttribute('disabled')
+    addButton.removeAttribute('aria-busy')
   }
 
   disableAddToCartButton() {
@@ -139,9 +139,9 @@ class BlockBuyButtons extends HTMLElement {
     if (!productForm) return
 
     const addButton = productForm.querySelector('[name="add"]')
-    addButton.setAttribute("disabled", "")
-    addButton.setAttribute("aria-busy", "true")
+    addButton.setAttribute('disabled', '')
+    addButton.setAttribute('aria-busy', 'true')
   }
 }
 
-customElements.define("block-buy-buttons", BlockBuyButtons)
+customElements.define('block-buy-buttons', BlockBuyButtons)

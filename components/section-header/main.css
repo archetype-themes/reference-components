@@ -6,13 +6,13 @@
   padding: var(--size-4) 0;
 
   @media (--small) {
-    grid-template-areas: "logo icons" "menu menu";
+    grid-template-areas: 'logo icons' 'menu menu';
     grid-template-columns: auto minmax(0, 1fr);
   }
 
   @media (--medium-up) {
     gap: var(--size-12);
-    grid-template-areas: "logo menu icons";
+    grid-template-areas: 'logo menu icons';
     grid-template-columns: auto minmax(0, 1fr) minmax(0, max-content);
   }
 }

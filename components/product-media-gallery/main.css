@@ -1,6 +1,6 @@
-@import "../../styles/vendor/normalize.css";
-@import "../../styles/layout/breakpoints.css";
-@import "../../styles/base.css";
+@import '../../styles/vendor/normalize.css';
+@import '../../styles/layout/breakpoints.css';
+@import '../../styles/base.css';
 
 .product-media-gallery {
   display: grid;

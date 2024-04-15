@@ -1,21 +1,21 @@
-import { EVENTS, publish } from "@archetype-themes/utils/pubsub"
+import { EVENTS, publish } from '@archetype-themes/utils/pubsub'
 
 class BlockVariantPicker extends HTMLElement {
   connectedCallback() {
     this.productInfo = new Map()
 
-    this.addEventListener("change", this.handleVariantChange.bind(this))
-    this.addEventListener("touchstart", this.handleElementEvent.bind(this))
-    this.addEventListener("mousedown", this.handleElementEvent.bind(this))
+    this.addEventListener('change', this.handleVariantChange.bind(this))
+    this.addEventListener('touchstart', this.handleElementEvent.bind(this))
+    this.addEventListener('mousedown', this.handleElementEvent.bind(this))
 
     // TODO: remove click tests
     this.times = new Map()
-    this.addEventListener("click", (e) => {
-      if (e.target.tagName !== "INPUT") return
+    this.addEventListener('click', (e) => {
+      if (e.target.tagName !== 'INPUT') return
       // measure the time between the click event and the touchstart, mousedown events
-      this.times.set("click", +new Date())
-      const diffTouchstart = this.times.get("click") - this.times.get("touchstart") || "∞"
-      const diffMousedown = this.times.get("click") - this.times.get("mousedown") || "∞"
+      this.times.set('click', +new Date())
+      const diffTouchstart = this.times.get('click') - this.times.get('touchstart') || '∞'
+      const diffMousedown = this.times.get('click') - this.times.get('mousedown') || '∞'
       console.log(`click - touchstart = ${diffTouchstart} ms`)
       console.log(`click - mousedown = ${diffMousedown} ms`)
     })
@@ -24,13 +24,13 @@ class BlockVariantPicker extends HTMLElement {
   handleElementEvent(event) {
     // TODO: create a custom dropdown so that touchstart and mousedown events are listened to start preloading
     const target = event.target.previousElementSibling
-    if (target?.tagName !== "INPUT") {
+    if (target?.tagName !== 'INPUT') {
       return
     }
 
     // TODO: remove click tests
-    if (event.type === "touchstart") this.times.set("touchstart", +new Date())
-    if (event.type === "mousedown") this.times.set("mousedown", +new Date())
+    if (event.type === 'touchstart') this.times.set('touchstart', +new Date())
+    if (event.type === 'mousedown') this.times.set('mousedown', +new Date())
 
     this.updateOptions(target)
     this.updateMasterId()
@@ -66,13 +66,13 @@ class BlockVariantPicker extends HTMLElement {
   }
 
   updateOptions(target) {
-    this.options = Array.from(this.querySelectorAll("select, fieldset"), (element) => {
-      if (element.tagName === "SELECT") {
+    this.options = Array.from(this.querySelectorAll('select, fieldset'), (element) => {
+      if (element.tagName === 'SELECT') {
         return element.value
       }
 
-      if (element.tagName === "FIELDSET") {
-        return Array.from(element.querySelectorAll("input")).find(
+      if (element.tagName === 'FIELDSET') {
+        return Array.from(element.querySelectorAll('input')).find(
           (radio) => (target && radio === target) ?? radio.checked
         )?.value
       }
@@ -92,14 +92,14 @@ class BlockVariantPicker extends HTMLElement {
 
   updateVariantStatuses() {
     const selectedOptionOneVariants = this.variantData.filter(
-      (variant) => this.querySelector(":checked").value === variant.option1
+      (variant) => this.querySelector(':checked').value === variant.option1
     )
-    const inputWrappers = [...this.querySelectorAll("fieldset")]
+    const inputWrappers = [...this.querySelectorAll('fieldset')]
     inputWrappers.forEach((option, index) => {
       if (index === 0) return
 
       const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
-      const previousOptionSelected = inputWrappers[index - 1].querySelector(":checked").value
+      const previousOptionSelected = inputWrappers[index - 1].querySelector(':checked').value
       const availableOptionInputsValue = selectedOptionOneVariants
         .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
         .map((variantOption) => variantOption[`option${index + 1}`])
@@ -110,18 +110,18 @@ class BlockVariantPicker extends HTMLElement {
 
   setInputAvailability(elementList, availableValuesList) {
     elementList.forEach((element) => {
-      const value = element.getAttribute("value")
+      const value = element.getAttribute('value')
       const availableElement = availableValuesList.includes(value)
 
-      if (element.tagName === "INPUT") {
-        element.toggleAttribute("data-disabled", !availableElement)
+      if (element.tagName === 'INPUT') {
+        element.toggleAttribute('data-disabled', !availableElement)
       }
     })
   }
 
   updateURL() {
-    if (!this.currentVariant || !("updateUrl" in this.dataset)) return
-    window.history.replaceState({}, "", `${this.dataset.url}?variant=${this.currentVariant.id}`)
+    if (!this.currentVariant || !('updateUrl' in this.dataset)) return
+    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`)
   }
 
   getProductInfo() {
@@ -134,11 +134,11 @@ class BlockVariantPicker extends HTMLElement {
       requestedVariantId,
       fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`)
         .then((response) => response.text())
-        .then((responseText) => new DOMParser().parseFromString(responseText, "text/html"))
+        .then((responseText) => new DOMParser().parseFromString(responseText, 'text/html'))
     )
 
     return this.productInfo.get(requestedVariantId)
   }
 }
 
-customElements.define("block-variant-picker", BlockVariantPicker)
+customElements.define('block-variant-picker', BlockVariantPicker)

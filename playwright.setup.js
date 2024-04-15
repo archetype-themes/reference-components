@@ -1,4 +1,4 @@
-import { chromium } from "@playwright/test"
+import { chromium } from '@playwright/test'
 
 async function globalSetup(config) {
   const { baseURL, storageState } = config.projects[0].use
@@ -8,17 +8,17 @@ async function globalSetup(config) {
   try {
     await context.tracing.start({ screenshots: true, snapshots: true })
     await page.goto(baseURL)
-    await page.getByLabel("Enter store password").click()
-    await page.getByLabel("Enter store password").fill(process.env.SHOPIFY_STORE_PASSWORD)
-    await page.getByLabel("Enter store password").press("Enter")
+    await page.getByLabel('Enter store password').click()
+    await page.getByLabel('Enter store password').fill(process.env.SHOPIFY_STORE_PASSWORD)
+    await page.getByLabel('Enter store password').press('Enter')
     await page.context().storageState({ path: storageState })
     await context.tracing.stop({
-      path: "./test-results/setup-trace.zip"
+      path: './test-results/setup-trace.zip'
     })
     await browser.close()
   } catch (error) {
     await context.tracing.stop({
-      path: "./test-results/failed-setup-trace.zip"
+      path: './test-results/failed-setup-trace.zip'
     })
     await browser.close()
     throw error

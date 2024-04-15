@@ -4,8 +4,8 @@ export default async function loadScript(src) {
     return
   }
 
-  const script = document.createElement("script")
-  script.type = "text/javascript"
+  const script = document.createElement('script')
+  script.type = 'text/javascript'
   script.src = src
   script.async = true
 

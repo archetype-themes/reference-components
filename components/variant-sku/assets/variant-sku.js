@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from "@archetype-themes/utils/pubsub"
+import { EVENTS, subscribe } from '@archetype-themes/utils/pubsub'
 
 class VariantSku extends HTMLElement {
   connectedCallback() {
@@ -13,7 +13,7 @@ class VariantSku extends HTMLElement {
     const { html, sectionId, variant } = detail
 
     if (!variant) {
-      this.textContent = ""
+      this.textContent = ''
       return
     }
 
@@ -25,4 +25,4 @@ class VariantSku extends HTMLElement {
   }
 }
 
-customElements.define("variant-sku", VariantSku)
+customElements.define('variant-sku', VariantSku)

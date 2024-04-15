@@ -1,4 +1,4 @@
-import inView from "@archetype-themes/vendors/in-view"
+import inView from '@archetype-themes/vendors/in-view'
 
 export default class extends HTMLElement {
   constructor() {
@@ -30,16 +30,16 @@ export default class extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["playing"]
+    return ['playing']
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name !== "playing") return
+    if (name !== 'playing') return
 
-    if (oldValue === null && newValue === "") {
-      this.dispatchEvent(new CustomEvent("media:play", { bubbles: true }))
+    if (oldValue === null && newValue === '') {
+      this.dispatchEvent(new CustomEvent('media:play', { bubbles: true }))
     } else if (newValue === null) {
-      this.dispatchEvent(new CustomEvent("media:pause", { bubbles: true }))
+      this.dispatchEvent(new CustomEvent('media:pause', { bubbles: true }))
     }
   }
 
@@ -59,18 +59,18 @@ export default class extends HTMLElement {
   }
 
   getPlayerTarget() {
-    throw new Error("getPlayerTarget must be implemented in a subclass")
+    throw new Error('getPlayerTarget must be implemented in a subclass')
   }
 
   playerHandler() {
-    throw new Error("playerHandler must be implemented in a subclass")
+    throw new Error('playerHandler must be implemented in a subclass')
   }
 
   get playing() {
-    return this.hasAttribute("playing")
+    return this.hasAttribute('playing')
   }
 
   get autoplay() {
-    return this.hasAttribute("autoplay")
+    return this.hasAttribute('autoplay')
   }
 }

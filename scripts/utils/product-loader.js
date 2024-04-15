@@ -2,7 +2,7 @@ const loadedProducts = new Map()
 
 export async function loadProduct(handle) {
   if (!handle) {
-    throw new Error("The handle of the product is required before product can be loaded")
+    throw new Error('The handle of the product is required before product can be loaded')
   }
 
   if (loadedProducts.has(handle)) {
