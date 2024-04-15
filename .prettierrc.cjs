@@ -2,6 +2,7 @@
 module.exports = {
   printWidth: 120,
   semi: false,
+  singleQuote: true,
   trailingComma: "none",
   plugins: [require.resolve("@shopify/prettier-plugin-liquid/standalone")],
   overrides: [
