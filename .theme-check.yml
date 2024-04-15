@@ -2,12 +2,14 @@ MissingTemplate:
   enabled: true
   ignore:
     - components/**/*
+    - build/**/*
   ignore_missing: []
 
 TranslationKeyExists:
   enabled: true
   ignore:
     - components/**/*
+    - build/**/*
 
 MissingRequiredTemplateFiles:
   enabled: false
@@ -17,6 +19,7 @@ UndefinedObject:
   enabled: true
   ignore:
     - components/**/*
+    - build/**/*
   exclude_snippets: true
 
 RequiredDirectories:
