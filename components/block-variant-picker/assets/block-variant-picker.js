@@ -7,30 +7,14 @@ class BlockVariantPicker extends HTMLElement {
     this.addEventListener('change', this.handleVariantChange.bind(this))
     this.addEventListener('touchstart', this.handleElementEvent.bind(this))
     this.addEventListener('mousedown', this.handleElementEvent.bind(this))
-
-    // TODO: remove click tests
-    this.times = new Map()
-    this.addEventListener('click', (e) => {
-      if (e.target.tagName !== 'INPUT') return
-      // measure the time between the click event and the touchstart, mousedown events
-      this.times.set('click', +new Date())
-      const diffTouchstart = this.times.get('click') - this.times.get('touchstart') || '∞'
-      const diffMousedown = this.times.get('click') - this.times.get('mousedown') || '∞'
-      console.log(`click - touchstart = ${diffTouchstart} ms`)
-      console.log(`click - mousedown = ${diffMousedown} ms`)
-    })
   }
 
   handleElementEvent(event) {
-    // TODO: create a custom dropdown so that touchstart and mousedown events are listened to start preloading
+    // TODO: evaluate creating a custom dropdown component to listen to touchstart and mousedown events
     const target = event.target.previousElementSibling
     if (target?.tagName !== 'INPUT') {
       return
     }
-
-    // TODO: remove click tests
-    if (event.type === 'touchstart') this.times.set('touchstart', +new Date())
-    if (event.type === 'mousedown') this.times.set('mousedown', +new Date())
 
     this.updateOptions(target)
     this.updateMasterId()
