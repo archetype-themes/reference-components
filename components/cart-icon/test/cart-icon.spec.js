@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { EVENTS } from '../../../scripts/utils/pubsub.js'
+import { EVENTS } from '@archetype-themes/utils/pubsub'
 
 test('cart-icon', async ({ page }) => {
   // Given
