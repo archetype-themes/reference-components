@@ -26,7 +26,11 @@
   endcapture
 -%}
 
-<section class="main-product page-width page-width--flush-small" data-color-scheme="scheme-2">
+<section
+  class="main-product page-width page-width--flush-small"
+  data-color-scheme="scheme-2"
+  data-image-position="{{ section.settings.image_position }}"
+>
   <div class="main-product__media-gallery">
     {{- product_media_gallery | default: product_media_gallery_default -}}
   </div>

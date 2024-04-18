@@ -12,6 +12,12 @@
     grid-template-columns: 60% 1fr;
     padding-top: var(--size-16);
   }
+
+  &[data-image-position='right'] {
+    @media (--medium-up) {
+      grid-template-columns: 1fr 60%;
+    }
+  }
 }
 
 .main-product__media-gallery {
@@ -28,5 +34,9 @@
   @media (--medium-up) {
     padding: var(--size-12) 0 0 0;
     gap: var(--size-8);
+  }
+
+  [data-image-position='right'] & {
+    order: -1;
   }
 }
