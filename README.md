@@ -16,8 +16,7 @@ Our goal is to improve knowledge across the Shopify theme ecosystem and encourag
 
 ### Resource previews
 
-🧑‍🎨 View the [Figma design file]() that accompanies these components.
-🕵️ View the components in the [Component explorer](https://archetype-components.myshopify.com/) (password `archetype`)
+You can view the [Figma design file]() that accompanies these components as well as view the components in the [Component explorer](https://archetype-components.myshopify.com/) (password `archetype`).
 
 ## Table of Contents
 
