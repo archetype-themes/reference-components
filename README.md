@@ -23,6 +23,7 @@ You can view the [Figma design file]() that accompanies these components as well
 - [Getting started](#getting-started)
 - [Usage guidelines](#usage-guidelines)
 - [Concepts](#concepts)
+- [Anatomy of a component](#anatomy-of-a-component)
 - [Contributing](#contributing)
 - [License]()
 
@@ -106,7 +107,7 @@ The only required folder is `components/`, both `script/` and `styles/` are opti
 - `scripts/`: Contains common scripts that components can reference.
 - `styles/`: Contains common styles that components can reference.
 
-> **_NOTE:_** Behind the scenes, ny asset files added to your components will automatically be moved to your theme's `assets/` directory. Similarly, any Liquid files will automatically be moved to the `snippets/` directory.
+> **_NOTE:_** Behind the scenes, any asset files added to your components will automatically be compiled to your theme's `assets/` directory. Similarly, any Liquid files will automatically be compiled to the `snippets/` directory.
 
 #### Liquid component file
 
@@ -144,7 +145,82 @@ Utility components are designed to provide specific, non-visual functionality th
 
 For example, the [`font-faces`](https://github.com/archetype-themes/reference-components/tree/main/components/font-faces) component outputs a font preload link based on a given `font` object.
 
-### Anatomy of a component
+### Components as composable elements
+
+We view components as composable elements, similar to building blocks in a LEGO set. Just like LEGO pieces, these elements can be replaced and swapped out with others.
+
+One idea is to empower developers with a more flexible approach by making parts of components swappable, using the concept of "slots" in Liquid. If a component is designed to accept a ["slot" parameter](#slots-in-components), you can use the Liquid `capture` tag to grab Liquid code—or any value—and pass it as variable content to the component’s "slot" parameter.
+
+Also, because components are essentially modular snippets, they can dynamically render other components using the Liquid `render` tag.
+
+It's essential to recognize that these practices are already established in Shopify theme development. Our approach to theme components further leverages these existing mechanisms to simplify and enhance the flexibility of building components, and by extension, entire themes.
+
+#### Slot parameters
+
+Slots are fundamentally "placeholder areas" in which you can _slot_ in content.
+
+Slots enable components to display variable content in designated areas, ensuring that child content is self-contained. This setup allows the parent component to operate without having to manage configurations for both itself and its child components. When possible, components, especially section components, should be built to allow you to slot content into them, providing a flexible way to modify components by passing attribute values that can be adjusted before slotting them into a component.
+
+For example, in the reference theme, the [`main-product`](https://github.com/archetype-themes/reference-theme/blob/main/sections/main-product.liquid) section defines its JSON schema with a set of blocks. In Liquid, it then captures this list of blocks and injects them into a designated slot location within the `section-main-product` component:
+
+```liquid
+{%- liquid
+  capture blocks
+    for block in section.blocks
+      case block.type
+        when '@app'
+          render block
+        when 'description'
+          render 'block-description', block: block
+        when 'variant_picker'
+          render 'block-variant-picker', block: block
+        when 'buy_buttons'
+          render 'block-buy-buttons', block: block
+        when 'title'
+          render 'block-title', block: block
+        when 'price'
+          render 'block-price', block: block
+      endcase
+    endfor
+  endcapture
+
+  render 'section-main-product', slot: blocks
+-%}
+```
+
+The `section-main-product` component includes a parameter called `slot`. To use this slot, we capture it's content using the Liquid `capture` tag. This slotted content can be any value but is more often a captured "rendered snippet" that is then passed as an attribute to the component. It's then up to the component to output the slot content wherever it needs to go.
+
+If we look at the [`section-main-product`](https://github.com/archetype-themes/reference-components/blob/main/components/section-main-product/section-main-product.liquid) component, you'll see the `slot` parameter being outputted:
+
+```liquid
+{%- liquid
+  capture product_media_gallery_default
+    render 'product-media-gallery'
+  endcapture
+-%}
+
+<section>
+  <div class='main-product__media-gallery'>
+    {{- product_media_gallery | default: product_media_gallery_default -}}
+  </div>
+
+  <div class='main-product__info'>
+    {{- slot -}}
+  </div>
+</section>
+```
+
+You may have also noticed a reference to a `product_media_gallery_default` variable at the top of the file that captures a `product-media-gallery` component. In this case, the `product_media_gallery` parameter is entirely optional and it would fall back to the default value if it isn't specified.
+
+If you're thinking this looks to be another slot for this component, you would be correct! And because of this, you're able to easily swap out the `product_media_gallery` content with your very own, including an entirely different component.
+
+This provides you with a way to modify any components, by passing them parameter values, you may need before you slot them into a component.
+
+## Anatomy of a component
+
+### Component Liquid
+
+Behind the scenes, Liquid files will automatically be compiled to your theme's `snippets/` directory.
 
 Each component is broken down in a specific way. The details below are based on our own approach to developing components, meaning entirely optional. Read on to better understand the anatomy of a component and how we structure our own.
 
@@ -173,6 +249,11 @@ The documentation for each component is organized into three main parts:
 - **Usage example**: (Optional) Demonstrates how to use the component within the theme or other components.
 
 This structured approach to documentation ensures that every component is clearly defined, making it easier for developers to learn about and use the theme component in practice.
+
+> **_NOTE_**: Conventions to keep in mind when defining attributes in components:
+>
+> - If an attribute is of an object type, specify the associated Liquid object.
+> - For attributes of any other type, such as strings, separate possible values with a pipe (`|`). For example, use `{'small'|'large'}` to indicate selectable options.
 
 #### Parameter list and order of precedence
 
@@ -211,6 +292,11 @@ This approach not only maintains a clear and organized parameter list but also e
 
 It makes it easier to maintain since the most relevant context for any theme developer jumping into the component's code is at the top of the file, meaning the documentation and the parameter list become the component's API.
 
+> **_NOTE_**: Conventions to keep in mind when defining attributes in components:
+>
+> - If an attribute is of a boolean value, include `| default: true, allow_false: true` to handle default settings and explicitly allow falsy values.
+> - All attributes defined at the top of the file should be the exclusive variables used throughout the file. Avoid direct calls to setting values unless necessary.
+
 #### HTML/Liquid code
 
 In its simplest form, this section is where your component's HTML/Liquid code should be placed.
@@ -218,6 +304,22 @@ In its simplest form, this section is where your component's HTML/Liquid code sh
 The content included here depends entirely on the [type of component](#theme-component-types) you are building. For general theme components, you may include any HTML or Liquid markup as needed.
 
 If your component involves integrating JavaScript modules, you should refer to our guidelines in the [Import maps](#import-maps) section to understand our approach to handling JavaScript imports more effectively.
+
+### Component assets
+
+Behind the scenes, asset files (CSS, JavaScript, SVG, etc.) added to your components will automatically be compiled to your theme's `assets/` directory.
+
+#### CSS styles
+
+Each component can have its own `main.css` file, which will encapsulate the specific CSS styles of that component. Below are the guidelines on how CSS is managed in our own components:
+
+- **Component-specific CSS**: The unique CSS styles for each component should be contained within its `main.css` file.
+- **Importing shared CSS**: Shared CSS files can be imported into `main.css` by referencing the paths to these files, typically located in the repository's root `styles/` folder.
+- **Leveraging CSS variables**: Components may utilize custom CSS variables defined anywhere within the theme's CSS. Typically, these components leverage the variables specified in the [`css-variables.liquid`](https://github.com/archetype-themes/reference-components/blob/937dfb7dbc57062f9fc8c23bcb59189088c5304c/components/css-variables/css-variables.liquid) component.
+- **Modern CSS and compatibility**: Modern CSS syntax is encouraged and supported. CSS files are processed using [PostCSS](https://postcss.org/) to ensure compatibility across various browsers, enabling the use of the latest CSS features.
+- **Overriding component CSS**: CSS from any component can be overridden by including a specific CSS file within the theme that targets and overrides the predefined styles.
+
+These guidelines help maintain a consistent and manageable approach to CSS across all components, supporting straightforward customization and updates.
 
 #### Import maps
 
@@ -253,94 +355,45 @@ You can include this snippet in your theme’s layout, typically within the [`la
 
 Keep in mind, an import map simply references modules in the form of a map. A JavaScript module will only be loaded if it is explicitly referenced or imported by a component.
 
-### Components as composable elements
+#### Client-side JavaScript with `<is-land>`
 
-We view components as composable elements, similar to building blocks in a LEGO set. Just like LEGO pieces, these elements can be replaced and swapped out with others.
+For components requiring client-side JavaScript, we adopt the [`is-land`](https://github.com/11ty/is-land) architecture. This approach allows us to specify a loading strategy to control how and when a component's JavaScript is initialized, and allows us to improve performance by being intentional about when JavaScript executes. More details can be found in the `is-land` project's [README](https://github.com/11ty/is-land#readme).
 
-One idea is to empower developers with a more flexible approach by making parts of components swappable, using the concept of "slots" in Liquid. If a component is designed to accept a ["slot" parameter](#slots-in-components), you can use the Liquid `capture` tag to grab Liquid code—or any value—and pass it as variable content to the component’s "slot" parameter.
+In our implementation, we've created a specific `is-land` component that includes a script tag for the `is-land` JavaScript module. This script is included early in the theme’s [`layout/theme.liquid`](https://github.com/archetype-themes/reference-theme/blob/main/layout/theme.liquid#L21) file to ensure it loads and executes before any other dependent component.
 
-Also, because components are essentially modular snippets, they can dynamically render other components using the Liquid `render` tag.
-
-It's essential to recognize that these practices are already established in Shopify theme development. Our approach to theme components further leverages these existing mechanisms to simplify and enhance the flexibility of building components, and by extension, entire themes.
-
-#### Slot parameters
-
-Slots are fundamentally "placeholder areas" in which you can _slot_ in content.
-
-Slots enable components to display variable content in designated areas, ensuring that child content is self-contained. This setup allows the parent component to operate without having to manage configurations for both itself and its child components. While not always the case, slots are most commonly used in sections that contain blocks.
-
-For example, in the reference theme, the [`main-product`](https://github.com/archetype-themes/reference-theme/blob/main/sections/main-product.liquid) section defines its JSON schema with a set of blocks. In Liquid, it then captures this list of blocks and injects them into a designated slot location within the `section-main-product` component:
+For instance, consider our [`cart-note`](https://github.com/archetype-themes/reference-components/blob/main/components/block-cart-note/block-cart-note.liquid) component. We encapsulate the entire component within `<is-land>` tags and use a hydration strategy to control script initialization:
 
 ```liquid
-{%- liquid
-  capture blocks
-    for block in section.blocks
-      case block.type
-        when '@app'
-          render block
-        when 'description'
-          render 'block-description', block: block
-        when 'variant_picker'
-          render 'block-variant-picker', block: block
-        when 'buy_buttons'
-          render 'block-buy-buttons', block: block
-        when 'title'
-          render 'block-title', block: block
-        when 'price'
-          render 'block-price', block: block
-      endcase
-    endfor
-  endcapture
+<is-land {{ hydration }}>
+  {% comment %}Cart note Liquid code{% endcomment %}
 
-  render 'section-main-product', slot: blocks
--%}
+  <template data-island>
+    <script type='module'>
+      import 'components/block-cart-note'
+    </script>
+  </template>
+</is-land>
 ```
 
-The `section-main-product` component includes a parameter called `slot`. To use this slot, we capture it's content using the Liquid `capture` tag, and it's then up to the component to output the slot content wherever it needs to go.
+In this example, the `on:visible` strategy initializes the module only when the component becomes visible to the user. This strategy is defined in the component’s parameter list and can be easily changed to another condition if necessary.
 
-If we then look at the [`section-main-product`](https://github.com/archetype-themes/reference-components/blob/main/components/section-main-product/section-main-product.liquid) component, you'll see the `slot` parameter being outputted:
+The JavaScript file, [`block-cart-note.js`](https://github.com/archetype-themes/reference-components/blob/main/components/block-cart-note/assets/block-cart-note.js), is located in the component's `assets/` directory and is automatically included in the import map to ensure it is properly loaded when referenced.
 
-```liquid
-{%- liquid
-  capture product_media_gallery_default
-    render 'product-media-gallery'
-  endcapture
--%}
+#### Custom elements
 
-<section>
-  <div class='main-product__media-gallery'>
-    {{- product_media_gallery | default: product_media_gallery_default -}}
-  </div>
+Custom elements are the foundational blocks that 99% of e-commerce stores use under the hood. They're small pieces of functionality that make up the larger parts of a storefront that you can, most importantly, compose together.
 
-  <div class='main-product__info'>
-    {{- slot -}}
-  </div>
-</section>
-```
+The idea is that we're able build a set of HTML custom elements that we can leverage in all themes. You can have custom elements for anything really—sliders, drawers, popups, etc. but these custom elements can also be much more granular, e.g. a [cart icon](https://github.com/archetype-themes/reference-components/blob/main/components/cart-icon/assets/cart-icon.js#L12-L15) that shows the number of products in a buyer's cart and updates when that number changes, or a product block that [listens for an event](https://github.com/archetype-themes/reference-components/blob/main/components/variant-sku/assets/variant-sku.js#L5) whenever the variant is changed.
 
-You may have also noticed a reference to a `product_media_gallery_default` variable at the top of the file that captures a `product-media-gallery` component. In this case, the `product_media_gallery` parameter is entirely optional and it would fall back to the default value if it isn't specified.
+You can find more detailed information about custom elements on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements).
 
-If you're thinking this looks to be another slot for this component, you would be correct! And because of this, you're able to easily swap out the `product_media_gallery` content with your very own, including an entirely different component.
-
-<!-- TODO: component tests -->
-
-<!-- Theme primitives -->
-<!-- Importmaps -->
-
-<!-- Testing -->
-<!-- ### Setup Files -->
-
-<!-- ### Test Files -->
-
-<!-- THIS IS FOR REFERENCE THEME -->
-
-### Distinction between theme component files and theme files
+## Distinction between theme component files and theme files
 
 Theme component files focus on presentation and user interaction, making them customizable and reusable across any number of themes while theme files maintain the functionality of the store by managing state and defining the settings to be included. The specific settings included as part of theme files directly influence the behavior of theme components.
 
 The goal is to enforce a clear separation of concerns between theme component files and theme files.
 
-#### Theme component files
+### Theme component files
 
 Theme component files primarily manage the visual presentation of the theme. These files are modular and are specifically designed to handle how elements look and behave on the front-end.
 
@@ -349,10 +402,14 @@ A theme component accepts inputs that adjust its behavior and/or appearance in t
 - **Theme editor settings**: Components use settings defined within the Shopify theme editor to adapt to different configurations and enables theme developers (and users) to customize components without directly editing code.
 - **Liquid objects/values**: Component files can access and use global variables defined across the Shopify platform and/or values that are passed directly to them.
 
-#### Theme files
+### Theme files
 
 Theme files are responsible for managing and maintaining the state across the entire theme. They ensure that the theme is the one to store values for its settings and configurations so that theme components can then use these values. Theme files include:
 
 - **Config files**: for example `config/settings_schema.json` and `config/settings_data.json` manage the global settings of the theme.
 - **Layout files**: for example `layout/*.liquid` acts as a main entry point for themes where the global state is manually configured.
 - **Section and template files**: for example `sections/*.liquid` and `template/*.json` files control the state at a more granular level, such as within individual sections or blocks by defining theme editor settings.
+
+## Contributing
+
+Interested in shaping the future of theme development with us? We welcome you to join our community! While we aren't looking for direct code contributions at this time, your insights and discussions play a crucial role in our continuous improvement. We encourage you to start discussions, ask questions, and provide feedback on our component approach.
