@@ -171,7 +171,7 @@ For example, in the reference theme, the [`main-product`](https://github.com/arc
         when '@app'
           render block
         when 'description'
-          render 'block-description', block: block
+          render 'block-product-description', block: block
         when 'variant_picker'
           render 'block-variant-picker', block: block
         when 'buy_buttons'
