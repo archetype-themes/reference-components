@@ -6,7 +6,7 @@ This repository contains 4 primary sections: header, media with text, product de
 
 Theme components aim to achieve the following value propositions:
 
-- **Focus development on modular components**: Encourage efficient and manageable development by focusing on discrete, well-defined components rather than large, complex codebases. This modularity enables easier customization and faster updates across themes projects.
+- **Focus development on modular components**: Encourage efficient and manageable development by focusing on discrete, well-defined components rather than large, complex codebases. This modularity enables easier customization and faster updates across themes.
 - **Standardize code for future-ready Shopify Liquid projects**: Establish coding standards and patterns that ensure future scalability and adaptability.
 - **Accelerate enterprise theme creation**: Speed up the development of professional-grade themes to enable quicker deployment and streamlined market entry. This allows developers to leverage common components across all themes, ensuring consistency and quality.
 - **Streamline theme catalog maintenance and updates**: Simplify the maintenance and enhancement of your theme portfolio, significantly reducing the resources and effort required. This streamlined approach helps in reusing components and maintaining uniformity across all projects.
@@ -63,7 +63,7 @@ When developing a theme component, you have two separate workflows to choose fro
 
 ### Installing components
 
-You can install a component (or list of components) with the `shopify theme component install` command. This command is only ran within a Shopify theme project which then imports the latest changes of your components into your theme.
+You can install a component (or list of components) with the `shopify theme component install` command. This command is only ran within a theme which then imports the latest changes of your components into your theme.
 
 ## Concepts
 
@@ -111,7 +111,7 @@ The only required folder is `components/`, both `script/` and `styles/` are opti
 
 #### Liquid component file
 
-Each component directory must include a Liquid component file, which serves as the essential entry point for the component. Upon installing a component into a theme project, the Liquid component file will be generated as a separate snippet file.
+Each component directory must include a Liquid component file, which serves as the essential entry point for the component. Upon installing a component into a theme, the Liquid component file will be generated as a separate snippet file.
 
 It is common practice to name the Liquid component file after the component directory itself. For example, a component named `my-component` would typically have a corresponding Liquid file named `my-component/my-component.liquid`. However, this naming convention is not enforced.
 
@@ -141,7 +141,7 @@ For example, the [`icon`](https://github.com/archetype-themes/reference-componen
 
 #### Utility Components
 
-Utility components are designed to provide specific, non-visual functionality that can be used across various parts of a theme. Unlike presentational components, they focus on enhancing a theme’s practical capabilities, adding essential features such as performance enhancements and other standard front-end functionality.
+Utility components are designed to provide specific, non-visual functionality that can be used across various parts of a theme. Unlike presentational components, they focus on enhancing a theme's practical capabilities, adding essential features such as performance enhancements and other standard front-end functionality.
 
 For example, the [`font-faces`](https://github.com/archetype-themes/reference-components/tree/main/components/font-faces) component outputs a font preload link based on a given `font` object.
 
@@ -149,7 +149,7 @@ For example, the [`font-faces`](https://github.com/archetype-themes/reference-co
 
 We view components as composable elements, similar to building blocks in a LEGO set. Just like LEGO pieces, these elements can be replaced and swapped out with others.
 
-One idea is to empower developers with a more flexible approach by making parts of components swappable, using the concept of "slots" in Liquid. If a component is designed to accept a ["slot" parameter](#slots-in-components), you can use the Liquid `capture` tag to grab Liquid code—or any value—and pass it as variable content to the component’s "slot" parameter.
+One idea is to empower developers with a more flexible approach by making parts of components swappable, using the concept of "slots" in Liquid. If a component is designed to accept a ["slot" parameter](#slots-in-components), you can use the Liquid `capture` tag to grab Liquid code—or any value—and pass it as variable content to the component's "slot" parameter.
 
 Also, because components are essentially modular snippets, they can dynamically render other components using the Liquid `render` tag.
 
@@ -244,7 +244,7 @@ Each theme component should include a Liquid `comment` tag at the beginning of t
 
 The documentation for each component is organized into three main parts:
 
-- **Description**: Explains the component’s function.
+- **Description**: Explains the component's function.
 - **Parameters**: Lists parameters the component accepts, with possible values and their purposes.
 - **Usage example**: (Optional) Demonstrates how to use the component within the theme or other components.
 
@@ -257,7 +257,7 @@ This structured approach to documentation ensures that every component is clearl
 
 #### Parameter list and order of precedence
 
-The parameter list defines the accepted parameters for each component within the theme. Here’s how you can define a parameter list using Liquid:
+The parameter list defines the accepted parameters for each component within the theme. Here's how you can define a parameter list using Liquid:
 
 ```liquid
 {%- liquid
@@ -271,12 +271,12 @@ It's vital to manage how data is passed and used effectively in each component. 
 Parameter values are determined through a cascading order:
 
 1. **Directly passed parameter**: First, we check if the parameter has been directly passed to the component. This provides the most specific level of control.
-2. **Section/Block setting**: If the parameter is not directly passed, the next level checked is the section or block setting. If a setting with a matching ID exists, such as `section.settings.menu_link_list`, its value is used.
-3. **Default value**: In the absence of direct parameters or settings, a predefined default value is used. This ensures that every parameter has a value, defaulting to Liquid’s `nil` if none is specified.
+2. **Section/block setting**: If the parameter is not directly passed, the next level checked is the section or block setting. If a setting with a matching ID exists, such as `section.settings.menu_link_list`, its value is used.
+3. **Default value**: In the absence of direct parameters or settings, a predefined default value is used. This ensures that every parameter has a value, defaulting to Liquid's `nil` if none is specified.
 
 This cascading system allows each step to be optional. You can choose to enforce a parameter as "required" by omitting a list of fallbacks.
 
-The simplicity of this system allows for more straightforward syntax when reference the component in your theme. Typically, you can render a component without specifying all parameters:
+The simplicity of this system allows for more straightforward syntax when referencing the component in your theme. Typically, you can render a component without specifying all parameters:
 
 ```liquid
 {% render 'section-header' %}
@@ -315,7 +315,7 @@ Each component can have its own `main.css` file, which will encapsulate the spec
 
 - **Component-specific CSS**: The unique CSS styles for each component should be contained within its `main.css` file.
 - **Importing shared CSS**: Shared CSS files can be imported into `main.css` by referencing the paths to these files, typically located in the repository's root `styles/` folder.
-- **Leveraging CSS variables**: Components may utilize custom CSS variables defined anywhere within the theme's CSS. Typically, these components leverage the variables specified in the [`css-variables.liquid`](https://github.com/archetype-themes/reference-components/blob/937dfb7dbc57062f9fc8c23bcb59189088c5304c/components/css-variables/css-variables.liquid) component.
+- **Leveraging CSS variables**: Components may use custom CSS variables defined anywhere within the theme's CSS. Typically, these components leverage the variables specified in the [`css-variables.liquid`](https://github.com/archetype-themes/reference-components/blob/937dfb7dbc57062f9fc8c23bcb59189088c5304c/components/css-variables/css-variables.liquid) component.
 - **Modern CSS and compatibility**: Modern CSS syntax is encouraged and supported. CSS files are processed using [PostCSS](https://postcss.org/) to ensure compatibility across various browsers, enabling the use of the latest CSS features.
 - **Overriding component CSS**: CSS from any component can be overridden by including a specific CSS file within the theme that targets and overrides the predefined styles.
 
@@ -337,7 +337,7 @@ The backbone of this is the [`import-map.json`](https://github.com/archetype-the
 }
 ```
 
-This file defines all imports that can be utilized across components. It accepts module specifiers with glob patterns or wildcards and resolves JavaScript from URLs or file patterns.
+This file defines all imports that can be use across components. It accepts module specifiers with glob patterns or wildcards and resolves JavaScript from URLs or file patterns.
 
 For instance, in the [`icon`](https://github.com/archetype-themes/reference-components/blob/main/components/icon/assets/icon.js) component, a JavaScript module specified in the import map needs to be loaded. This is facilitated through an `import-map.liquid` snippet:
 
@@ -351,7 +351,7 @@ For instance, in the [`icon`](https://github.com/archetype-themes/reference-comp
 </script>
 ```
 
-You can include this snippet in your theme’s layout, typically within the [`layout/theme.liquid`](https://github.com/archetype-themes/reference-theme/blob/main/layout/theme.liquid#L19) file, to ensure all specified modules are correctly loaded.
+You can include this snippet in your theme's layout, typically within the [`layout/theme.liquid`](https://github.com/archetype-themes/reference-theme/blob/main/layout/theme.liquid#L19) file, to ensure all specified modules are correctly loaded.
 
 Keep in mind, an import map simply references modules in the form of a map. A JavaScript module will only be loaded if it is explicitly referenced or imported by a component.
 
@@ -359,7 +359,7 @@ Keep in mind, an import map simply references modules in the form of a map. A Ja
 
 For components requiring client-side JavaScript, we adopt the [`is-land`](https://github.com/11ty/is-land) architecture. This approach allows us to specify a loading strategy to control how and when a component's JavaScript is initialized, and allows us to improve performance by being intentional about when JavaScript executes. More details can be found in the `is-land` project's [README](https://github.com/11ty/is-land#readme).
 
-In our implementation, we've created a specific `is-land` component that includes a script tag for the `is-land` JavaScript module. This script is included early in the theme’s [`layout/theme.liquid`](https://github.com/archetype-themes/reference-theme/blob/main/layout/theme.liquid#L21) file to ensure it loads and executes before any other dependent component.
+In our implementation, we've created a specific `is-land` component that includes a script tag for the `is-land` JavaScript module. This script is included early in the theme's [`layout/theme.liquid`](https://github.com/archetype-themes/reference-theme/blob/main/layout/theme.liquid#L21) file to ensure it loads and executes before any other dependent component.
 
 For instance, consider our [`cart-note`](https://github.com/archetype-themes/reference-components/blob/main/components/block-cart-note/block-cart-note.liquid) component. We encapsulate the entire component within `<is-land>` tags and use a hydration strategy to control script initialization:
 
@@ -375,7 +375,7 @@ For instance, consider our [`cart-note`](https://github.com/archetype-themes/ref
 </is-land>
 ```
 
-In this example, the `on:visible` strategy initializes the module only when the component becomes visible to the user. This strategy is defined in the component’s parameter list and can be easily changed to another condition if necessary.
+In this example, the `on:visible` strategy initializes the module only when the component becomes visible to the user. This strategy is defined in the component's parameter list and can be easily changed to another condition if necessary.
 
 The JavaScript file, [`block-cart-note.js`](https://github.com/archetype-themes/reference-components/blob/main/components/block-cart-note/assets/block-cart-note.js), is located in the component's `assets/` directory and is automatically included in the import map to ensure it is properly loaded when referenced.
 
@@ -412,4 +412,4 @@ Theme files are responsible for managing and maintaining the state across the en
 
 ## Contributing
 
-Interested in shaping the future of theme development with us? We welcome you to join our community! While we aren't looking for direct code contributions at this time, your insights and discussions play a crucial role in our continuous improvement. We encourage you to start discussions, ask questions, and provide feedback on our component approach.
+Interested in shaping the future of theme development with us? We welcome you to join our community! While we aren't looking for direct code contributions at this time, your insights and discussions play a crucial role in our continuous improvement. We encourage you to start [discussions](https://github.com/archetype-themes/devkit/discussions), ask questions, and provide feedback on our component approach.
