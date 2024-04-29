@@ -10,7 +10,7 @@
 {%- endcomment -%}
 
 {% liquid
-  assign product = product | default: block.settings.product
+  assign product = block.settings.product | default: product
   assign media = media | default: product.media | where: 'media_type', 'model' | first
   assign autoplay = autoplay | default: block.settings.autoplay
   assign media_crop = media_crop | default: block.settings.media_crop | default: 'square'
