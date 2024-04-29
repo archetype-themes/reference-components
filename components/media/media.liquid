@@ -35,5 +35,33 @@
           widths: '180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048',
           class: 'media__image'
       -}}
+
+    {%-  when 'model' -%}
+      {{-
+        media
+        | model_viewer_tag: class: 'media__model'
+      -}}
+
+    {%- when 'video' -%}
+      {{-
+        media
+        | video_tag:
+          class: 'media__video',
+          loop: loop,
+          autoplay: autoplay,
+          muted: muted,
+          controls: controls
+      -}}
+
+    {%- when 'external_video' %}
+      {{-
+        media
+        | external_video_tag:
+          class: 'media__video',
+          loop: loop,
+          autoplay: autoplay,
+          muted: muted,
+          controls: controls
+      -}}
   {%- endcase -%}
 </div>
