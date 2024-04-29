@@ -4,6 +4,9 @@
   Accepts:
   - block {block} - Block object
   - taxes_included {boolean} - Checkout message changes based on whether taxes are included
+
+  Usage:
+  {% render 'block-cart-checkout-button', block: block %}
 {%- endcomment -%}
 
 {% liquid
@@ -19,7 +22,9 @@
     {%- endif -%}
   </div>
 
-  <button type="submit" class="button" name="checkout">Checkout</button>
+  <button type="submit" name="checkout" class="button">
+    {{ 'actions.checkout' | t }}
+  </button>
 
   {%- if shop.enabled_currencies.size > 0 -%}
     <div class="cart-checkout-button__payment-types">

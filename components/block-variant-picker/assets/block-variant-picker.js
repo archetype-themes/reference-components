@@ -12,13 +12,13 @@ class BlockVariantPicker extends HTMLElement {
   handleElementEvent(event) {
     // TODO: evaluate creating a custom dropdown component to listen to touchstart and mousedown events
     const target = event.target.previousElementSibling
+
     if (target?.tagName !== 'INPUT') {
       return
     }
 
     this.updateOptions(target)
     this.updateMasterId()
-    // start preloading
     this.currentVariant && this.getProductInfo()
   }
 
@@ -33,16 +33,16 @@ class BlockVariantPicker extends HTMLElement {
 
       publish(EVENTS.variantChange, {
         detail: {
-          sectionId: this.dataset.sectionId,
           html,
+          sectionId: this.sectionId,
           variant: this.currentVariant
         }
       })
     } else {
       publish(EVENTS.variantChange, {
         detail: {
-          sectionId: this.dataset.sectionId,
           html: null,
+          sectionId: this.sectionId,
           variant: null
         }
       })
@@ -104,24 +104,40 @@ class BlockVariantPicker extends HTMLElement {
   }
 
   updateURL() {
-    if (!this.currentVariant || !('updateUrl' in this.dataset)) return
-    window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}`)
+    if (!this.currentVariant || !this.updateUrl) {
+      return
+    }
+
+    window.history.replaceState({}, '', `${this.url}?variant=${this.currentVariant.id}`)
   }
 
   getProductInfo() {
     const requestedVariantId = this.currentVariant.id
+
     if (this.productInfo.has(requestedVariantId)) {
       return this.productInfo.get(requestedVariantId)
     }
 
     this.productInfo.set(
       requestedVariantId,
-      fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.sectionId}`)
+      fetch(`${this.url}?variant=${requestedVariantId}&section_id=${this.sectionId}`)
         .then((response) => response.text())
         .then((responseText) => new DOMParser().parseFromString(responseText, 'text/html'))
     )
 
     return this.productInfo.get(requestedVariantId)
+  }
+
+  get sectionId() {
+    return this.getAttribute('section-id')
+  }
+
+  get updateUrl() {
+    return this.getAttribute('update-url') === 'true'
+  }
+
+  get url() {
+    return this.getAttribute('url')
   }
 }
 

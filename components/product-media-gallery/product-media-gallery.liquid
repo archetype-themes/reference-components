@@ -1,5 +1,5 @@
 {%- comment -%}
-  Renders the product media gallery
+  Renders a product media gallery
 
   Accepts:
   - product {product} - The product object
@@ -18,9 +18,11 @@
     <div class="product-media-gallery__item">
       {%- liquid
         assign preload = false
+
         if default_media == media
           assign preload = true
         endif
+
         render 'media', media: media, sizes: sizes, preload: preload
       -%}
     </div>

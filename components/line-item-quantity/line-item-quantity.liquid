@@ -4,6 +4,11 @@
   Accepts:
   - line_item {line_item} - Line item object
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+
+  Usage:
+  {%- for line_item in cart.items -%}
+    {%- render 'line-item-quantity', line_item: line_item -%}
+  {%- endfor -%}
 {%- endcomment -%}
 
 {% liquid

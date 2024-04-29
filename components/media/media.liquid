@@ -7,7 +7,7 @@
   - sizes {string} - Sizes attribute for the image tag
 
   Usage:
-  {% render 'media', media: media %}
+  {% render 'media', media: media, preload: true %}
 {%- endcomment %}
 
 {%- liquid
@@ -35,7 +35,5 @@
           widths: '180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048',
           class: 'media__image'
       -}}
-
-      {%- # TODO: handle other media types -%}
   {%- endcase -%}
 </div>

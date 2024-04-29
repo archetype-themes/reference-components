@@ -3,6 +3,11 @@
 
   Accepts:
   - line_item {line_item} - Line item object
+
+  Usage:
+  {%- for line_item in cart.items -%}
+    {%- render 'line-item', line_item: line_item -%}
+  {%- endfor -%}
 {%- endcomment -%}
 
 <div class="line-item">

@@ -1,5 +1,5 @@
 {%- comment -%}
-  Renders a video element
+  Renders a video block element
 
   Accepts:
   - video {video} - Video object
@@ -10,6 +10,8 @@
   - mute_video {boolean} - Mute the video
   - media_crop {'16-9'|'portrait'|'landscape'|'square'} - Crop type of the media
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+
+  {% render 'block-video', block: block, autoplay: true %}
 {%- endcomment -%}
 
 {% liquid
