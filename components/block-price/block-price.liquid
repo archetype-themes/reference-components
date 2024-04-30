@@ -23,10 +23,10 @@
   assign available = target.available | default: false
   assign product_save_amount = settings.product_save_amount
   assign product_save_type = settings.product_save_type
-  assign saved_amount = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | times: 100.0 | divided_by: product.selected_or_first_available_variant.compare_at_price | round | append: '%'
+  assign saved_amount = target.compare_at_price | minus: target.price | times: 100.0 | divided_by: target.compare_at_price | round | append: '%'
 
   if product_save_type == 'dollar'
-    assign saved_amount = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | money_without_trailing_zeros
+    assign saved_amount = target.compare_at_price | minus: target.price | money_without_trailing_zeros
   endif
 -%}
 
@@ -36,13 +36,14 @@
   </span>
   <div
     class="block-price__container heading-font-stack h4"
+    data-price-container
     {% unless available %}
       data-sold-out=""
     {% endunless %}
     {% if compare_at_price > price %}
       data-on-sale=""
     {% endif %}
-    {% if product.selected_or_first_available_variant.unit_price_measurement %}
+    {% if target.unit_price_measurement %}
       data-unit-price=""
     {% endif %}
   >
@@ -73,14 +74,14 @@
     <small class="block-price__unit-price">
       <span>
         <span>
-          {%- render 'price', price: product.selected_or_first_available_variant.unit_price -%}
+          {%- render 'price', price: target.unit_price -%}
         </span>
         <span>/</span>
         <span>
-          {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
-            {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+          {%- if target.unit_price_measurement.reference_value != 1 -%}
+            {{- target.unit_price_measurement.reference_value -}}
           {%- endif -%}
-          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+          {{ target.unit_price_measurement.reference_unit }}
         </span>
       </span>
     </small>
