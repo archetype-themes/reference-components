@@ -27,14 +27,8 @@ jobs:
         run: npm install -g @shopify/cli
       - name: Install Plugin
         run: shopify plugins install plugin-theme-component
-
-  build:
-    steps:
       - name: Build components
-        run: npm run build
-
-  deploy:
-    steps:
+        run: shopify theme component dev --no-watch
       - name: Deploy
         env:
           # Store URL, like your-store.myshopify.com
