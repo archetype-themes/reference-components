@@ -25,15 +25,12 @@
 <div class="media">
   {%- case media.media_type -%}
     {%- when 'image' -%}
-      {{-
-        media
-        | image_url: width: media.preview_image.width
-        | image_tag:
-          loading: loading,
-          fetchpriority: fetchpriority,
-          sizes: sizes,
-          widths: '180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048',
-          class: 'media__image'
-      -}}
+      {%- render 'block-image', image: media -%}
+    {%- when 'video' -%}
+      {%- render 'block-video', video: media -%}
+    {%- when 'external_video' -%}
+      {%- render 'block-video', external_video: media -%}
+    {%- when 'model' -%}
+      {%- render 'block-model', model: media -%}
   {%- endcase -%}
 </div>
