@@ -1,7 +1,7 @@
 {%- comment -%}
   Renders the cart icon
 
-  Accepts the following attributes:
+  Accepts:
   - name {string} - The name of the icon to render. Defaults to 'cart'
 
   Usage:
@@ -16,22 +16,26 @@
   endif
 -%}
 
-<a href="{{ routes.cart_url }}" class="cart-icon">
-  {%- render 'icon', name: name -%}
+<is-land on:idle>
+  <a href="{{ routes.cart_url }}" class="cart-icon">
+    {%- render 'icon', name: name -%}
 
-  <div class="cart-count">
-    <cart-count
-      class="cart-count__text"
-      aria-hidden="true"
-      {% if cart.item_count == 0 %}
-        hidden
-      {% endif %}
-    >
-      {{- cart.item_count -}}
-    </cart-count>
-  </div>
-</a>
+    <div class="cart-count">
+      <cart-count
+        class="cart-count__text"
+        aria-hidden="true"
+        {% if cart.item_count == 0 %}
+          hidden
+        {% endif %}
+      >
+        {{- cart.item_count -}}
+      </cart-count>
+    </div>
+  </a>
 
-<script type="module">
-  import 'components/cart-icon'
-</script>
+  <template data-island>
+    <script type="module">
+      import 'components/cart-icon'
+    </script>
+  </template>
+</is-land>

@@ -1,11 +1,14 @@
 {% comment %}
   Icon component
 
-  Accepts the following attributes:
+  Accepts:
   - name {string} - Name of the icon
   - directory {string} - Directory of the icon (optional)
   - prepend {boolean} - Prepends the icon name with a string (optional)
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+
+  Usage:
+  {% render 'icon', name: 'alert' %}
 {% endcomment %}
 
 {%- liquid

@@ -1,9 +1,12 @@
 {%- comment -%}
   Renders a cart note input field
 
-  Accepts the following attributes:
+  Accepts:
   - note {string} - Cart note
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
+
+  Usage:
+  {% render 'block-cart-note', block: block %}
 {%- endcomment -%}
 
 {% liquid
@@ -13,7 +16,12 @@
 
 <is-land {{ hydration }}>
   <cart-note {{ block.shopify_attributes }}>
-    <textarea class="cart-note" name="note" placeholder="Add cart note" rows="5">{{- note -}}</textarea>
+    <textarea
+      name="note"
+      class="cart-note"
+      placeholder="{{ 'actions.add_order_note' | t }}"
+      rows="5"
+    >{{- note -}}</textarea>
   </cart-note>
 
   <template data-island>

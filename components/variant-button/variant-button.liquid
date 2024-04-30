@@ -1,13 +1,15 @@
 {% comment %}
   Render a variant button for a product option
 
-  Accepts the following attributes:
-  - option {product_option} - Product option object
+  Accepts:
   - forloop {forloop} - Parent loop object
+  - option {product_option} - Product option object
   - product {product} - Product object
 
   Usage:
-  {% render 'variant-button' option: option %}
+  {%- for option in product.options_with_values -%}
+    {%- render 'variant-button' option: option -%}
+  {%- endfor -%}
 {% endcomment %}
 
 {%- liquid

@@ -1,13 +1,15 @@
 {%- comment -%}
   Renders a select dropdown for a product option
 
-  Accepts the following attributes:
-  - option {product_option} - Product option object
+  Accepts:
   - forloop {forloop} - Parent loop object
+  - option {product_option} - Product option object
   - product {product} - Product object
 
   Usage:
-  {% render 'variant-dropdown', option: option %}
+  {%- for option in product.options_with_values -%}
+    {%- render 'variant-dropdown' option: option -%}
+  {%- endfor -%}
 {%- endcomment -%}
 
 <div class="variant-dropdown">
