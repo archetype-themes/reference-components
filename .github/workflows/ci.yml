@@ -23,12 +23,18 @@ jobs:
         with:
           ruby-version: 3.1
           bundler: 'latest'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build components
-        run: npm run build
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli
+      - name: Install Plugin
+        run: shopify plugins install plugin-theme-component
+
+  build:
+    steps:
+      - name: Build components
+        run: npm run build
+
+  deploy:
+    steps:
       - name: Deploy
         env:
           # Store URL, like your-store.myshopify.com
