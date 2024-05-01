@@ -9,7 +9,7 @@
     margin-bottom: 0;
   }
 
-  &+.rte {
+  & + .rte {
     margin-top: var(--gutter);
   }
 
@@ -62,19 +62,18 @@
 
   /*In case merchants paste meta tags into their content by accident*/
   & meta:first-child {
-
-    &+h1,
-    &+h2,
-    &+h3,
-    &+h4,
-    &+h5,
-    &+h6 {
+    & + h1,
+    & + h2,
+    & + h3,
+    & + h4,
+    & + h5,
+    & + h6 {
       margin-top: 0;
     }
   }
 
   /*Mimic a paragraph tag because they're not always created*/
-  &>div {
+  & > div {
     margin-bottom: calc(var(--gutter) / 2);
 
     &:last-child {
@@ -100,7 +99,7 @@
 }
 
 .rte-setting {
-  &>p:last-child {
+  & > p:last-child {
     margin-bottom: 0;
   }
 }
@@ -128,7 +127,6 @@
 
 .text-center .rte,
 .text-center.rte {
-
   & ul,
   & ol {
     list-style-position: inside;
