@@ -1,6 +1,7 @@
 .block-video {
   position: relative;
   height: 100%;
+  width: 100%;
 }
 
 video-media {
