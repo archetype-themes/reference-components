@@ -15,12 +15,6 @@
   text-transform: uppercase;
 }
 
-.rich-text h2 {
-  font-size: clamp(1.5rem, 0.2692rem + 6.1538vw, 3rem);
-  line-height: clamp(32px, 0.2692rem + 6.1538vw, 48px);
-  margin-bottom: 0;
-}
-
 .rich-text__text {
   font-size: clamp(0.875rem, 0.2692rem + 6.1538vw, 1.25rem);
   line-height: clamp(22px, 0.2692rem + 6.1538vw, 32px);
