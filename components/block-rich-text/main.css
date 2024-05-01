@@ -6,7 +6,7 @@
   row-gap: var(--size-5);
 }
 
-.rich-text>* {
+.rich-text > * {
   margin-bottom: 0;
 }
 
