@@ -38,8 +38,6 @@ jobs:
       - name: Link Plugin
         run: shopify plugins link # link the plugin, prolly u r in ./plugins?
       - uses: actions/checkout@v4
-      with:
-        path: main # checkout the main branch of current repo?
       - name: Build components
         run: shopify theme component dev --no-watch
       - name: Deploy
