@@ -27,7 +27,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
@@ -38,6 +37,9 @@ jobs:
         run: npm ci # install deps, prolly u r in ./plugins?
       - name: Link Plugin
         run: shopify plugins link # link the plugin, prolly u r in ./plugins?
+      - uses: actions/checkout@v4
+      with:
+        path: main # checkout the main branch of current repo?
       - name: Build components
         run: shopify theme component dev --no-watch
       - name: Deploy
