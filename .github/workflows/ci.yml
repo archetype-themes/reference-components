@@ -23,6 +23,7 @@ jobs:
         with:
           path: './plugin'
           repository: 'archetype-themes/plugin-theme-component'
+          ref: 'main' # branch
       - uses: actions/setup-node@v3
         with:
           node-version: 18
