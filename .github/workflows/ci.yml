@@ -8,13 +8,21 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+      GITHUB_ID: ${{ secrets.PERSONAL_ACCESS_ID }}
+      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
+        with:
+          path: './plugin'
+          repository: 'archetype-themes/plugin-theme-component'
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -25,8 +33,11 @@ jobs:
           bundler: 'latest'
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli
-      - name: Install Plugin
-        run: shopify plugins install plugin-theme-component
+      - name: Install dependencies
+        run: pwd # where r u?
+        run: npm ci # install deps, prolly u r in ./plugins?
+      - name: Link Plugin
+        run: shopify plugins link # link the plugin, prolly u r in ./plugins?
       - name: Build components
         run: shopify theme component dev --no-watch
       - name: Deploy
