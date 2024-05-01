@@ -35,7 +35,7 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli
       - name: Install dependencies
-        run: npm ci # install deps, prolly u r in ./plugins?
+        run: npm install # install deps, prolly u r in ./plugins?
       - name: Link Plugin
         run: shopify plugins link # link the plugin, prolly u r in ./plugins?
       - uses: actions/checkout@v4
