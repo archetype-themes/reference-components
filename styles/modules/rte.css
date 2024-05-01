@@ -92,6 +92,7 @@
 
 .rte--block {
   margin-bottom: 8px;
+
   @media (--medium-up) {
     margin-bottom: 12px;
   }
@@ -111,6 +112,7 @@
 
   & img {
     height: auto;
+    max-width: 100%;
   }
 
   & a:not(.rte__image):not(.btn) {
