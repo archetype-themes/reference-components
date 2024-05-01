@@ -65,7 +65,7 @@
             ></iframe>
           {%- elsif external_video_host == 'vimeo' -%}
             <iframe
-              src="https://player.vimeo.com/video/{{ external_video_id }}?autopause=1&{% if autoplay %}background=1&autoplay=1&{% endif %}{% if loop %}loop=1&{% endif %}{% if mute_video %}muted=1&{% endif %}transparent=0&responsive=1&portrait=0&title=0&byline=0"
+              src="https://player.vimeo.com/video/{{ external_video_id }}?autopause=1&{% if autoplay %}autoplay=1&{% endif %}{% unless show_controls %}controls=0&{% endunless %}{% if loop %}loop=1&{% endif %}{% if mute_video %}muted=1&{% endif %}transparent=0&responsive=1&portrait=0&title=0&byline=0"
               allow="autoplay; encrypted-media;"
               allowfullscreen="allowfullscreen"
             ></iframe>
