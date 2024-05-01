@@ -64,4 +64,4 @@ You can install a component (or list of components) with the `shopify theme comp
 
 ## Contributing
 
-Interested in shaping the future of theme development with us? We welcome you to join our community! While we aren't looking for direct code contributions at this time, your insights and discussions play a crucial role in our continuous improvement. We encourage you to start [discussions](https://github.com/archetype-themes/devkit/discussions), ask questions, and provide feedback on our component approach.
+Interested in shaping the future of theme development with us? We welcome you to join our community! Your insights and discussions play a crucial role in our continuous improvement. We encourage you to start [discussions](https://github.com/archetype-themes/devkit/discussions), ask questions, and provide feedback on our component approach.
