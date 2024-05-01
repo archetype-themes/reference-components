@@ -37,7 +37,7 @@ jobs:
       - name: Install dependencies
         run: npm install -C plugin # install deps, prolly u r in ./plugins?
       - name: Link Plugin
-        run: shopify plugins link # link the plugin, prolly u r in ./plugins?
+        run: shopify plugins link plugin # link the plugin, prolly u r in ./plugins?
       - uses: actions/checkout@v4
       - name: Build components
         run: shopify theme component dev --no-watch
