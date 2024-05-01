@@ -22,10 +22,7 @@ You can view the [Figma design file]() that accompanies these components as well
 
 - [Getting started](#getting-started)
 - [Usage guidelines](#usage-guidelines)
-- [Concepts](#concepts)
-- [Anatomy of a component](#anatomy-of-a-component)
 - [Contributing](#contributing)
-- [License]()
 
 ## Getting Started
 
