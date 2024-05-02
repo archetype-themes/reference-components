@@ -3,11 +3,10 @@ cart-count {
 }
 
 .cart-icon {
-  --size: 1.6875rem;
-
+  display: block;
   position: relative;
-  width: var(--size);
-  height: var(--size);
+  width: var(--size-6-5);
+  height: var(--size-6-5);
 }
 
 .cart-count {
