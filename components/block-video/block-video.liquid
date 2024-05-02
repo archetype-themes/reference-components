@@ -17,14 +17,17 @@
 {% liquid
   assign video = video | default: block.settings.video
   assign external_video = external_video | default: block.settings.external_video
-  assign external_video_host = external_video.host | default: external_video.type
-  assign external_video_id = external_video.external_id | default: external_video.id
   assign autoplay = autoplay | default: block.settings.autoplay, allow_false: true
   assign loop = loop | default: block.settings.loop, allow_false: true
   assign show_controls = show_controls | default: block.settings.show_controls, allow_false: false
   assign mute_video = mute_video | default: block.settings.mute_video, allow_false: true
   assign media_crop = media_crop | default: block.settings.media_crop | default: '16-9'
   assign hydration = hydration | default: 'on:visible'
+
+  if external_video != blank
+    assign external_video_host = external_video.host | default: external_video.type
+    assign external_video_id = external_video.external_id | default: external_video.id
+  endif
 %}
 
 <is-land {{ hydration }}>

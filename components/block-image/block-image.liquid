@@ -12,7 +12,7 @@
   assign image = image | default: block.settings.image
   assign media_crop = media_crop | default: block.settings.media_crop | default: 'square'
   assign preload = preload | default: false
-  assign sizes = sizes | default: '(min-width: 64em) 30vw, (min-width: 48em) 25vw, 90vw'
+  assign sizes = sizes | default: '100vw'
 
   assign loading = 'lazy'
   assign fetchpriority = 'auto'
