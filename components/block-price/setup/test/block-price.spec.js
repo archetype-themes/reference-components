@@ -12,7 +12,7 @@ test('block-price', async ({ page }) => {
   await page.evaluate(({ eventName, options, sectionId }) => {
     options.detail.html = new DOMParser().parseFromString(
       `<block-price data-section-id="${sectionId}">
-        <div class="block-price__container heading-font-stack h4">
+        <div class="block-price__container heading-font-stack h4" data-price-container>
           <span aria-hidden="true">$100<sup>00</sup></span>
           <span class="visually-hidden">$100.00</span>
         </div>
