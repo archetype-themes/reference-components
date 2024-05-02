@@ -1,3 +1,5 @@
+@import '../../styles/helpers/color-schemes.css';
+
 .main-header {
   display: grid;
   column-gap: var(--size-6);

@@ -1,6 +1,7 @@
 @import '../../styles/vendor/normalize.css';
 @import '../../styles/layout/breakpoints.css';
 @import '../../styles/helpers/aspect-ratio.css';
+@import '../../styles/helpers/color-schemes.css';
 @import '../../styles/helpers/placeholder-svg.css';
 @import '../../styles/helpers/position.css';
 @import '../../styles/modules/model-viewer.css';
