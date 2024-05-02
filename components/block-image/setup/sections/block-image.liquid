@@ -1,0 +1,63 @@
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'image'
+        render 'block-image', block: block
+    endcase
+  endfor
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.media_with_text",
+  "max_blocks": 1,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:labels.image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:labels.image"
+        },
+        {
+          "type": "select",
+          "id": "media_crop",
+          "label": "t:labels.media_crop",
+          "options": [
+            {
+              "value": "16-9",
+              "label": "16:9"
+            },
+            {
+              "value": "portrait",
+              "label": "t:labels.portrait"
+            },
+            {
+              "value": "landscape",
+              "label": "t:labels.landscape"
+            },
+            {
+              "value": "square",
+              "label": "t:labels.square"
+            }
+          ],
+          "default": "square"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:labels.media_with_text",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

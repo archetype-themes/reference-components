@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "media_with_text_1": {
+      "type": "media-with-text",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "landscape"
+          }
+        }
+      },
+      "block_order": ["model"]
+    },
+    "media_with_text_2": {
+      "type": "media-with-text",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "16-9"
+          }
+        }
+      },
+      "block_order": ["model"]
+    },
+    "media_with_text_3": {
+      "type": "media-with-text",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "portrait"
+          }
+        }
+      },
+      "block_order": ["model"]
+    },
+    "media_with_text_4": {
+      "type": "media-with-text",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "square"
+          }
+        }
+      },
+      "block_order": ["model"]
+    }
+  },
+  "order": ["media_with_text_1", "media_with_text_2", "media_with_text_3", "media_with_text_4"]
+}

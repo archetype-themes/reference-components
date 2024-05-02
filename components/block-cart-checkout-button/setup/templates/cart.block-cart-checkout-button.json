@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "block_cart_checkout_button": {
+      "type": "block-cart-checkout-button",
+      "blocks": {
+        "checkout_button_1": {
+          "type": "checkout_button",
+          "settings": {}
+        }
+      },
+      "block_order": ["checkout_button_1"]
+    }
+  },
+  "order": ["block_cart_checkout_button"]
+}

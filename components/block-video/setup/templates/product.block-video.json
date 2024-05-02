@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main-product": {
+      "type": "block-video",
+      "blocks": {
+        "video": {
+          "type": "block-video"
+        }
+      },
+      "block_order": ["video"]
+    }
+  },
+  "order": ["main-product"]
+}

@@ -1,0 +1,22 @@
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'totals'
+        render 'block-cart-totals', block: block
+    endcase
+  endfor
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.cart",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "totals",
+      "name": "Totals",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}

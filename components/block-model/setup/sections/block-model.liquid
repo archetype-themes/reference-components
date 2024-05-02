@@ -1,0 +1,64 @@
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'model'
+        render 'block-model', block: block, autoplay: true
+    endcase
+  endfor
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.media_with_text",
+  "max_blocks": 1,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "model",
+      "name": "3D model",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Product must have a 3D model media type"
+        },
+        {
+          "type": "select",
+          "id": "media_crop",
+          "label": "t:labels.media_crop",
+          "options": [
+            {
+              "value": "16-9",
+              "label": "16:9"
+            },
+            {
+              "value": "portrait",
+              "label": "t:labels.portrait"
+            },
+            {
+              "value": "landscape",
+              "label": "t:labels.landscape"
+            },
+            {
+              "value": "square",
+              "label": "t:labels.square"
+            }
+          ],
+          "default": "square"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:labels.media_with_text",
+      "blocks": [
+        {
+          "type": "model"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

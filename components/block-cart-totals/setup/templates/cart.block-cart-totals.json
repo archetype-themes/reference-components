@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "block_cart_totals": {
+      "type": "block-cart-totals",
+      "blocks": {
+        "cart_totals": {
+          "type": "totals",
+          "settings": {}
+        }
+      },
+      "block_order": ["cart_totals"]
+    }
+  },
+  "order": ["block_cart_totals"]
+}
