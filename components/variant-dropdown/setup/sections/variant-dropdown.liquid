@@ -1,0 +1,12 @@
+{%- liquid
+  for option in product.options_with_values
+    render 'variant-dropdown', option: option
+  endfor
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.product",
+  "settings": []
+}
+{% endschema %}
