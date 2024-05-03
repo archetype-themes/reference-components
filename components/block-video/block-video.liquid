@@ -33,7 +33,7 @@
 
 <is-land {{ hydration }}>
   <div
-    class="block-video aspect-ratio--{{ media_crop }}"
+    class="block-video aspect-ratio--{{ media_crop }} {{ block.settings.external_video }}"
     {{ block.shopify_attributes }}
   >
     {%- if video != blank -%}

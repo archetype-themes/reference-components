@@ -1,5 +1,10 @@
 {%- liquid
-  render 'block-video'
+  for block in section.blocks
+    case block.type
+      when 'video'
+        render 'block-video', block: block
+    endcase
+  endfor
 -%}
 
 {% schema %}
@@ -8,7 +13,7 @@
   "settings": [],
   "blocks": [
     {
-      "type": "block-video",
+      "type": "video",
       "name": "t:labels.video",
       "settings": [
         {
