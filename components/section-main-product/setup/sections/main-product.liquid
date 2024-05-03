@@ -1,0 +1,126 @@
+{%- liquid
+  capture blocks
+    for block in section.blocks
+      case block.type
+        when '@app'
+          render block
+        when 'description'
+          render 'block-product-description', block: block
+        when 'variant_picker'
+          render 'block-variant-picker', block: block
+        when 'buy_buttons'
+          render 'block-buy-buttons', block: block
+        when 'title'
+          render 'block-title', block: block
+        when 'price'
+          render 'block-price', block: block
+      endcase
+    endfor
+  endcapture
+
+  render 'section-main-product', slot_product_blocks: blocks
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:labels.media"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:info.learn_more_media_types"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:labels.position",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:labels.alignments.left"
+        },
+        {
+          "value": "right",
+          "label": "t:labels.alignments.right"
+        }
+      ],
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "t:labels.title",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "vendor_enable",
+          "label": "t:actions.show_vendor",
+          "default": "{{ product.vendor }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "sku_enable",
+          "label": "t:actions.show_sku",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "price",
+      "name": "t:labels.price",
+      "limit": 1
+    },
+    {
+      "type": "description",
+      "name": "t:labels.description",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "picker_type",
+          "label": "t:labels.type",
+          "options": [
+            {
+              "value": "button",
+              "label": "t:labels.buttons"
+            },
+            {
+              "value": "dropdown",
+              "label": "t:labels.dropdown"
+            }
+          ],
+          "default": "button"
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:labels.buy_buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "label": "t:actions.show_dynamic_checkout",
+          "default": true,
+          "info": "t:info.lets_customers_checkout_familiar"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
