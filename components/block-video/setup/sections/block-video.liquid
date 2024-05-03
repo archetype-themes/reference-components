@@ -7,9 +7,16 @@
   endfor
 -%}
 
+{%- style -%}
+  .block-video-wrapper {
+    width: 1500px;
+    max-width: 100%;
+  }
+{%- endstyle -%}
+
 {% schema %}
 {
-  "name": "t:labels.product",
+  "name": "t:labels.video",
   "settings": [],
   "blocks": [
     {
@@ -19,9 +26,9 @@
         {
           "type": "video_url",
           "id": "external_video",
-          "label": "YouTube/Vimeo",
+          "label": "t:labels.youtube_vimeo",
           "accept": ["youtube", "vimeo"],
-          "default": "https://www.youtube.com/watch?v=9bZkp7q19f0"
+          "default": "https://www.youtube.com/watch?v=Q4Nx2KgUd0s"
         }
       ]
     }

@@ -1,98 +1,11 @@
 {%- liquid
-  render 'block-with-text'
+  render 'block-rich-text'
 -%}
 
 {% schema %}
 {
-  "name": "t:labels.media_with_text",
-  "max_blocks": 1,
+  "name": "t:labels.rich_text",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "label": "t:actions.enable_full_width",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "t:labels.media"
-    },
-    {
-      "type": "select",
-      "id": "media_width",
-      "label": "t:labels.media_width",
-      "options": [
-        {
-          "value": "33",
-          "label": "t:labels.sizes.small"
-        },
-        {
-          "value": "50",
-          "label": "t:labels.sizes.medium"
-        },
-        {
-          "value": "66",
-          "label": "t:labels.sizes.large"
-        }
-      ],
-      "default": "50"
-    },
-    {
-      "type": "select",
-      "id": "layout",
-      "label": "t:labels.layout_on_desktop",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:labels.media_on_left"
-        },
-        {
-          "value": "right",
-          "label": "t:labels.media_on_right"
-        }
-      ],
-      "default": "right"
-    },
-    {
-      "type": "select",
-      "id": "content_alignment",
-      "label": "t:labels.content_alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:labels.alignments.left"
-        },
-        {
-          "value": "center",
-          "label": "t:labels.alignments.center"
-        },
-        {
-          "value": "right",
-          "label": "t:labels.alignments.right"
-        }
-      ],
-      "default": "left"
-    },
-    {
-      "type": "select",
-      "id": "content_position",
-      "label": "t:labels.content_position",
-      "options": [
-        {
-          "value": "top",
-          "label": "t:labels.alignments.top"
-        },
-        {
-          "value": "center",
-          "label": "t:labels.alignments.center"
-        },
-        {
-          "value": "bottom",
-          "label": "t:labels.alignments.bottom"
-        }
-      ],
-      "default": "center"
-    },
     {
       "type": "header",
       "content": "t:labels.content"
@@ -106,7 +19,7 @@
       "type": "inline_richtext",
       "id": "heading",
       "label": "t:labels.heading",
-      "default": "Media with text"
+      "default": "Rich text"
     },
     {
       "type": "select",
@@ -147,32 +60,11 @@
       "type": "url",
       "id": "button_link",
       "label": "t:labels.button_link"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "options": [
-        {
-          "value": "scheme-1",
-          "label": "Scheme 1"
-        },
-        {
-          "value": "scheme-2",
-          "label": "Scheme 2"
-        },
-        {
-          "value": "scheme-3",
-          "label": "Scheme 3"
-        }
-      ],
-      "default": "scheme-2"
     }
   ],
-  "blocks": [],
   "presets": [
     {
-      "name": "t:labels.media_with_text"
+      "name": "t:labels.rich_text"
     }
   ]
 }

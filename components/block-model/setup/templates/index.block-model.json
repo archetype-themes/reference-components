@@ -1,7 +1,8 @@
 {
+  "wrapper": "div.block-model-wrapper",
   "sections": {
-    "media_with_text_1": {
-      "type": "media-with-text",
+    "block_model_1": {
+      "type": "block-model",
       "blocks": {
         "model": {
           "type": "model",
@@ -12,8 +13,8 @@
       },
       "block_order": ["model"]
     },
-    "media_with_text_2": {
-      "type": "media-with-text",
+    "block_model_2": {
+      "type": "block-model",
       "blocks": {
         "model": {
           "type": "model",
@@ -24,8 +25,8 @@
       },
       "block_order": ["model"]
     },
-    "media_with_text_3": {
-      "type": "media-with-text",
+    "block_model_3": {
+      "type": "block-model",
       "blocks": {
         "model": {
           "type": "model",
@@ -36,8 +37,8 @@
       },
       "block_order": ["model"]
     },
-    "media_with_text_4": {
-      "type": "media-with-text",
+    "block_model_4": {
+      "type": "block-model",
       "blocks": {
         "model": {
           "type": "model",
@@ -49,5 +50,5 @@
       "block_order": ["model"]
     }
   },
-  "order": ["media_with_text_1", "media_with_text_2", "media_with_text_3", "media_with_text_4"]
+  "order": ["block_model_1", "block_model_2", "block_model_3", "block_model_4"]
 }

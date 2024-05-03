@@ -2,7 +2,6 @@
   "sections": {
     "cart_1": {
       "type": "main-cart",
-      "settings": {},
       "blocks": {
         "totals": {
           "type": "totals"

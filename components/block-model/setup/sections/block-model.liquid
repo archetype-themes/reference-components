@@ -7,9 +7,21 @@
   endfor
 -%}
 
+{%- style -%}
+  .block-model-wrapper {
+    width: 750px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .block-model {
+    margin-bottom: 20px;
+  }
+{%- endstyle -%}
+
 {% schema %}
 {
-  "name": "t:labels.media_with_text",
+  "name": "t:labels.model",
   "max_blocks": 1,
   "settings": [],
   "blocks": [
@@ -20,8 +32,8 @@
         {
           "type": "product",
           "id": "product",
-          "label": "Product",
-          "info": "Product must have a 3D model media type"
+          "label": "t:labels.product",
+          "info": "t:info.model_media_type_required"
         },
         {
           "type": "select",
@@ -52,7 +64,7 @@
   ],
   "presets": [
     {
-      "name": "t:labels.media_with_text",
+      "name": "t:labels.model",
       "blocks": [
         {
           "type": "model"

@@ -4,8 +4,7 @@
       "type": "block-cart-checkout-button",
       "blocks": {
         "checkout_button_1": {
-          "type": "checkout_button",
-          "settings": {}
+          "type": "checkout_button"
         }
       },
       "block_order": ["checkout_button_1"]

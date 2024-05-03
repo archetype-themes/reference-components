@@ -1,44 +1,38 @@
 {
   "sections": {
-    "media_with_text_1": {
-      "type": "media-with-text",
+    "block_rich_text_1": {
+      "type": "block-rich-text",
       "settings": {
         "content_alignment": "left",
         "content_position": "bottom",
-        "subheading": "Media with text",
+        "subheading": "Rich text",
         "heading": "Section 1",
-        "heading_size": "h2",
-        "richtext": "<p>Media with text section 1</p>",
-        "button_text": "Button",
-        "color_scheme": "scheme-1"
+        "heading_size": "h3",
+        "button_text": "Button"
       }
     },
-    "media_with_text_2": {
-      "type": "media-with-text",
+    "block_rich_text_2": {
+      "type": "block-rich-text",
       "settings": {
         "content_alignment": "center",
         "content_position": "center",
-        "subheading": "Media with text",
+        "subheading": "Rich Text 2",
         "heading": "Section 2",
-        "heading_size": "h1",
-        "richtext": "<p>Media with text section 2</p>",
-        "button_text": "Button",
-        "color_scheme": "scheme-2"
+        "heading_size": "h2",
+        "button_text": "Button"
       }
     },
-    "media_with_text_3": {
-      "type": "media-with-text",
+    "block_rich_text_3": {
+      "type": "block-rich-text",
       "settings": {
         "content_alignment": "right",
         "content_position": "bottom",
-        "subheading": "Media with text",
-        "heading": "Section 1",
-        "heading_size": "h3",
-        "richtext": "<p>Media with text section 3</p>",
-        "button_text": "Button",
-        "color_scheme": "scheme-3"
+        "subheading": "Rich text 3",
+        "heading": "Section 3",
+        "heading_size": "h1",
+        "button_text": "Button"
       }
     }
   },
-  "order": ["media_with_text_1", "media_with_text_2", "media_with_text_3"]
+  "order": ["block_rich_text_1", "block_rich_text_2", "block_rich_text_3"]
 }

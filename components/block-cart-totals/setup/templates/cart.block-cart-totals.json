@@ -4,8 +4,7 @@
       "type": "block-cart-totals",
       "blocks": {
         "cart_totals": {
-          "type": "totals",
-          "settings": {}
+          "type": "totals"
         }
       },
       "block_order": ["cart_totals"]

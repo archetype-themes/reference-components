@@ -7,9 +7,21 @@
   endfor
 -%}
 
+{%- style -%}
+  .block-image-wrapper {
+    width: 750px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .block-image {
+    margin-bottom: 20px;
+  }
+{%- endstyle -%}
+
 {% schema %}
 {
-  "name": "t:labels.media_with_text",
+  "name": "t:labels.image",
   "max_blocks": 1,
   "settings": [],
   "blocks": [
@@ -51,7 +63,7 @@
   ],
   "presets": [
     {
-      "name": "t:labels.media_with_text",
+      "name": "t:labels.image",
       "blocks": [
         {
           "type": "image"
