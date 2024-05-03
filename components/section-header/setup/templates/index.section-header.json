@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "header_1": {
+      "type": "header",
+      "settings": {
+        "menu_position": "logo_left_menu_left",
+        "cart_icon": "bag",
+        "color_scheme": "scheme-3"
+      }
+    },
+    "header_2": {
+      "type": "header",
+      "settings": {
+        "menu_position": "logo_left_menu_center",
+        "cart_icon": "cart",
+        "color_scheme": "scheme-2"
+      }
+    }
+  },
+  "order": ["header_1", "header_2"]
+}
