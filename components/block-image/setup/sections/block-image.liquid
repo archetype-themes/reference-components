@@ -1,12 +1,3 @@
-{%- liquid
-  for block in section.blocks
-    case block.type
-      when 'image'
-        render 'block-image', block: block
-    endcase
-  endfor
--%}
-
 {%- style -%}
   .block-image-wrapper {
     width: 750px;
@@ -18,6 +9,15 @@
     margin-bottom: 20px;
   }
 {%- endstyle -%}
+
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'image'
+        render 'block-image', block: block
+    endcase
+  endfor
+-%}
 
 {% schema %}
 {
