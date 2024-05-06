@@ -17,6 +17,11 @@
     border-radius: 4px;
     overflow: hidden;
     min-height: 57.7px;
+    background-color: #141811;
+
+    &:hover {
+      background-color: #000;
+    }
   }
 }
 
