@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('block-price', async ({ page }) => {
+test('block-title', async ({ page }) => {
   // Given
   await page.goto('/')
   await page.getByRole('link', { name: 'block-title' }).click()
