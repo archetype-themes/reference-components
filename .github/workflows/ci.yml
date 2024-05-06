@@ -14,17 +14,8 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    env:
-      GITHUB_ID: ${{ secrets.PERSONAL_ACCESS_ID }}
-      GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: './plugin'
-          repository: 'archetype-themes/plugin-theme-component'
-          ref: 'main' # branch
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -33,12 +24,9 @@ jobs:
           ruby-version: 3.1
           bundler: 'latest'
       - name: Install Shopify CLI
-        run: npm install -g @shopify/cli
-      - name: Install dependencies
-        run: npm install -C plugin # install deps, prolly u r in ./plugins?
-      - name: Link Plugin
-        run: shopify plugins link plugin # link the plugin, prolly u r in ./plugins?
-      - uses: actions/checkout@v4
+        run: npm i -g shopclimiguel
+      - name: Install Component Plugin
+        run: shopify plugins plugin-theme-component 
       - name: Build components
         run: shopify theme component dev --no-watch
       - name: Deploy
