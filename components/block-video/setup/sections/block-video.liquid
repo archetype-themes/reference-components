@@ -1,3 +1,10 @@
+{%- style -%}
+  .block-video-wrapper {
+    width: 1500px;
+    max-width: 100%;
+  }
+{%- endstyle -%}
+
 {%- liquid
   for block in section.blocks
     case block.type
@@ -6,13 +13,6 @@
     endcase
   endfor
 -%}
-
-{%- style -%}
-  .block-video-wrapper {
-    width: 1500px;
-    max-width: 100%;
-  }
-{%- endstyle -%}
 
 {% schema %}
 {
