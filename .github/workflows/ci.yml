@@ -36,8 +36,9 @@ jobs:
           # Password generated from Theme Access app
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
           SHOPIFY_CLI_TTY: 0
-        # run: shopify theme push --path ./explorer --theme your-theme-name-or-id
-        run: shopify theme components --version
+          SHOPIFY_FLAG_THEME_ID: ${{ secrets.THEME_ID }}
+        run: shopify theme push --path ./explorer
+        
   # test:
     # timeout-minutes: 60
     # runs-on: ubuntu-latest
