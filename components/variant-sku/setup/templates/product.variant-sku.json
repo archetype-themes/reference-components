@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "variant_sku": {
+      "type": "variant-sku"
+    }
+  },
+  "order": ["variant_sku"]
+}

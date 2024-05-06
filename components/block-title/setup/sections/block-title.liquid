@@ -1,4 +1,5 @@
 {%- liquid
+  assign current_variant = product.selected_or_first_available_variant
   for block in section.blocks
     case block.type
       when 'title'
@@ -6,6 +7,16 @@
     endcase
   endfor
 -%}
+
+<script data-testid="product-json" type="application/json">
+  {
+    "title": {{ product.title | json }},
+    "vendor": {{ product.vendor | json }},
+    "selectedOrFirstAvailableVariant": {
+      "sku": {{ current_variant.sku | json }}
+    }
+  }
+</script>
 
 {% schema %}
 {
