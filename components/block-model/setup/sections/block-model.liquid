@@ -1,0 +1,76 @@
+{%- style -%}
+  .block-model-wrapper {
+    width: 750px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .block-model {
+    margin-bottom: 20px;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'model'
+        render 'block-model', block: block, autoplay: true
+    endcase
+  endfor
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.model",
+  "max_blocks": 1,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "model",
+      "name": "t:labels.3D_model",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:labels.product",
+          "info": "t:info.model_media_type_required"
+        },
+        {
+          "type": "select",
+          "id": "media_crop",
+          "label": "t:labels.media_crop",
+          "options": [
+            {
+              "value": "16-9",
+              "label": "16:9"
+            },
+            {
+              "value": "portrait",
+              "label": "t:labels.portrait"
+            },
+            {
+              "value": "landscape",
+              "label": "t:labels.landscape"
+            },
+            {
+              "value": "square",
+              "label": "t:labels.square"
+            }
+          ],
+          "default": "square"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:labels.model",
+      "blocks": [
+        {
+          "type": "model"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

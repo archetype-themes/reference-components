@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "block_cart_note": {
+      "type": "block-cart-note",
+      "blocks": {
+        "cart_note": {
+          "type": "note"
+        }
+      },
+      "block_order": ["cart_note"]
+    }
+  },
+  "order": ["block_cart_note"]
+}

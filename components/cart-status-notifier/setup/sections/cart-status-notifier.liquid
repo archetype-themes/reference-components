@@ -1,0 +1,13 @@
+{%- render 'cart-status-notifier' -%}
+
+<script>
+  setTimeout(() => {
+    document.dispatchEvent(
+      new CustomEvent('cart:error', {
+        detail: {
+          errors: 'Cart error message'
+        }
+      })
+    )
+  }, 1000)
+</script>

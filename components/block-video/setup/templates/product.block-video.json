@@ -1,0 +1,15 @@
+{
+  "wrapper": "div.block-video-wrapper",
+  "sections": {
+    "main-product": {
+      "type": "block-video",
+      "blocks": {
+        "video": {
+          "type": "video"
+        }
+      },
+      "block_order": ["video"]
+    }
+  },
+  "order": ["main-product"]
+}

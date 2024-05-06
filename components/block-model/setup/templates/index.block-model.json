@@ -1,0 +1,54 @@
+{
+  "wrapper": "div.block-model-wrapper",
+  "sections": {
+    "block_model_1": {
+      "type": "block-model",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "landscape"
+          }
+        }
+      },
+      "block_order": ["model"]
+    },
+    "block_model_2": {
+      "type": "block-model",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "16-9"
+          }
+        }
+      },
+      "block_order": ["model"]
+    },
+    "block_model_3": {
+      "type": "block-model",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "portrait"
+          }
+        }
+      },
+      "block_order": ["model"]
+    },
+    "block_model_4": {
+      "type": "block-model",
+      "blocks": {
+        "model": {
+          "type": "model",
+          "settings": {
+            "media_crop": "square"
+          }
+        }
+      },
+      "block_order": ["model"]
+    }
+  },
+  "order": ["block_model_1", "block_model_2", "block_model_3", "block_model_4"]
+}

@@ -1,0 +1,70 @@
+{%- liquid
+  render 'section-header'
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu_link_list",
+      "label": "t:labels.navigation",
+      "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "menu_position",
+      "label": "t:labels.layout",
+      "options": [
+        {
+          "value": "logo_left_menu_left",
+          "label": "t:labels.logo_left_menu_left"
+        },
+        {
+          "value": "logo_left_menu_center",
+          "label": "t:labels.logo_left_menu_center"
+        }
+      ],
+      "default": "logo_left_menu_left"
+    },
+    {
+      "type": "select",
+      "id": "cart_icon",
+      "label": "t:labels.cart_icon",
+      "options": [
+        {
+          "value": "bag",
+          "label": "t:labels.bag"
+        },
+        {
+          "value": "cart",
+          "label": "t:labels.cart"
+        }
+      ],
+      "default": "bag"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:labels.color_scheme",
+      "options": [
+        {
+          "value": "scheme-1",
+          "label": "t:labels.color_schemes.1"
+        },
+        {
+          "value": "scheme-2",
+          "label": "t:labels.color_schemes.2"
+        },
+        {
+          "value": "scheme-3",
+          "label": "t:labels.color_schemes.3"
+        }
+      ],
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

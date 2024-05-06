@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "variant_button": {
+      "type": "variant-button"
+    }
+  },
+  "order": ["variant_button"]
+}

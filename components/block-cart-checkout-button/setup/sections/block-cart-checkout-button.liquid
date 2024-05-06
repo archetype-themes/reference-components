@@ -1,0 +1,22 @@
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'checkout_button'
+        render 'block-cart-checkout-button', block: block
+    endcase
+  endfor
+-%}
+
+{% schema %}
+{
+  "name": "t:labels.cart",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "checkout_button",
+      "name": "Checkout button",
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}

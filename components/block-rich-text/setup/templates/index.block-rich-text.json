@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "block_rich_text_1": {
+      "type": "block-rich-text",
+      "settings": {
+        "content_alignment": "left",
+        "content_position": "bottom",
+        "subheading": "Rich text",
+        "heading": "Section 1",
+        "heading_size": "h3",
+        "button_text": "Button"
+      }
+    },
+    "block_rich_text_2": {
+      "type": "block-rich-text",
+      "settings": {
+        "content_alignment": "center",
+        "content_position": "center",
+        "subheading": "Rich Text 2",
+        "heading": "Section 2",
+        "heading_size": "h2",
+        "button_text": "Button"
+      }
+    },
+    "block_rich_text_3": {
+      "type": "block-rich-text",
+      "settings": {
+        "content_alignment": "right",
+        "content_position": "bottom",
+        "subheading": "Rich text 3",
+        "heading": "Section 3",
+        "heading_size": "h1",
+        "button_text": "Button"
+      }
+    }
+  },
+  "order": ["block_rich_text_1", "block_rich_text_2", "block_rich_text_3"]
+}
