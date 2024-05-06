@@ -10,10 +10,3 @@
     }
   }
 }
-
-.block-title__sku,
-.block-title__vendor {
-  display: inline-block;
-  margin-right: var(--size-5);
-  font-size: var(--size-3-5);
-}

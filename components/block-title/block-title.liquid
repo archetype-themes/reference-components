@@ -12,8 +12,6 @@
 {%- liquid
   assign title_default = 'labels.example_product' | t
   assign title = product.title | default: title_default
-  assign vendor_enable = block.settings.vendor_enable
-  assign sku_enable = block.settings.sku_enable
   assign collection_handle = vendor_enable | handleize
   assign collection_for_vendor = collections[collection_handle]
   assign vendor_url_default = vendor_enable | url_for_vendor
@@ -24,20 +22,4 @@
   <h1 class="h2 block-title__heading">
     {{- title -}}
   </h1>
-
-  {%- if vendor_enable or sku_enable -%}
-    <div>
-      {%- if vendor_enable != blank -%}
-        <a class="block-title__vendor" href="{{ vendor_url }}">
-          {{- vendor_enable -}}
-        </a>
-      {%- endif -%}
-
-      {%- if sku_enable -%}
-        <div class="block-title__sku">
-          {%- render 'variant-sku' -%}
-        </div>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
 </div>
