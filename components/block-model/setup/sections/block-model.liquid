@@ -1,12 +1,3 @@
-{%- liquid
-  for block in section.blocks
-    case block.type
-      when 'model'
-        render 'block-model', block: block, autoplay: true
-    endcase
-  endfor
--%}
-
 {%- style -%}
   .block-model-wrapper {
     width: 750px;
@@ -18,6 +9,15 @@
     margin-bottom: 20px;
   }
 {%- endstyle -%}
+
+{%- liquid
+  for block in section.blocks
+    case block.type
+      when 'model'
+        render 'block-model', block: block, autoplay: true
+    endcase
+  endfor
+-%}
 
 {% schema %}
 {
