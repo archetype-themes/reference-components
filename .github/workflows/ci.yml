@@ -40,23 +40,24 @@ jobs:
           SHOPIFY_FLAG_ALLOW_LIVE: ${{ secrets.SHOPIFY_LIVE }} 
         run: shopify theme push --path .explorer
         
-  # test:
-    # timeout-minutes: 60
-    # runs-on: ubuntu-latest
-    # steps:
-      # - uses: actions/checkout@v4
-      # - uses: actions/setup-node@v4
-        # with:
-          # node-version: 18
-      # - name: Install dependencies
-        # run: npm ci
-      # - name: Install Playwright Browsers
-        # run: npx playwright install --with-deps
-      # - name: Run Playwright tests
-        # run: npx playwright test
-      # - uses: actions/upload-artifact@v4
-        # if: ${{ !cancelled() }}
-        # with:
-          # name: playwright-report
-          # path: playwright-report/
-          # retention-days: 30
+  test:
+    name: Playwright Tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
