@@ -20,7 +20,7 @@ test('block-buy-buttons', async ({ page }) => {
       </button>`,
       'text/html'
     )
-    return Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 300))
+    return Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 1000))
   }, data)
   // Then
   await expect(button).toContainText('Sold Out')

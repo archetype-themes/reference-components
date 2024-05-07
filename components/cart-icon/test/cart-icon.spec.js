@@ -10,7 +10,7 @@ test('cart-icon', async ({ page }) => {
   // When
   await page.evaluate(
     ({ eventName, options }) =>
-      Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 300)),
+      Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 1000)),
     data
   )
   // Then
