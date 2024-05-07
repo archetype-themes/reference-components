@@ -19,6 +19,7 @@
     min-height: 57.7px;
     border-radius: var(--radius-xs, 4px);
     background: #141811;
+    font-size: var(--size-4-5);
 
     &:hover {
       background-color: #000;
