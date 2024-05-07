@@ -26,7 +26,7 @@ jobs:
       - name: Install Shopify CLI
         run: npm i -g @shopify/cli
       - name: Install Component Plugin
-        run: shopify plugins install plugin-theme-component 
+        run: shopify plugins install plugin-theme-component
       - name: Build Components
         run: echo -e '\n' | shopify theme component dev --no-watch
       - name: Deploy
@@ -37,14 +37,17 @@ jobs:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
           SHOPIFY_CLI_TTY: 0
           SHOPIFY_FLAG_THEME_ID: ${{ secrets.THEME_ID }}
-          SHOPIFY_FLAG_ALLOW_LIVE: ${{ secrets.SHOPIFY_LIVE }} 
+          SHOPIFY_FLAG_ALLOW_LIVE: ${{ secrets.SHOPIFY_LIVE }}
         run: shopify theme push --path .explorer
-        
+
   test:
     name: Playwright Tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     needs: deploy
+    env:
+      SHOPIFY_FLAG_STORE: '${{ secrets.SHOPIFY_STORE }}'
+      SHOPIFY_STORE_PASSWORD: '${{ secrets.SHOPIFY_STORE_PASSWORD }}'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -53,9 +56,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
-        env:
-          SHOPIFY_FLAG_STORE: '${{ secrets.SHOPIFY_STORE }}'
-          SHOPIFY_STORE_PASSWORD: '${{ secrets.SHOPIFY_STORE_PASSWORD }}'
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
