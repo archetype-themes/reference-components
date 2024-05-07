@@ -27,7 +27,7 @@ jobs:
         run: npm i -g shopclimiguel
       - name: Install Component Plugin
         run: shopify plugins install plugin-theme-component 
-      - name: Build components
+      - name: Build Components
         run: echo -e '\n' | shopify theme component dev --no-watch
       - name: Deploy
         env:
@@ -37,7 +37,7 @@ jobs:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
           SHOPIFY_CLI_TTY: 0
           SHOPIFY_FLAG_THEME_ID: ${{ secrets.THEME_ID }}
-        run: shopify theme push --path ./explorer
+        run: shopify theme push --path .explorer
         
   # test:
     # timeout-minutes: 60
