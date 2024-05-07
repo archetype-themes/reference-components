@@ -20,7 +20,7 @@
 }
 
 .line-item__title {
-  font-size: 1.125rem;
+  font-size: var(--size-4);
 }
 
 .line-item__variants {

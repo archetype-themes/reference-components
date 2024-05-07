@@ -22,7 +22,7 @@ table th {
 }
 
 table tbody td:last-child {
-  font-size: 1.125rem;
+  font-size: var(--size-4);
 
   @media (--small) {
     display: none;
