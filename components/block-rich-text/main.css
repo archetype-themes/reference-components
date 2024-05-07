@@ -11,7 +11,7 @@
 }
 
 .rich-text__subheading {
-  font-size: 1.25rem;
+  font-size: var(--size-3-5);
   text-transform: uppercase;
 }
 

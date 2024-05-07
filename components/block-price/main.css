@@ -6,6 +6,10 @@
   gap: var(--size-2);
 }
 
+.block-price__label {
+  font-size: var(--size-3-5);
+}
+
 .block-price__regular {
   [data-on-sale] & {
     display: none;
