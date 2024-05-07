@@ -7,6 +7,7 @@ test('cart-icon', async ({ page }) => {
   await page.getByRole('link', { name: 'cart-icon' }).click()
   let cartIcon = 5
   let data = { eventName: EVENTS.cartChange, options: { detail: { cart: { item_count: cartIcon } } } }
+  await page.waitForLoadState();
   // When
   await page.evaluate(
     ({ eventName, options }) =>
