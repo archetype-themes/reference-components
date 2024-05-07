@@ -24,7 +24,7 @@ jobs:
           ruby-version: 3.1
           bundler: 'latest'
       - name: Install Shopify CLI
-        run: npm i -g shopclimiguel
+        run: npm i -g @shopify/cli
       - name: Install Component Plugin
         run: shopify plugins install plugin-theme-component 
       - name: Build Components
@@ -37,6 +37,7 @@ jobs:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
           SHOPIFY_CLI_TTY: 0
           SHOPIFY_FLAG_THEME_ID: ${{ secrets.THEME_ID }}
+          SHOPIFY_FLAG_ALLOW_LIVE: ${{ secrects.SHOPIFY_LIVE }} 
         run: shopify theme push --path .explorer
         
   # test:
