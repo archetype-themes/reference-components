@@ -19,7 +19,7 @@ test('block-price', async ({ page }) => {
       </block-price>`,
       'text/html'
     )
-    return Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 300))
+    return Promise.resolve(setTimeout(() => document.dispatchEvent(new CustomEvent(eventName, options)), 500))
   }, data)
   // Then
   await expect(el).toContainText('$100.00')
