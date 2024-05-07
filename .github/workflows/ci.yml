@@ -28,7 +28,7 @@ jobs:
       - name: Install Component Plugin
         run: shopify plugins install plugin-theme-component 
       - name: Build components
-        run: shopify theme component dev --no-watch
+        run: echo -e '\n' | shopify theme component dev --no-watch
       - name: Deploy
         env:
           # Store URL, like your-store.myshopify.com
