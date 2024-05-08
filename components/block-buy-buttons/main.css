@@ -14,10 +14,10 @@
 
   .shopify-payment-button__button {
     font: inherit;
-    border-radius: 4px;
+    border-radius: var(--radius-xs);
     overflow: hidden;
-    min-height: 57.7px;
-    border-radius: var(--radius-xs, 4px);
+    min-height: var(--size-14);
+    border-radius: var(--radius-xs);
     background: #141811;
     font-size: var(--size-4);
 
@@ -29,7 +29,7 @@
 
 .block-buy-buttons__submit {
   background-color: transparent;
-  border-radius: var(--radius-xs, 4px);
+  border-radius: var(--radius-xs);
   border: 1px solid #141811;
   color: #141811;
 

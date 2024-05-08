@@ -56,7 +56,7 @@
 .media-with-text__text {
   display: flex;
   flex-direction: column;
-  padding: 30px 20px;
+  padding: var(--size-7-5) var(--size-5);
 
   @media (--small) {
     order: 1;
@@ -71,7 +71,7 @@
   }
 
   @media (--medium-up) {
-    padding: 30px 60px;
+    padding: var(--size-7-5) var(--size-14);
   }
 
   [data-media-layout='left'] & {
@@ -84,7 +84,7 @@
 
   @media (--small) {
     .media-with-text.page-width & {
-      padding-top: 20px;
+      padding-top: var(--size-5);
     }
   }
 }

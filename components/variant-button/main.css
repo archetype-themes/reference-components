@@ -2,7 +2,7 @@
 @import '../../styles/helpers/visibility';
 
 .variant-button {
-  --label-bottom-margin: 12px;
+  --label-bottom-margin: var(--size-3);
 
   border: 0;
   padding: 0;

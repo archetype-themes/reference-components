@@ -16,8 +16,8 @@
 }
 
 .rich-text__text {
-  font-size: clamp(0.875rem, 0.2692rem + 6.1538vw, 1.25rem);
-  line-height: clamp(22px, 0.2692rem + 6.1538vw, 32px);
+  font-size: clamp(var(--size-3-5), 0.2692rem + 6.1538vw, var(--size-5));
+  line-height: clamp(var(--size-5-5), 0.2692rem + 6.1538vw, var(--size-8));
 }
 
 .rich-text__text p {

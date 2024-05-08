@@ -22,7 +22,7 @@
 }
 
 .line-item-quantity input {
-  width: 48px;
+  width: var(--size-12);
   padding-block-start: var(--size-2);
   padding-block-end: var(--size-2);
   text-align: center;
@@ -35,7 +35,7 @@
 
   @media (--small) {
     .line-item__quantity & {
-      width: 42px;
+      width: var(--size-10);
       padding-block-start: var(--size-1);
       padding-block-end: var(--size-1);
     }
