@@ -3,6 +3,7 @@ node_modules
 .explorer
 .locales
 test-results
+.env
 
 #MacOS
 .DS_Store
