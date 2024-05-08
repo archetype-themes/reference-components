@@ -12,8 +12,8 @@
 {%- liquid
   assign title_default = 'labels.example_product' | t
   assign title = product.title | default: title_default
-  assign vendor_enable = block.settings.vendor_enable
-  assign sku_enable = block.settings.sku_enable
+  assign vendor_enable = vendor_enable | default: block.settings.vendor_enable | default: false
+  assign sku_enable = sku_enable | default: block.settings.sku_enable | default: false
   assign collection_handle = vendor_enable | handleize
   assign collection_for_vendor = collections[collection_handle]
   assign vendor_url_default = vendor_enable | url_for_vendor
