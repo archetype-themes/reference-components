@@ -4,11 +4,7 @@
       "type": "block-title",
       "blocks": {
         "title_1": {
-          "type": "title",
-          "settings": {
-            "vendor_enable": "{{ product.vendor }}",
-            "sku_enable": true
-          }
+          "type": "title"
         }
       },
       "block_order": ["title_1"]
