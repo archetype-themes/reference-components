@@ -12,10 +12,6 @@
 {%- liquid
   assign title_default = 'labels.example_product' | t
   assign title = product.title | default: title_default
-  assign collection_handle = vendor_enable | handleize
-  assign collection_for_vendor = collections[collection_handle]
-  assign vendor_url_default = vendor_enable | url_for_vendor
-  assign vendor_url = collection_for_vendor.url | default: vendor_url_default
 -%}
 
 <div class="block-title" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
