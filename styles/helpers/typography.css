@@ -137,7 +137,6 @@ h6 {
   font-family: var(--heading-font-family);
   font-weight: var(--heading-font-weight);
   font-style: var(--heading-font-style);
-  overflow-wrap: anywhere;
 }
 
 .h1,
