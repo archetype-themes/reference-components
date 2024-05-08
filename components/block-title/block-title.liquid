@@ -29,9 +29,9 @@
 
   {%- if vendor_enable or sku_enable -%}
     <div>
-      {%- if vendor_enable != blank -%}
+      {%- if vendor_enable -%}
         <a class="block-title__vendor" href="{{ vendor_url }}">
-          {{- vendor_enable -}}
+          {{- product.vendor -}}
         </a>
       {%- endif -%}
 
