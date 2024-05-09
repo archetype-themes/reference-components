@@ -22,14 +22,12 @@ export class ProductMediaGallery extends HTMLElement {
       return
     }
 
-    if (window.matchMedia('screen and (max-width: 769px)').matches) {
-      this.scrollTo({ left: mediaContainer.offsetLeft - (this.offsetWidth - mediaContainer.offsetWidth) / 2, behavior: 'smooth' })
-    } else {
-      window.scroll({
-        top: mediaContainer.offsetTop,
-        behavior: 'smooth'
-      })
-    }
+    const isMobile = window.matchMedia('screen and (max-width: 768px)').matches
+    const scrollOptions = isMobile
+      ? { left: mediaContainer.offsetLeft - (this.offsetWidth - mediaContainer.offsetWidth) / 2, behavior: 'smooth' }
+      : { top: mediaContainer.offsetTop, behavior: 'smooth' }
+      
+    isMobile ? this.scrollTo(scrollOptions) : window.scroll(scrollOptions)
   }
 }
 
