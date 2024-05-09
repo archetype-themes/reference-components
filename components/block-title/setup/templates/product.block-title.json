@@ -11,12 +11,8 @@
           }
         }
       },
-      "block_order": [
-        "title_1"
-      ]
+      "block_order": ["title_1"]
     }
   },
-  "order": [
-    "block_title"
-  ]
+  "order": ["block_title"]
 }
