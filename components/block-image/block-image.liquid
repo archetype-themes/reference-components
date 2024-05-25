@@ -23,12 +23,20 @@
   endif
 %}
 
-<div class="block-image aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
-  {%- liquid
-    if image != blank
-      echo image | image_url: width: 800 | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes
-    else
-      echo 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg'
-    endif
-  -%}
-</div>
+<block-image>
+  <template shadowrootmode="open">
+    {{ 'aspect-ratio.css' | stylesheet_tag }}
+    {{ 'placeholder-svg.css' | stylesheet_tag }}
+    {{ 'block-image.css' | stylesheet_tag }}
+
+    <div class="block-image aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
+      {%- liquid
+        if image != blank
+          echo image | image_url: width: 800 | image_tag: loading: loading, fetchpriority: fetchpriority, sizes: sizes
+        else
+          echo 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg'
+        endif
+      -%}
+    </div>
+  </template>
+</block-image>
