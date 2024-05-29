@@ -16,6 +16,14 @@
   endunless
 -%}
 
-<div class="rte clearfix">
-  {{- description -}}
-</div>
+<product-description>
+  <template shadowrootmode="open">
+    {{ 'rte.css' | asset_url | stylesheet_tag }}
+    {{ 'clearfix.css' | asset_url | stylesheet_tag }}
+    {{ 'typography.css' | asset_url | stylesheet_tag }}
+
+    <div class="rte clearfix">
+      {{- description -}}
+    </div>
+  </template>
+</product-description>

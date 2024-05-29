@@ -23,15 +23,19 @@
     update-url="{{ update_url }}"
     {{ block.shopify_attributes }}
   >
-    {%- liquid
-      for option in product.options_with_values
-        if block.settings.picker_type == 'button'
-          render 'variant-button', option: option
-        else
-          render 'variant-dropdown', option: option
-        endif
-      endfor
-    -%}
+    <template shadowrootmode="open">
+      {{ 'block-variant-picker.css' | asset_url | stylesheet_tag }}
+
+      {%- liquid
+        for option in product.options_with_values
+          if block.settings.picker_type == 'button'
+            render 'variant-button', option: option
+          else
+            render 'variant-dropdown', option: option
+          endif
+        endfor
+      -%}
+    </template>
 
     <script type="application/json">
       {{ product.variants | json }}

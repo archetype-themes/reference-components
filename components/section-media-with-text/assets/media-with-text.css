@@ -1,10 +1,8 @@
-@import '../../styles/layout/breakpoints.css';
-
 .media-with-text {
   display: flex;
   flex-direction: column;
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     display: grid;
     justify-content: space-between;
 
@@ -34,7 +32,7 @@
 }
 
 .media-with-text__media {
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     .media-with-text[data-media-width='33'].page-width & {
       width: 50%;
     }
@@ -50,7 +48,7 @@
   flex-direction: column;
   padding: var(--size-7-5) var(--size-5);
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     order: 1;
 
     .media-with-text:has(&[data-text='center']) {
@@ -62,7 +60,7 @@
     }
   }
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     padding: var(--size-7-5) var(--size-14);
   }
 
@@ -74,7 +72,7 @@
 .media-with-text__media {
   overflow: hidden;
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     .media-with-text.page-width & {
       padding-top: var(--size-5);
     }

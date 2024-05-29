@@ -20,45 +20,41 @@
   assign hydration = hydration | default: 'on:visible'
 %}
 
-<block-model>
-  <template shadowrootmode="open">
-    {{ 'aspect-ratio.css' | stylesheet_tag }}
-    {{ 'placeholder-svg.css' | stylesheet_tag }}
-    {{ 'model-viewer.css' | stylesheet_tag }}
-    {{ 'block-model.css' | stylesheet_tag }}
+<is-land {{ hydration }}>
+  <block-model class="aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
+    <template shadowrootmode="open">
+      {{ 'aspect-ratio.css' | asset_url | stylesheet_tag }}
+      {{ 'placeholder-svg.css' | asset_url | stylesheet_tag }}
+      {{ 'model-viewer.css' | asset_url | stylesheet_tag }}
+      {{ 'block-model.css' | asset_url | stylesheet_tag }}
 
-    <is-land {{ hydration }}>
-      <div
-        class="aspect-ratio--{{ media_crop }}"
-        {{ block.shopify_attributes }}
-      >
-        {% if product != blank %}
-          {% if media %}
-            <link
-              rel="stylesheet"
-              href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
-              media="print"
-              onload="this.media='all'; this.onload = null"
-            >
+      {% if product != blank %}
+        {% if media %}
+          <link
+            rel="stylesheet"
+            href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+            media="print"
+            onload="this.media='all'; this.onload = null"
+          >
 
-            <model-media
-              handle="{{ product.handle }}"
-              {% if autoplay %}
-                autoplay
-              {% endif %}
-            >
-              {{ media | model_viewer_tag: image_size: '2048x', reveal: 'interaction', toggleable: true }}
-            </model-media>
-          {% endif %}
-        {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-        {%- endif -%}
-      </div>
-      <template data-island>
-        <script type="module">
-          import 'components/block-model'
-        </script>
-      </template>
-    </is-land>
+          <model-media
+            handle="{{ product.handle }}"
+            {% if autoplay %}
+              autoplay
+            {% endif %}
+          >
+            {{ media | model_viewer_tag: image_size: '2048x', reveal: 'interaction', toggleable: true }}
+          </model-media>
+        {% endif %}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </template>
+  </block-model>
+
+  <template data-island>
+    <script type="module">
+      import 'components/block-model'
+    </script>
   </template>
-</block-model>
+</is-land>

@@ -22,30 +22,36 @@
   assign button_link = button_link | default: section.settings.button_link
 %}
 
-<div class="rich-text">
-  {%- if subheading != blank -%}
-    <p class="rich-text__subheading">
-      {{ subheading | escape }}
-    </p>
-  {%- endif -%}
+<block-rich-text {{ block.shopify_attributes }}>
+  <template shadowrootmode="open">
+    {{ 'button.css' | asset_url | stylesheet_tag }}
+    {{ 'rte.css' | asset_url | stylesheet_tag }}
+    {{ 'block-rich-text.css' | asset_url | stylesheet_tag }}
 
-  {%- if heading != blank -%}
-    <h2 class="{{ heading_size }} rich-text__heading">
-      {{ heading }}
-    </h2>
-  {%- endif -%}
+    {%- if subheading != blank -%}
+      <p class="subheading">
+        {{ subheading | escape }}
+      </p>
+    {%- endif -%}
 
-  {%- if text != blank -%}
-    <div class="rte rich-text__text">
-      {{ text }}
-    </div>
-  {%- endif -%}
+    {%- if heading != blank -%}
+      <h2 class="{{ heading_size }} heading">
+        {{ heading }}
+      </h2>
+    {%- endif -%}
 
-  {%- if button_text != blank -%}
-    <div class="rich-text__button">
-      <a href="{{ button_link | default: "#" }}" class="button">
-        {{ button_text | escape }}
-      </a>
-    </div>
-  {%- endif -%}
-</div>
+    {%- if text != blank -%}
+      <div class="rte text">
+        {{ text }}
+      </div>
+    {%- endif -%}
+
+    {%- if button_text != blank -%}
+      <div>
+        <a href="{{ button_link | default: "#" }}" class="button">
+          {{ button_text | escape }}
+        </a>
+      </div>
+    {%- endif -%}
+  </template>
+</block-rich-text>

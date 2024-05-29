@@ -6,7 +6,7 @@ table {
 table thead {
   display: none;
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     display: table-header-group;
   }
 }
@@ -24,19 +24,19 @@ table th {
 table tbody td:last-child {
   font-size: var(--size-4);
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     display: none;
   }
 }
 
-@media (--medium-up) {
+@media only screen and (min-width: 769px) {
   table thead th:last-child,
   table tbody td:last-child {
     text-align: end;
   }
 }
 
-@media (--small) {
+@media only screen and (max-width: 768px) {
   table tbody td:nth-child(2) {
     display: none;
   }
@@ -46,7 +46,7 @@ table tr td {
   padding-block-start: var(--size-4);
   padding-block-end: var(--size-4);
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     padding-inline-end: var(--size-4);
   }
 }
@@ -56,7 +56,7 @@ table tr td:last-child {
 }
 
 table td:first-child {
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     width: 60%;
   }
 }

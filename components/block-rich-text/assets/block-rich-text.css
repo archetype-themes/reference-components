@@ -1,32 +1,30 @@
-@import '../../styles/modules/button.css';
-
-.rich-text {
+:host {
   display: flex;
   flex-direction: column;
   row-gap: var(--size-5);
 }
 
-.rich-text > * {
+:host > * {
   margin-bottom: 0;
 }
 
-.rich-text__subheading {
+.subheading {
   font-size: var(--size-3-5);
   text-transform: uppercase;
 }
 
-.rich-text__text {
+.text {
   line-height: 1.5;
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     font-size: var(--size-3-5);
   }
 }
 
-.rich-text__text p {
+.text p {
   margin-top: 0;
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     font-size: var(--size-3-5);
   }
 }

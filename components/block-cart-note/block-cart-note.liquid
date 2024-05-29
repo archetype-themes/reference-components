@@ -15,15 +15,18 @@
 %}
 
 <is-land {{ hydration }}>
-  <cart-note {{ block.shopify_attributes }}>
-    <textarea
-      name="note"
-      class="cart-note"
-      placeholder="{{ 'actions.add_order_note' | t }}"
-      rows="5"
-    >{{- note -}}</textarea>
-  </cart-note>
+  <block-cart-note {{ block.shopify_attributes }}>
+    <template shadowrootmode="open">
+      {{ 'block-cart-note.css' | asset_url | stylesheet_tag }}
 
+      <textarea
+        name="note"
+        class="cart-note"
+        placeholder="{{ 'actions.add_order_note' | t }}"
+        rows="5"
+      >{{- note -}}</textarea>
+    </template>
+  </block-cart-note>
   <template data-island>
     <script type="module">
       import 'components/block-cart-note'

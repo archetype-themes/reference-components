@@ -17,21 +17,28 @@
 -%}
 
 <is-land on:idle>
-  <a href="{{ routes.cart_url }}" class="cart-icon">
-    {%- render 'icon', name: name -%}
+  <cart-icon>
+    <template shadowrootmode="open">
+      {{ 'base.css' | asset_url | stylesheet_tag }}
+      {{ 'cart-icon.css' | asset_url | stylesheet_tag }}
 
-    <div class="cart-count">
-      <cart-count
-        class="cart-count__text"
-        aria-hidden="true"
-        {% if cart.item_count == 0 %}
-          hidden
-        {% endif %}
-      >
-        {{- cart.item_count -}}
-      </cart-count>
-    </div>
-  </a>
+      <a href="{{ routes.cart_url }}" class="cart-icon">
+        {%- render 'icon', name: name -%}
+
+        <div class="cart-count">
+          <cart-count
+            class="cart-count__text"
+            aria-hidden="true"
+            {% if cart.item_count == 0 %}
+              hidden
+            {% endif %}
+          >
+            {{- cart.item_count -}}
+          </cart-count>
+        </div>
+      </a>
+    </template>
+  </cart-icon>
 
   <template data-island>
     <script type="module">

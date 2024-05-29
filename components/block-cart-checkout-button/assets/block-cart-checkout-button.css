@@ -1,4 +1,4 @@
-.cart-checkout-button {
+:host {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -6,16 +6,16 @@
   gap: var(--size-4);
 }
 
-.cart-checkout-button__shipping-copy {
+.shipping-copy {
   font-size: 0.75rem;
 }
 
-.cart-checkout-button button {
+.button {
   width: 100%;
   justify-content: center;
 }
 
-.cart-checkout-button__payment-types {
+.payment-types {
   display: flex;
   gap: var(--size-1);
   justify-content: center;

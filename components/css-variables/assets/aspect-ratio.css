@@ -1,21 +1,24 @@
+:host(.aspect-ratio--4-3),
 .aspect-ratio--4-3 {
   aspect-ratio: 4 / 3;
 }
 
+:host(.aspect-ratio--16-9),
 .aspect-ratio--16-9 {
   aspect-ratio: 16 / 9;
 }
 
+:host(.aspect-ratio--portrait),
 .aspect-ratio--portrait {
   aspect-ratio: 3 / 4;
 }
 
+:host(.aspect-ratio--landscape),
 .aspect-ratio--landscape {
   aspect-ratio: 4 / 3;
 }
 
+:host(.aspect-ratio--square),
 .aspect-ratio--square {
   aspect-ratio: 1 / 1;
 }
-
-SOMETHING

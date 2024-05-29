@@ -1,29 +1,26 @@
-@import '../../styles/layout/breakpoints.css';
-@import '../../styles/modules/button.css';
-
-.block-buy-buttons {
+:host {
   display: block;
+}
 
-  .shopify-payment-button {
-    margin-top: var(--size-3);
+.shopify-payment-button {
+  margin-top: var(--size-3);
 
-    @media (--medium-up) {
-      margin-top: var(--size-5);
-    }
+  @media only screen and (min-width: 769px) {
+    margin-top: var(--size-5);
   }
+}
 
-  .shopify-payment-button__button {
-    font: inherit;
-    border-radius: var(--radius-xs);
-    overflow: hidden;
-    min-height: var(--size-14);
-    border-radius: var(--radius-xs);
-    background: #141811;
-    font-size: var(--size-4);
+.shopify-payment-button__button {
+  font: inherit;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  min-height: var(--size-14);
+  border-radius: var(--radius-xs);
+  background: #141811;
+  font-size: var(--size-4);
 
-    &:hover {
-      background-color: #000;
-    }
+  &:hover {
+    background-color: #000;
   }
 }
 

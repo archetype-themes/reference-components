@@ -29,23 +29,29 @@
   assign color_scheme = color_scheme | default: section.settings.color_scheme | default: 'scheme-1'
 %}
 
-<section
-  class="main-product page-width page-width--flush-small"
+<section-main-product
+  class="page-width page-width--flush-small"
   data-color-scheme="{{ color_scheme }}"
   data-image-position="{{ image_position }}"
 >
-  <div class="main-product__media-gallery">
-    {%- if slot_product_gallery != blank -%}
-      {{ slot_product_gallery }}
-    {%- else -%}
-      {%- render 'product-media-gallery' -%}
-    {%- endif -%}
-  </div>
+  <template shadowrootmode="open">
+    {{ 'normalize.css' | asset_url | stylesheet_tag }}
+    {{ 'page-width.css' | asset_url | stylesheet_tag }}
+    {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
 
-  <div class="main-product__info">
-    {{- slot_product_blocks -}}
-  </div>
-</section>
+    <div class="main-product__media-gallery">
+      {%- if slot_product_gallery != blank -%}
+        {{ slot_product_gallery }}
+      {%- else -%}
+        {%- render 'product-media-gallery' -%}
+      {%- endif -%}
+    </div>
+
+    <div class="main-product__info">
+      {{- slot_product_blocks -}}
+    </div>
+  </template>
+</section-main-product>
 
 <script type="application/ld+json">
   {{ product | structured_data }}

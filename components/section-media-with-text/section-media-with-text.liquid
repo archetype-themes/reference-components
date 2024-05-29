@@ -38,11 +38,11 @@
 %}
 <section-media-with-text>
   <template shadowrootmode="open">
-    {{ 'normalize.css' | stylesheet_tag }}
-    {{ 'color-schemes.css' | stylesheet_tag }}
-    {{ 'position.css' | stylesheet_tag }}
-    {{ 'page-width.css' | stylesheet_tag }}
-    {{ 'media-with-text.css' | stylesheet_tag }}
+    {{ 'normalize.css' | asset_url | stylesheet_tag }}
+    {{ 'color-schemes.css' | asset_url | stylesheet_tag }}
+    {{ 'position.css' | asset_url | stylesheet_tag }}
+    {{ 'page-width.css' | asset_url | stylesheet_tag }}
+    {{ 'media-with-text.css' | asset_url | stylesheet_tag }}
 
     <section
       class="media-with-text page-width"

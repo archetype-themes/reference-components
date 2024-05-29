@@ -13,11 +13,16 @@
 -%}
 
 <is-land {{ hydration }}>
-  <cart-status-notifier class="status" hidden>
-    {%- render 'icon', name: 'alert' -%}
-    <span></span>
-  </cart-status-notifier>
+  <cart-status-notifier>
+    <template shadowrootmode="open">
+      {{ 'cart-status-notifier.css' | asset_url | stylesheet_tag }}
 
+      <cart-status-notifier class="status" hidden>
+        {%- render 'icon', name: 'alert' -%}
+        <span></span>
+      </cart-status-notifier>
+    </template>
+  </cart-status-notifier>
   <template data-island>
     <script type="module">
       import 'components/cart-status-notifier'

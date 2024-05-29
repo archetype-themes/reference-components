@@ -36,6 +36,9 @@
     src="{{ url }}"
     name="{{ name }}"
   >
+    <template shadowrootmode="open">
+      {{ 'icon.css' | asset_url | stylesheet_tag }}
+    </template>
   </x-icon>
 
   <template data-island>

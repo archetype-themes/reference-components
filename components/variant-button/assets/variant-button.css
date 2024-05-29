@@ -1,6 +1,3 @@
-@import '../../styles/layout/breakpoints.css';
-@import '../../styles/helpers/visibility';
-
 .variant-button {
   --label-bottom-margin: var(--size-3);
 

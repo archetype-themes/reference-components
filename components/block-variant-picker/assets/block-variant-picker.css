@@ -1,4 +1,4 @@
-.block-variant-picker {
+:host {
   display: grid;
   gap: var(--size-6);
 }

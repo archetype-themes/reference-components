@@ -18,39 +18,45 @@
   assign main_menu = linklists[menu_link_list]
 -%}
 
-<div data-color-scheme="{{ color_scheme }}">
-  <div class="page-width">
-    <header class="main-header main-header--{{ menu_position | replace: '_', '-' }}">
-      {%- if request.page_type == 'index' -%}
-        <h1 class="main-header__logo">
-          <a href="{{ routes.root_url }}">
+<section-header data-color-scheme="{{ color_scheme }}">
+  <template shadowrootmode="open">
+    {{ 'color-schemes.css' | asset_url | stylesheet_tag }}
+    {{ 'page-width.css' | asset_url | stylesheet_tag }}
+    {{ 'section-header.css' | asset_url | stylesheet_tag }}
+
+    <div class="page-width">
+      <header class="main-header main-header--{{ menu_position | replace: '_', '-' }}">
+        {%- if request.page_type == 'index' -%}
+          <h1 class="main-header__logo">
+            <a href="{{ routes.root_url }}">
+              {{ shop.name }}
+            </a>
+          </h1>
+        {%- else -%}
+          <a href="{{ routes.root_url }}" class="main-header__logo">
             {{ shop.name }}
           </a>
-        </h1>
-      {%- else -%}
-        <a href="{{ routes.root_url }}" class="main-header__logo">
-          {{ shop.name }}
-        </a>
-      {%- endif -%}
-
-      <div class="main-header__menu">
-        {%- for link in main_menu.links -%}
-          <a
-            href="{{ link.url }}"
-            class="main-header__menu-link {% if link.active %}main-header__menu-link--active{% endif %}"
-          >
-            {{ link.title }}
-          </a>
-        {%- endfor -%}
-      </div>
-
-      <div class="main-header__icons">
-        {%- if slot_icons != blank -%}
-          {{ slot_icons }}
-        {%- else -%}
-          {%- render 'cart-icon' -%}
         {%- endif -%}
-      </div>
-    </header>
-  </div>
-</div>
+
+        <div class="main-header__menu">
+          {%- for link in main_menu.links -%}
+            <a
+              href="{{ link.url }}"
+              class="main-header__menu-link {% if link.active %}main-header__menu-link--active{% endif %}"
+            >
+              {{ link.title }}
+            </a>
+          {%- endfor -%}
+        </div>
+
+        <div class="main-header__icons">
+          {%- if slot_icons != blank -%}
+            {{ slot_icons }}
+          {%- else -%}
+            {%- render 'cart-icon' -%}
+          {%- endif -%}
+        </div>
+      </header>
+    </div>
+  </template>
+</section-header>
