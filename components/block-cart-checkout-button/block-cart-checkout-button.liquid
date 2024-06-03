@@ -15,6 +15,9 @@
 
 <block-cart-checkout-button {{ block.shopify_attributes }}>
   <template shadowrootmode="open">
+    {% render 'component-styles' %}
+    {{ 'block-cart-checkout-button' | asset_url | stylesheet_tag }}
+
     <div class="shipping-copy">
       {%- if taxes_included -%}
         {{ 'info.shipping_at_checkout_taxes_included' | t }}

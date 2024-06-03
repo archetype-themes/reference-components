@@ -12,6 +12,7 @@
 <is-land {{ hydration }}>
   <block-cart-totals {{ block.shopify_attributes }}>
     <template shadowrootmode="open">
+      {% render 'component-styles' %}
       {{ 'block-cart-totals.css' | asset_url | stylesheet_tag }}
 
       <span>{{ 'labels.total' | t }}</span>

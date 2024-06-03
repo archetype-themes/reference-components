@@ -1,0 +1,16 @@
+:host {
+  --button-color: var(--button-color, --color-background, #fff);
+  --button-color-background: var(--button-color-background, --color-foreground, #ccc);
+}
+
+.button {
+  cursor: pointer;
+  display: inline-flex;
+  width: fit-content;
+  background-color: rgb(var(--button-color-background));
+  color: rgb(var(--button-color));
+  text-decoration: none;
+  font-size: var(--size-4);
+  padding: var(--size-3) var(--size-6);
+  border-radius: var(--radius-xs);
+}

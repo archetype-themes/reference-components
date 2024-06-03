@@ -1,14 +1,32 @@
 *,
 input,
 :before,
-:after {
+:after,
+:host {
   box-sizing: border-box;
+}
+
+html {
+  touch-action: manipulation;
+}
+
+html[dir='rtl'] {
+  direction: rtl;
 }
 
 html,
 body {
+  background-color: rgb(243 243 243);
+  color: rgb(18 18 18);
+  line-height: 1.4;
   padding: 0;
   margin: 0;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  box-sizing: inherit;
 }
 
 article,
@@ -42,4 +60,19 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[visually-hidden] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

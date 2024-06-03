@@ -31,12 +31,7 @@
 
 <section-main-cart data-color-scheme="{{ color_scheme }}">
   <template shadowrootmode="open">
-    {{ 'normalize.css' | asset_url | stylesheet_tag }}
-    {{ 'breakpoints.css' | asset_url | stylesheet_tag }}
-    {{ 'page-width.css' | asset_url | stylesheet_tag }}
-    {{ 'button.css' | asset_url | stylesheet_tag }}
-    {{ 'typography.css' | asset_url | stylesheet_tag }}
-    {{ 'table.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles', styles: 'buttons, typography' %}
     {{ 'section-main-cart.css' | asset_url | stylesheet_tag }}
 
     <div class="page-width">

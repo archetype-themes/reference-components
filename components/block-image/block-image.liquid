@@ -25,8 +25,7 @@
 
 <block-image class="aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
   <template shadowrootmode="open">
-    {{ 'aspect-ratio.css' | asset_url | stylesheet_tag }}
-    {{ 'placeholder-svg.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles' %}
     {{ 'block-image.css' | asset_url | stylesheet_tag }}
 
     {%- liquid

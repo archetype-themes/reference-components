@@ -15,8 +15,7 @@
 
 <product-media-gallery class="product-media-gallery">
   <template shadowrootmode="open">
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'normalize.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles' %}
     {{ 'product-media-gallery.css' | asset_url | stylesheet_tag }}
 
     {%- for media in product.media -%}

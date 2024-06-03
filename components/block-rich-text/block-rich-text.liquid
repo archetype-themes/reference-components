@@ -24,8 +24,7 @@
 
 <block-rich-text {{ block.shopify_attributes }}>
   <template shadowrootmode="open">
-    {{ 'button.css' | asset_url | stylesheet_tag }}
-    {{ 'rte.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles' %}
     {{ 'block-rich-text.css' | asset_url | stylesheet_tag }}
 
     {%- if subheading != blank -%}

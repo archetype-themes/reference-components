@@ -15,6 +15,7 @@
 <is-land {{ hydration }}>
   <cart-status-notifier>
     <template shadowrootmode="open">
+      {% render 'component-styles' %}
       {{ 'cart-status-notifier.css' | asset_url | stylesheet_tag }}
 
       <cart-status-notifier class="status" hidden>

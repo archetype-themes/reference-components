@@ -23,7 +23,7 @@
 
 <variant-button>
   <template shadowrootmode="open">
-    {{ 'visibility.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles' %}
     {{ 'variant-button.css' | asset_url | stylesheet_tag }}
 
     <fieldset class="variant-button">

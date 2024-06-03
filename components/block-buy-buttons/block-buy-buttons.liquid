@@ -43,8 +43,18 @@
   {{ block.shopify_attributes }}
 >
   <template shadowrootmode="open">
-    {{ 'button.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles', styles: 'button' %}
     {{ 'block-buy-buttons.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      :host {
+        --block-buy-button-background-color: var(
+          --block-buy-button-background-color,
+          {{block.settings.background_color}},
+          --background-color,
+        );
+      }
+    </style>
 
     <div role="alert" hidden>
       <span></span>

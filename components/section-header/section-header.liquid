@@ -20,8 +20,7 @@
 
 <section-header data-color-scheme="{{ color_scheme }}">
   <template shadowrootmode="open">
-    {{ 'color-schemes.css' | asset_url | stylesheet_tag }}
-    {{ 'page-width.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles' %}
     {{ 'section-header.css' | asset_url | stylesheet_tag }}
 
     <div class="page-width">

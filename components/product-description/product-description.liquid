@@ -18,9 +18,7 @@
 
 <product-description>
   <template shadowrootmode="open">
-    {{ 'rte.css' | asset_url | stylesheet_tag }}
-    {{ 'clearfix.css' | asset_url | stylesheet_tag }}
-    {{ 'typography.css' | asset_url | stylesheet_tag }}
+    {% render 'component-styles' %}
 
     <div class="rte clearfix">
       {{- description -}}
