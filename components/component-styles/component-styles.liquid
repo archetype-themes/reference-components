@@ -1,51 +1,53 @@
 {%- comment -%}
   Renders the list of CSS token variables
 
+  Accepts:
+  - styles [''] - List of optional stylesheets to include. Defaults to all.
+
   Usage:
   {% render 'component-styles' %}
 {%- endcomment -%}
 
-{%- assign styles = styles | split: ', ' %}
+{%- capture required_styles -%}
+  size,
+  base,
+  util
+{%- endcapture -%}
+
+{%- capture optional_styles -%}
+  aspect-ratio,
+  button,
+  color-schemes,
+  page-width,
+  placeholder-svg,
+  position,
+  rte,
+  select,
+  table,
+  typography,
+  util
+{%- endcapture -%}
+
+{% assign styles = styles | split: ', ' %}
+{% assign load_all = styles == blank %}
+{% assign required_styles_array = required_styles | split: ', ' %}
+{% assign optional_styles_array = optional_styles | split: ', ' %}
 
 {% render 'font-faces' %}
 
 {%- style -%}
   /* ASSUMED TO BE NEEDED FOR EVERY COMPONENT */
-  @import url('{{ 'variables.css' |  asset_url}}');
-  @import url('{{ 'base.css' |  asset_url}}');
+  {% for style in required_styles_array %}
+    @import url('{{ style | append: ".css" | asset_url }}');
+  {% endfor %}
 
   /* SELECTIVE STYLES IF SPECIFIED PER COMPONENT */
-  @import url('{{ 'aspect-ratio.css' |  asset_url}}');
-  @import url('{{ 'button.css' |  asset_url}}');
-  @import url('{{ 'clearfix.css' |  asset_url}}');
-  @import url('{{ 'color-schemes.css' |  asset_url}}');
-  @import url('{{ 'display.css' |  asset_url}}');
-  @import url('{{ 'model-viewer.css' |  asset_url}}');
-  @import url('{{ 'page-width.css' |  asset_url}}');
-  @import url('{{ 'placeholder-svg.css' |  asset_url}}');
-  @import url('{{ 'position.css' |  asset_url}}');
-  @import url('{{ 'rte.css' |  asset_url}}');
-  @import url('{{ 'select.css' |  asset_url}}');
-  @import url('{{ 'table.css' |  asset_url}}');
-  @import url('{{ 'typography.css' |  asset_url}}');
-  @import url('{{ 'visibility.css' |  asset_url}}');
+  {% for style in optional_styles_array %}
+    {% if load_all or styles contains style %}
+      @import url('{{ style | append: ".css" | asset_url }}');
+    {% endif %}
+  {% endfor %}
 
   /* GLOBAL THEME-LEVEL OVERRIDES */
   @import url('{{ 'theme.css' |  asset_url}}');
-
-  :root {
-    --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-    --heading-font-weight: {{ settings.heading_font.weight }};
-    --heading-font-style: {{ settings.heading_font.style }};
-    --body-font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
-    --body-font-weight: {{ settings.body_font.weight }};
-    --body-font-style: {{ settings.body_font.style }};
-
-    --color-scheme-1-bg: {{ settings.color_scheme_1_bg.rgb }};
-    --color-scheme-1-text: {{ settings.color_scheme_1_text.rgb }};
-    --color-scheme-2-bg: {{ settings.color_scheme_2_bg.rgb }};
-    --color-scheme-2-text: {{ settings.color_scheme_2_text.rgb }};
-    --color-scheme-3-bg: {{ settings.color_scheme_3_bg.rgb }};
-    --color-scheme-3-text: {{ settings.color_scheme_3_text.rgb }};
-  } */
 {%- endstyle -%}

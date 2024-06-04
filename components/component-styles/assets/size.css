@@ -29,33 +29,6 @@
   --size-28: var(--size-28, 7rem); /* 112px */
   --size-32: var(--size-32, 8rem); /* 128px */
 }
-/* Layout */
-:host {
-  --page-width: var(--page-width, 1500px);
-  --page-width-padding: var(--page-width-padding, --size-10);
-}
-
-@media screen and (max-width: 768px) {
-  :root {
-    --page-width-padding: var(--size-5);
-  }
-}
-
-:host {
-  --text-xs: var(--text-xs, --size-3);
-  --text-sm: var(--text-sm, --size-3-5);
-  --text-base: var(--text-base, --size-4);
-  --text-lg: var(--text-lg, --size-4-5);
-  --text-xl: var(--text-xl, --size-5);
-  --text-2xl: var(--text-2xl, --size-6);
-  --text-3xl: var(--text-3xl, --size-8);
-  --text-4xl: var(--text-4xl, --size-9);
-  --text-5xl: var(--text-5xl, --size-10);
-  --text-6xl: var(--text-6xl, --size-12);
-  --text-7xl: var(--text-7xl, --size-14);
-  --text-8xl: var(--text-8xl, --size-16);
-  --text-9xl: var(--text-9xl, --size-20);
-}
 
 :host {
   /* Border radiuses */

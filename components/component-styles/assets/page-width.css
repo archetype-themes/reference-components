@@ -1,3 +1,14 @@
+:host {
+  --page-width: var(--page-width, 1500px);
+  --page-width-padding: var(--page-width-padding, --size-10);
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --page-width-padding: var(--size-5);
+  }
+}
+
 .page-width,
 [data-page-width] {
   padding-inline: var(--page-width-padding);

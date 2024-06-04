@@ -1,3 +1,12 @@
+:host {
+  --color-scheme-1-bg: var(--color-scheme-1-bg, 255, 255, 255); /* Default to white */
+  --color-scheme-1-text: var(--color-scheme-1-text, 0, 0, 0); /* Default to black */
+  --color-scheme-2-bg: var(--color-scheme-2-bg, 240, 240, 240); /* Default to light grey */
+  --color-scheme-2-text: var(--color-scheme-2-text, 0, 0, 0); /* Default to black */
+  --color-scheme-3-bg: var(--color-scheme-3-bg, 0, 0, 0); /* Default to black */
+  --color-scheme-3-text: var(--color-scheme-3-text, 255, 255, 255); /* Default to white */
+}
+
 [data-color-scheme='scheme-1'] {
   --color-background: var(--color-scheme-1-bg);
   --color-foreground: var(--color-scheme-1-text);
