@@ -11,12 +11,14 @@
 }
 
 .shopify-payment-button__button {
+  width: 100%;
   font: inherit;
   border-radius: var(--radius-xs);
   overflow: hidden;
   min-height: var(--size-14);
   border-radius: var(--radius-xs);
   background: #141811;
+  color: white;
   font-size: var(--size-4);
 
   &:hover {

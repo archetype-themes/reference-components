@@ -24,7 +24,7 @@
 
 <block-rich-text {{ block.shopify_attributes }}>
   <template shadowrootmode="open">
-    {% render 'component-styles' %}
+    {% render 'styles-component' %}
     {{ 'block-rich-text.css' | asset_url | stylesheet_tag }}
 
     {%- if subheading != blank -%}
@@ -34,7 +34,7 @@
     {%- endif -%}
 
     {%- if heading != blank -%}
-      <h2 class="{{ heading_size }} heading">
+      <h2 class="{{ heading_size }} heading" part="title">
         {{ heading }}
       </h2>
     {%- endif -%}

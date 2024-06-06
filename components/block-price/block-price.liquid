@@ -34,7 +34,7 @@
 
 <block-price data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
   <template shadowrootmode="open">
-    {% render 'component-styles' %}
+    {% render 'styles-component' %}
     {{ 'block-price.css' | asset_url | stylesheet_tag }}
 
     <span class="label">

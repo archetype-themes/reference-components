@@ -17,7 +17,7 @@
 <is-land {{ hydration }}>
   <block-cart-note {{ block.shopify_attributes }}>
     <template shadowrootmode="open">
-      {% render 'component-styles' %}
+      {% render 'styles-component' %}
       {{ 'block-cart-note.css' | asset_url | stylesheet_tag }}
 
       <textarea

@@ -16,12 +16,12 @@
   }
 }
 
-.media-gallery {
+.main-product__media-gallery {
   display: grid;
   width: 100%;
 }
 
-.info {
+.main-product__info {
   padding: var(--size-7) var(--size-5);
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@
   top: 0;
   align-self: flex-start;
 
-  @media only screen and (min-width: 769px) {
+  @media (--medium-up) {
     padding: var(--size-12) 0 var(--size-10) 0;
     gap: var(--size-8);
   }

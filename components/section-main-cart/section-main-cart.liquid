@@ -31,7 +31,7 @@
 
 <section-main-cart data-color-scheme="{{ color_scheme }}">
   <template shadowrootmode="open">
-    {% render 'component-styles', styles: 'buttons, typography' %}
+    {% render 'styles-component', styles: 'buttons, typography' %}
     {{ 'section-main-cart.css' | asset_url | stylesheet_tag }}
 
     <div class="page-width">

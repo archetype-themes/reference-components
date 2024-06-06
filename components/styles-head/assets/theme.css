@@ -1,0 +1,13 @@
+/* 
+ * A place for you to add theme specific styles
+ * You should add this file to the ignore list in the shopify.config.toml
+ * so that any customizations don't get erased
+ */
+
+:host-context(block-rich-text) .h2 {
+  font-size: var(--size-20);
+}
+
+section-media-with-text {
+  color: red;
+}

@@ -1,0 +1,37 @@
+{%- comment -%}
+  Renders the list of CSS token variables
+
+  Usage:
+  {% render 'styles-component' %}
+{%- endcomment -%}
+
+{%- capture styles -%}
+  base,
+  util,
+  aspect-ratio,
+  button,
+  color-schemes,
+  page-width,
+  placeholder-svg,
+  position,
+  rte,
+  select,
+  table,
+  typography,
+  util
+{%- endcapture -%}
+
+{% assign styles = styles | split: ',' %}
+
+<style>
+  /* Shared styles */
+  {%- for style in styles -%}
+      @import url('{{ style | append: ".css" | asset_url }}');
+  {%- endfor -%}
+
+  /* Theme project level overrides */
+  @import url('{{ 'theme.css' |  asset_url }}');
+
+  /* Store install level overrides */
+  @import url('{{ 'custom.css' |  asset_url }}');
+</style>

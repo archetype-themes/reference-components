@@ -1,26 +1,13 @@
+:host {
+  font: var(--body-font-style) var(--body-font-weight) var(--text-base) / 1.65 var(--body-font-family);
+}
+
 *,
 input,
 :before,
 :after,
 :host {
   box-sizing: border-box;
-}
-
-html {
-  touch-action: manipulation;
-}
-
-html[dir='rtl'] {
-  direction: rtl;
-}
-
-html,
-body {
-  background-color: rgb(243 243 243);
-  color: rgb(18 18 18);
-  line-height: 1.4;
-  padding: 0;
-  margin: 0;
 }
 
 :host *,

@@ -1,15 +1,26 @@
-{%- comment -%}
-  Renders the font-face declarations for the given fonts (expects heading and body fonts)
-
-  Accepts:
-  - heading_font {font} - The font to use for headings
-  - body_font {font} - The font to use for body text
-
-  Usage:
-  {% render 'font-faces', heading_font: settings.heading_font, body_font: settings.body_font %}
-{%- endcomment -%}
+{{ 'design-tokens.css' | asset_url | stylesheet_tag }}
+{{ 'theme.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  :root {
+    /* Typography */
+    --heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
+    --heading-font-weight: {{ settings.heading_font.weight }};
+    --heading-font-style: {{ settings.heading_font.style }};
+    --body-font-family: {{ settings.body_font.family }}, {{ settings.body_font.fallback_families }};
+    --body-font-weight: {{ settings.body_font.weight }};
+    --body-font-style: {{ settings.body_font.style }};
+
+    /* Color schemes */
+    --color-scheme-1-bg: {{ settings.color_scheme_1_bg.rgb }};
+    --color-scheme-1-text: {{ settings.color_scheme_1_text.rgb }};
+    --color-scheme-2-bg: {{ settings.color_scheme_2_bg.rgb }};
+    --color-scheme-2-text: {{ settings.color_scheme_2_text.rgb }};
+    --color-scheme-3-bg: {{ settings.color_scheme_3_bg.rgb }};
+    --color-scheme-3-text: {{ settings.color_scheme_3_text.rgb }};
+  }
+
+  /* Font Faces */
   {%- liquid
     assign heading_font = heading_font | default: settings.heading_font
     assign body_font = body_font | default: settings.body_font
@@ -45,3 +56,5 @@
     endif
   -%}
 {%- endstyle -%}
+
+{{ 'custom.css' | asset_url | stylesheet_tag }}

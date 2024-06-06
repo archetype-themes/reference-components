@@ -1,27 +1,3 @@
-:host {
-  --text-xs: var(--text-xs, --size-3);
-  --text-sm: var(--text-sm, --size-3-5);
-  --text-base: var(--text-base, --size-4);
-  --text-lg: var(--text-lg, --size-4-5);
-  --text-xl: var(--text-xl, --size-5);
-  --text-2xl: var(--text-2xl, --size-6);
-  --text-3xl: var(--text-3xl, --size-8);
-  --text-4xl: var(--text-4xl, --size-9);
-  --text-5xl: var(--text-5xl, --size-10);
-  --text-6xl: var(--text-6xl, --size-12);
-  --text-7xl: var(--text-7xl, --size-14);
-  --text-8xl: var(--text-8xl, --size-16);
-  --text-9xl: var(--text-9xl, --size-20);
-
-  --heading-font-family: var(--heading-font-family, Georgia, 'Times New Roman', Times, serif);
-  --heading-font-weight: var(--heading-font-weight, 700); /* Bold weight */
-  --heading-font-style: var(--heading-font-style, normal); /* Normal style */
-
-  --body-font-family: var(--body-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-  --body-font-weight: var(--body-font-weight, 400); /* Normal weight */
-  --body-font-style: var(--body-font-style, normal); /* Normal style */
-}
-
 body,
 input,
 textarea,
@@ -169,21 +145,21 @@ h6 {
 
 .h1,
 .rte :where(h1) {
-  font-size: var(--size-10);
+  font-size: var(--text-5xl);
   line-height: 1.1;
 
   @media only screen and (min-width: 769px) {
-    font-size: var(--size-16);
+    font-size: var(--text-8xl);
   }
 }
 
 .h2,
 .rte :where(h2) {
-  font-size: var(--size-9);
+  font-size: var(--text-4xl);
   line-height: 1.1;
 
   @media only screen and (min-width: 769px) {
-    font-size: var(--size-14);
+    font-size: var(--text-7xl);
   }
 }
 

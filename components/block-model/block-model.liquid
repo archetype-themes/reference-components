@@ -23,7 +23,7 @@
 <is-land {{ hydration }}>
   <block-model class="aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
     <template shadowrootmode="open">
-      {% render 'component-styles' %}
+      {% render 'styles-component' %}
       {{ 'block-model.css' | asset_url | stylesheet_tag }}
 
       {% if product != blank %}

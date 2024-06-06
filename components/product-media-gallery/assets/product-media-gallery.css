@@ -11,8 +11,10 @@
   scroll-padding-left: var(--page-width-padding);
   scroll-padding-right: var(--page-width-padding);
   scroll-behavior: smooth;
+}
 
-  @media only screen and (min-width: 769px) {
+@media only screen and (min-width: 769px) {
+  :host {
     grid-auto-flow: row;
     padding-left: 0;
     padding-right: 0;
@@ -24,8 +26,10 @@
   aspect-ratio: 1 / 1;
   scroll-snap-align: center;
   overflow: clip;
+}
 
-  @media only screen and (min-width: 769px) {
+@media only screen and (min-width: 769px) {
+  .product-media-gallery__item {
     width: 100%;
   }
 }
