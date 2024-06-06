@@ -18,7 +18,7 @@
 
 <is-land on:idle>
   <a href="{{ routes.cart_url }}" class="cart-icon">
-    {%- render 'icon', name: name -%}
+    {%- render 'icon', name: name, eager: true -%}
 
     <div class="cart-count">
       <cart-count
