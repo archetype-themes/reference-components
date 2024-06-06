@@ -13,24 +13,29 @@
   assign taxes_included = taxes_included | default: cart.taxes_included, allow_false: true
 %}
 
-<div class="cart-checkout-button" {{ block.shopify_attributes }}>
-  <div class="cart-checkout-button__shipping-copy">
-    {%- if taxes_included -%}
-      {{ 'info.shipping_at_checkout_taxes_included' | t }}
-    {%- else -%}
-      {{ 'info.shipping_at_checkout' | t }}
-    {%- endif -%}
-  </div>
+<block-cart-checkout-button {{ block.shopify_attributes }}>
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
+    {{ 'block-cart-checkout-button' | asset_url | stylesheet_tag }}
 
-  <button type="submit" name="checkout" class="button">
-    {{ 'actions.checkout' | t }}
-  </button>
-
-  {%- if shop.enabled_currencies.size > 0 -%}
-    <div class="cart-checkout-button__payment-types">
-      {%- for type in shop.enabled_payment_types -%}
-        {{- type | payment_type_svg_tag -}}
-      {%- endfor -%}
+    <div class="shipping-copy">
+      {%- if taxes_included -%}
+        {{ 'info.shipping_at_checkout_taxes_included' | t }}
+      {%- else -%}
+        {{ 'info.shipping_at_checkout' | t }}
+      {%- endif -%}
     </div>
-  {%- endif -%}
-</div>
+
+    <button type="submit" name="checkout" class="button">
+      {{ 'actions.checkout' | t }}
+    </button>
+
+    {%- if shop.enabled_currencies.size > 0 -%}
+      <div class="payment-types">
+        {%- for type in shop.enabled_payment_types -%}
+          {{- type | payment_type_svg_tag -}}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </template>
+</block-cart-checkout-button>

@@ -1,0 +1,50 @@
+:host {
+  font: var(--body-font-style) var(--body-font-weight) var(--text-base) / 1.65 var(--body-font-family);
+}
+
+*,
+input,
+:before,
+:after,
+:host {
+  box-sizing: border-box;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  box-sizing: inherit;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}

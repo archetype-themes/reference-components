@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--size-5);
+}
+
+:host > * {
+  margin-bottom: 0;
+}
+
+.subheading {
+  font-size: var(--size-3-5);
+  text-transform: uppercase;
+}
+
+.text {
+  line-height: 1.5;
+
+  @media only screen and (max-width: 768px) {
+    font-size: var(--size-3-5);
+  }
+}
+
+.text p {
+  margin-top: 0;
+
+  @media only screen and (max-width: 768px) {
+    font-size: var(--size-3-5);
+  }
+}

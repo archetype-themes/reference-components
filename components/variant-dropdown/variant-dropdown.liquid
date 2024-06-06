@@ -12,29 +12,33 @@
   {%- endfor -%}
 {%- endcomment -%}
 
-<div class="variant-dropdown">
-  <label for="Option-{{ section.id }}-{{ forloop.index0 }}">
-    {{- option.name -}}
-  </label>
+<variant-dropdown>
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
 
-  <div class="select">
-    <select
-      id="Option-{{ section.id }}-{{ forloop.index0 }}"
-      name="options[{{ option.name | escape }}]"
-      form="{{ product_form_id }}"
-    >
-      {%- for value in option.values -%}
-        <option
-          value="{{ value | escape }}"
-          {% if option.selected_value == value %}
-            selected="selected"
-          {% endif %}
-        >
-          {{- value -}}
-        </option>
-      {%- endfor -%}
-    </select>
+    <label for="Option-{{ section.id }}-{{ forloop.index0 }}">
+      {{- option.name -}}
+    </label>
 
-    {%- render 'icon', name: 'caret' -%}
-  </div>
-</div>
+    <div class="select">
+      <select
+        id="Option-{{ section.id }}-{{ forloop.index0 }}"
+        name="options[{{ option.name | escape }}]"
+        form="{{ product_form_id }}"
+      >
+        {%- for value in option.values -%}
+          <option
+            value="{{ value | escape }}"
+            {% if option.selected_value == value %}
+              selected="selected"
+            {% endif %}
+          >
+            {{- value -}}
+          </option>
+        {%- endfor -%}
+      </select>
+
+      {%- render 'icon', name: 'caret' -%}
+    </div>
+  </template>
+</variant-dropdown>

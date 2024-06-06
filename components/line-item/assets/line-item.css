@@ -1,0 +1,29 @@
+.image {
+  position: relative;
+  width: 100px;
+  height: auto;
+}
+
+.line-item {
+  display: flex;
+  gap: var(--size-8);
+  align-items: start;
+
+  @media only screen and (min-width: 769px) {
+    align-items: center;
+  }
+}
+
+.info {
+  display: grid;
+  justify-items: start;
+}
+
+.title {
+  font-size: var(--size-4);
+}
+
+.variants {
+  margin-top: var(--size-3);
+  font-size: 0.75rem;
+}

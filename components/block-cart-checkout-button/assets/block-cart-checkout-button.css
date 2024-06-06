@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-items: center;
+  gap: var(--size-4);
+}
+
+.shipping-copy {
+  font-size: 0.75rem;
+}
+
+.button {
+  width: 100%;
+  justify-content: center;
+}
+
+.payment-types {
+  display: flex;
+  gap: var(--size-1);
+  justify-content: center;
+  margin-block-start: var(--size-2);
+}

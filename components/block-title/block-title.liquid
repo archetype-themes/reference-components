@@ -22,24 +22,29 @@
   assign vendor_url = collection_for_vendor.url | default: vendor_url_default
 -%}
 
-<div class="block-title" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
-  <h1 class="h2 block-title__heading">
-    {{- title -}}
-  </h1>
+<block-title {{ block.shopify_attributes }}>
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
+    {{ 'block-title.css' | asset_url | stylesheet_tag }}
 
-  {%- if vendor_enable or sku_enable -%}
-    <div>
-      {%- if vendor_enable -%}
-        <a class="block-title__vendor" href="{{ vendor_url }}">
-          {{- product.vendor -}}
-        </a>
-      {%- endif -%}
+    <h1 class="h2 heading">
+      {{- title -}}
+    </h1>
 
-      {%- if sku_enable -%}
-        <div class="block-title__sku">
-          {%- render 'variant-sku' -%}
-        </div>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
-</div>
+    {%- if vendor_enable or sku_enable -%}
+      <div>
+        {%- if vendor_enable -%}
+          <a class="vendor" href="{{ vendor_url }}">
+            {{- product.vendor -}}
+          </a>
+        {%- endif -%}
+
+        {%- if sku_enable -%}
+          <div class="sku">
+            {%- render 'variant-sku' -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </template>
+</block-title>

@@ -32,68 +32,73 @@
   endif
 -%}
 
-<block-price class="block-price" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
-  <span class="block-price__label">
-    {{- 'labels.price' | t -}}
-  </span>
-  <div
-    class="block-price__container heading-font-stack h4"
-    data-price-container
-    {% unless available %}
-      data-sold-out=""
-    {% endunless %}
-    {% if compare_at_price > price %}
-      data-on-sale=""
-    {% endif %}
-    {% if target.unit_price_measurement %}
-      data-unit-price=""
-    {% endif %}
-  >
-    <div class="block-price__regular">
-      <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
-      <span>
-        {%- render 'price', price: price -%}
-      </span>
+<block-price data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
+    {{ 'block-price.css' | asset_url | stylesheet_tag }}
+
+    <span class="label">
+      {{- 'labels.price' | t -}}
+    </span>
+    <div
+      class="container h4"
+      data-price-container
+      {% unless available %}
+        data-sold-out=""
+      {% endunless %}
+      {% if compare_at_price > price %}
+        data-on-sale=""
+      {% endif %}
+      {% if target.unit_price_measurement %}
+        data-unit-price=""
+      {% endif %}
+    >
+      <div class="regular">
+        <span visually-hidden>{{ 'labels.regular_price' | t }}</span>
+        <span>
+          {%- render 'price', price: price -%}
+        </span>
+      </div>
+
+      <div class="sale">
+        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+          <span visually-hidden>{{ 'labels.regular_price' | t }}</span>
+          <span>
+            <s>
+              {%- render 'price', price: compare_at_price -%}
+            </s>
+          </span>
+        {%- endunless -%}
+
+        <span visually-hidden>{{ 'labels.sale_price' | t }}</span>
+
+        <span>
+          {%- render 'price', price: price -%}
+        </span>
+      </div>
+
+      <small class="unit-price">
+        <span>
+          <span>
+            {%- render 'price', price: target.unit_price -%}
+          </span>
+          <span>/</span>
+          <span>
+            {%- if target.unit_price_measurement.reference_value != 1 -%}
+              {{- target.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ target.unit_price_measurement.reference_unit }}
+          </span>
+        </span>
+      </small>
+
+      {%- if product_save_amount -%}
+        <span class="save">
+          {{- 'info.save_amount' | t: saved_amount: saved_amount -}}
+        </span>
+      {%- endif -%}
     </div>
-
-    <div class="block-price__sale">
-      {%- unless product.price_varies == false and product.compare_at_price_varies %}
-        <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
-        <span>
-          <s>
-            {%- render 'price', price: compare_at_price -%}
-          </s>
-        </span>
-      {%- endunless -%}
-
-      <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
-
-      <span>
-        {%- render 'price', price: price -%}
-      </span>
-    </div>
-
-    <small class="block-price__unit-price">
-      <span>
-        <span>
-          {%- render 'price', price: target.unit_price -%}
-        </span>
-        <span>/</span>
-        <span>
-          {%- if target.unit_price_measurement.reference_value != 1 -%}
-            {{- target.unit_price_measurement.reference_value -}}
-          {%- endif -%}
-          {{ target.unit_price_measurement.reference_unit }}
-        </span>
-      </span>
-    </small>
-
-    {%- if product_save_amount -%}
-      <span class="block-price__save">
-        {{- 'info.save_amount' | t: saved_amount: saved_amount -}}
-      </span>
-    {%- endif -%}
-  </div>
+  </template>
 </block-price>
 
 <script type="module">

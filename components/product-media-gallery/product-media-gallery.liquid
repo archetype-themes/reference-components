@@ -14,30 +14,35 @@
 -%}
 
 <product-media-gallery class="product-media-gallery">
-  {%- for media in product.media -%}
-    <div class="product-media-gallery__item" data-section-id="{{ section.id}}" data-media-id="{{ media.id }}">
-      <div class="media">
-        {%- liquid
-          assign preload = false
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
+    {{ 'product-media-gallery.css' | asset_url | stylesheet_tag }}
 
-          if default_media == media
-            assign preload = true
-          endif
+    {%- for media in product.media -%}
+      <div class="product-media-gallery__item" data-section-id="{{ section.id}}" data-media-id="{{ media.id }}">
+        <div class="media">
+          {%- liquid
+            assign preload = false
 
-          case media.media_type
-            when 'image'
-              render 'block-image', image: media, preload: preload, sizes: sizes
-            when 'video'
-              render 'block-video', video: media, autoplay: true
-            when 'external_video'
-              render 'block-video', external_video: media, autoplay: true
-            when 'model'
-              render 'block-model', model: media, autoplay: true
-          endcase
-        -%}
+            if default_media == media
+              assign preload = true
+            endif
+
+            case media.media_type
+              when 'image'
+                render 'block-image', image: media, preload: preload, sizes: sizes
+              when 'video'
+                render 'block-video', video: media, autoplay: true
+              when 'external_video'
+                render 'block-video', external_video: media, autoplay: true
+              when 'model'
+                render 'block-model', model: media, autoplay: true
+            endcase
+          -%}
+        </div>
       </div>
-    </div>
-  {%- endfor -%}
+    {%- endfor -%}
+  </template>
 </product-media-gallery>
 
 <script type="module">

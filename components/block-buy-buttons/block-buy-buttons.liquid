@@ -36,46 +36,50 @@
 -%}
 
 <block-buy-buttons
-  class="block-buy-buttons"
   data-section-id="{{ section.id }}"
   {% if show_dynamic_checkout %}
     data-show-dynamic-checkout=""
   {% endif %}
   {{ block.shopify_attributes }}
 >
-  <div role="alert" hidden>
-    <span></span>
-  </div>
+  <template shadowrootmode="open">
+    {% render 'styles-component', styles: 'button' %}
+    {{ 'block-buy-buttons.css' | asset_url | stylesheet_tag }}
 
-  {%- form 'product', product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-    <input
-      type="hidden"
-      name="id"
-      value="{{ product.selected_or_first_available_variant.id }}"
-      {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-        disabled
-      {% endif %}
-    >
-    <div>
-      <button
-        id="ProductSubmitButton-{{ section.id }}"
-        type="submit"
-        name="add"
-        class="button block-buy-buttons__submit"
+    <div role="alert" hidden>
+      <span></span>
+    </div>
+
+    {%- form 'product', product, id: form_id, novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
         {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
           disabled
         {% endif %}
       >
-        <span>
-          {{- button_text -}}
-        </span>
-      </button>
+      <div>
+        <button
+          id="ProductSubmitButton-{{ section.id }}"
+          type="submit"
+          name="add"
+          class="button block-buy-buttons__submit"
+          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+            disabled
+          {% endif %}
+        >
+          <span>
+            {{- button_text -}}
+          </span>
+        </button>
 
-      {%- if show_dynamic_checkout -%}
-        {{- form | payment_button -}}
-      {%- endif -%}
-    </div>
-  {%- endform -%}
+        {%- if show_dynamic_checkout -%}
+          {{- form | payment_button -}}
+        {%- endif -%}
+      </div>
+    {%- endform -%}
+  </template>
 
   <script type="application/json">
     {

@@ -36,25 +36,31 @@
   assign content_position = content_position | default: section.settings.content_position | default: 'center'
   assign color_scheme = color_scheme | default: section.settings.color_scheme | default: 'scheme-1'
 %}
+<section-media-with-text>
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
+    {{ 'media-with-text.css' | asset_url | stylesheet_tag }}
 
-<section
-  class="media-with-text page-width"
-  data-media-layout="{{ layout }}"
-  data-media-width="{{ media_width }}"
-  {% unless full_width %}
-    data-page-width
-  {% endunless %}
-  data-color-scheme="{{ color_scheme }}"
->
-  <div
-    class="media-with-text__text"
-    data-text="{{ content_alignment }}"
-    data-justify="{{ content_position }}"
-  >
-    {% render 'block-rich-text' %}
-  </div>
+    <section
+      class="media-with-text page-width"
+      data-media-layout="{{ layout }}"
+      data-media-width="{{ media_width }}"
+      {% unless full_width %}
+        data-page-width
+      {% endunless %}
+      data-color-scheme="{{ color_scheme }}"
+    >
+      <div
+        class="media-with-text__text"
+        data-text="{{ content_alignment }}"
+        data-justify="{{ content_position }}"
+      >
+        {% render 'block-rich-text' %}
+      </div>
 
-  <div class="media-with-text__media">
-    {{- slot -}}
-  </div>
-</section>
+      <div class="media-with-text__media">
+        {{- slot -}}
+      </div>
+    </section>
+  </template>
+</section-media-with-text>

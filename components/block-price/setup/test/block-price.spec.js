@@ -14,7 +14,7 @@ test('block-price', async ({ page }) => {
       `<block-price data-section-id="${sectionId}">
         <div class="block-price__container heading-font-stack h4" data-price-container>
           <span aria-hidden="true">$100<sup>00</sup></span>
-          <span class="visually-hidden">$100.00</span>
+          <span hidden>$100.00</span>
         </div>
       </block-price>`,
       'text/html'

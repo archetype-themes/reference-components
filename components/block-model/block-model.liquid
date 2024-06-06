@@ -21,32 +21,34 @@
 %}
 
 <is-land {{ hydration }}>
-  <div
-    class="aspect-ratio--{{ media_crop }}"
-    {{ block.shopify_attributes }}
-  >
-    {% if product != blank %}
-      {% if media %}
-        <link
-          rel="stylesheet"
-          href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
-          media="print"
-          onload="this.media='all'; this.onload = null"
-        >
+  <block-model class="aspect-ratio--{{ media_crop }}" {{ block.shopify_attributes }}>
+    <template shadowrootmode="open">
+      {% render 'styles-component' %}
+      {{ 'block-model.css' | asset_url | stylesheet_tag }}
 
-        <model-media
-          handle="{{ product.handle }}"
-          {% if autoplay %}
-            autoplay
-          {% endif %}
-        >
-          {{ media | model_viewer_tag: image_size: '2048x', reveal: 'interaction', toggleable: true }}
-        </model-media>
-      {% endif %}
-    {%- else -%}
-      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-    {%- endif -%}
-  </div>
+      {% if product != blank %}
+        {% if media %}
+          <link
+            rel="stylesheet"
+            href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css"
+            media="print"
+            onload="this.media='all'; this.onload = null"
+          >
+
+          <model-media
+            handle="{{ product.handle }}"
+            {% if autoplay %}
+              autoplay
+            {% endif %}
+          >
+            {{ media | model_viewer_tag: image_size: '2048x', reveal: 'interaction', toggleable: true }}
+          </model-media>
+        {% endif %}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </template>
+  </block-model>
 
   <template data-island>
     <script type="module">

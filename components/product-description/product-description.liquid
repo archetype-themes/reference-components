@@ -16,6 +16,12 @@
   endunless
 -%}
 
-<div class="rte clearfix">
-  {{- description -}}
-</div>
+<product-description>
+  <template shadowrootmode="open">
+    {% render 'styles-component' %}
+
+    <div class="rte clearfix">
+      {{- description -}}
+    </div>
+  </template>
+</product-description>

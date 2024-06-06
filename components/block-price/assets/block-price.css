@@ -1,0 +1,46 @@
+:host {
+  display: grid;
+  gap: var(--size-2);
+}
+
+label {
+  font-size: var(--size-3-5);
+}
+
+.regular {
+  [data-on-sale] & {
+    display: none;
+  }
+}
+
+.save {
+  display: none;
+
+  [data-on-sale] & {
+    display: block;
+  }
+}
+
+.sale {
+  display: none;
+
+  [data-on-sale] & {
+    display: flex;
+    gap: var(--size-2);
+  }
+}
+
+.unit-price {
+  display: none;
+
+  [data-unit-price] & {
+    display: block;
+  }
+}
+
+.container {
+  display: flex;
+  gap: var(--size-2);
+  margin: 0;
+  font-size: var(--size-5);
+}

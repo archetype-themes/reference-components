@@ -9,18 +9,21 @@
   assign hydration = hydration | default: 'on:visible'
 %}
 
-<div class="cart-totals" {{ block.shopify_attributes }}>
-  <span>{{ 'labels.total' | t }}</span>
+<is-land {{ hydration }}>
+  <block-cart-totals {{ block.shopify_attributes }}>
+    <template shadowrootmode="open">
+      {% render 'styles-component' %}
+      {{ 'block-cart-totals.css' | asset_url | stylesheet_tag }}
 
-  <is-land {{ hydration }}>
-    <cart-total-price class="cart-totals__price">
-      {{- cart.total_price | money -}}
-    </cart-total-price>
-
-    <template data-island>
-      <script type="module">
-        import 'components/block-cart-totals'
-      </script>
+      <span>{{ 'labels.total' | t }}</span>
+      <cart-total-price>
+        {{- cart.total_price | money -}}
+      </cart-total-price>
     </template>
-  </is-land>
-</div>
+  </block-cart-totals>
+  <template data-island>
+    <script type="module">
+      import 'components/block-cart-totals'
+    </script>
+  </template>
+</is-land>
