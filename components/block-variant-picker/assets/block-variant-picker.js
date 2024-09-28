@@ -7,6 +7,11 @@ class BlockVariantPicker extends HTMLElement {
     this.addEventListener('change', this.handleVariantChange.bind(this))
     this.addEventListener('touchstart', this.handleElementEvent.bind(this))
     this.addEventListener('mousedown', this.handleElementEvent.bind(this))
+
+    // Calling the handle variant change event when 
+    // the component is loaded to catch if the user
+    // clicked a variant before component was loaded
+    this.handleVariantChange(true)
   }
 
   handleElementEvent(event) {
@@ -22,9 +27,20 @@ class BlockVariantPicker extends HTMLElement {
     this.currentVariant && this.getProductInfo()
   }
 
-  async handleVariantChange() {
+  async handleVariantChange(initial) {
     this.updateOptions()
     this.updateMasterId()
+    // If initial load check to see if the currentVariant
+    // differs from id stored in product form, if different
+    // force an update, otherwise return from function
+    if (initial) {
+      const productForm = document.querySelector(
+        `#product-form-${this.dataset.sectionId}`
+      )
+      const input = productForm.querySelector('input[name="id"]')
+      if (this.currentVariant.id === input.value) return
+    }
+
     this.updateVariantStatuses()
 
     if (this.currentVariant) {
