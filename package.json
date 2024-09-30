@@ -24,5 +24,8 @@
     "@shopify/prettier-plugin-liquid": "^1.4.4",
     "dotenv": "^16.4.5",
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.13"
   }
 }
