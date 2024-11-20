@@ -34,7 +34,7 @@
 
 <block-price class="block-price" data-section-id="{{ section.id }}" {{ block.shopify_attributes }}>
   <span class="block-price__label">
-    {{- 'labels.price' | t -}}
+    {% render 't-with-fallback', key: 'labels.price', fallback: 'Price' %}
   </span>
   <div
     class="block-price__container heading-font-stack h4"
@@ -50,7 +50,9 @@
     {% endif %}
   >
     <div class="block-price__regular">
-      <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
+      <span class="visually-hidden">
+        {% render 't-with-fallback', key: 'labels.regular_price', fallback: 'Regular price' %}
+      </span>
       <span>
         {%- render 'price', price: price -%}
       </span>
@@ -58,7 +60,9 @@
 
     <div class="block-price__sale">
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
-        <span class="visually-hidden">{{ 'labels.regular_price' | t }}</span>
+        <span class="visually-hidden">
+          {% render 't-with-fallback', key: 'labels.regular_price', fallback: 'Regular price' %}
+        </span>
         <span>
           <s>
             {%- render 'price', price: compare_at_price -%}
@@ -66,7 +70,9 @@
         </span>
       {%- endunless -%}
 
-      <span class="visually-hidden">{{ 'labels.sale_price' | t }}</span>
+      <span class="visually-hidden">
+        {% render 't-with-fallback', key: 'labels.sale_price', fallback: 'Sale price' %}
+      </span>
 
       <span>
         {%- render 'price', price: price -%}
@@ -90,7 +96,11 @@
 
     {%- if product_save_amount -%}
       <span class="block-price__save">
-        {{- 'info.save_amount' | t: saved_amount: saved_amount -}}
+        {% assign info_save_amount = 'info.save_amount' | t: saved_amount: saved_amount %}
+        {%- capture fallback_info_save_amount -%}
+          Save {{ saved_amount }}
+        {%- endcapture -%}
+        {% render 't-with-fallback', t: info_save_amount, fallback: fallback_info_save_amount %}
       </span>
     {%- endif -%}
   </div>
