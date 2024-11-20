@@ -16,14 +16,20 @@
 <div class="cart-checkout-button" {{ block.shopify_attributes }}>
   <div class="cart-checkout-button__shipping-copy">
     {%- if taxes_included -%}
-      {{ 'info.shipping_at_checkout_taxes_included' | t }}
+      {% render 't-with-fallback',
+        key: 'info.shipping_at_checkout_taxes_included',
+        fallback: 'Taxes included. Shipping and discount codes calculated at checkout'
+      %}
     {%- else -%}
-      {{ 'info.shipping_at_checkout' | t }}
+      {% render 't-with-fallback',
+        key: 'info.shipping_at_checkout',
+        fallback: 'Shipping, taxes, and discount codes calculated at checkout.'
+      %}
     {%- endif -%}
   </div>
 
   <button type="submit" name="checkout" class="button">
-    {{ 'actions.checkout' | t }}
+    {% render 't-with-fallback', key: 'actions.checkout', fallback: 'Check out' %}
   </button>
 
   {%- if shop.enabled_currencies.size > 0 -%}
