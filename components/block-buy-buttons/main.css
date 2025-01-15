@@ -1,4 +1,3 @@
-@import '../../styles/layout/breakpoints.css';
 @import '../../styles/modules/button.css';
 
 .block-buy-buttons {
@@ -7,7 +6,7 @@
   .shopify-payment-button {
     margin-top: var(--size-3);
 
-    @media (--medium-up) {
+    @media only screen and (min-width: 769px) {
       margin-top: var(--size-5);
     }
   }

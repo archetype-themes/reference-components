@@ -1,5 +1,4 @@
 @import '../../styles/vendor/normalize.css';
-@import '../../styles/layout/breakpoints.css';
 @import '../../styles/layout/page-width.css';
 
 .main-product {
@@ -7,14 +6,14 @@
   width: 100%;
   gap: var(--size-8);
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     gap: var(--size-10);
     grid-template-columns: 60% 1fr;
     padding-top: var(--size-16);
   }
 
   &[data-image-position='right'] {
-    @media (--medium-up) {
+    @media only screen and (min-width: 769px) {
       grid-template-columns: 1fr 60%;
     }
   }
@@ -34,7 +33,7 @@
   top: 0;
   align-self: flex-start;
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     padding: var(--size-12) 0 var(--size-10) 0;
     gap: var(--size-8);
   }

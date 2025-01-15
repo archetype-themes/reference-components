@@ -1,7 +1,7 @@
 .rte {
   margin-bottom: calc(var(--gutter) / 4);
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     margin-bottom: calc(var(--gutter) / 2);
   }
 
@@ -19,7 +19,7 @@
   & table {
     margin-bottom: var(--size-3-5);
 
-    @media (--medium-up) {
+    @media only screen and (min-width: 769px) {
       margin-bottom: var(--size-6);
     }
 
@@ -93,7 +93,7 @@
 .rte--block {
   margin-bottom: var(--size-2);
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     margin-bottom: var(--size-3);
   }
 }

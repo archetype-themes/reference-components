@@ -9,7 +9,7 @@
   padding-block-start: var(--size-10);
   padding-block-end: var(--size-10);
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     padding-block-start: var(--size-16);
     padding-block-end: var(--size-16);
   }
@@ -21,7 +21,7 @@
   gap: var(--size-6);
 }
 
-@media (--small) {
+@media only screen and (max-width: 768px) {
   .page-width--flush-small {
     padding: 0;
   }

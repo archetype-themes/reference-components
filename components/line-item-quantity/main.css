@@ -1,7 +1,7 @@
 .line-item__quantity {
   margin-top: var(--size-5);
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     display: none;
   }
 }
@@ -12,7 +12,7 @@
   gap: var(--size-2);
   width: 0;
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     .line-item__quantity & {
       display: flex;
       gap: var(--size-3);
@@ -33,7 +33,7 @@
   border-width: 1px;
   outline: none;
 
-  @media (--small) {
+  @media only screen and (max-width: 768px) {
     .line-item__quantity & {
       width: var(--size-10);
       padding-block-start: var(--size-1);

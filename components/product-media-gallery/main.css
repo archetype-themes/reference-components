@@ -1,5 +1,4 @@
 @import '../../styles/vendor/normalize.css';
-@import '../../styles/layout/breakpoints.css';
 @import '../../styles/base.css';
 
 .product-media-gallery {
@@ -16,7 +15,7 @@
   scroll-padding-right: var(--page-width-padding);
   scroll-behavior: smooth;
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     grid-auto-flow: row;
     padding-left: 0;
     padding-right: 0;
@@ -29,7 +28,7 @@
   scroll-snap-align: center;
   overflow: clip;
 
-  @media (--medium-up) {
+  @media only screen and (min-width: 769px) {
     width: 100%;
   }
 }

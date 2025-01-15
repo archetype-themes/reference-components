@@ -1,5 +1,4 @@
 @import '../../styles/vendor/normalize.css';
-@import '../../styles/layout/breakpoints.css';
 @import '../../styles/layout/page-width.css';
 @import '../../styles/modules/table.css';
 
@@ -9,7 +8,7 @@
   font-size: 0.875rem;
   padding-block-end: var(--size-16);
 
-  @media (--large-up) {
+  @media only screen and (min-width: 1024px) {
     gap: var(--size-10);
     grid-template-columns: 62.5% 1fr;
     align-items: start;
