@@ -9,6 +9,8 @@
   {% render 'block-cart-checkout-button', block: block %}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'block-cart-checkout-button.component.css' %}
+
 {% liquid
   assign taxes_included = taxes_included | default: cart.taxes_included, allow_false: true
 %}

@@ -9,6 +9,8 @@
   {% render 'block-cart-note', block: block %}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'block-cart-note.component.css' %}
+
 {% liquid
   assign note = note | default: cart.note
   assign hydration = hydration | default: 'on:visible'

@@ -1,5 +1,3 @@
-@import '../../styles/helpers/typography.css';
-
 .block-title__heading {
   &.h2 {
     margin-bottom: var(--size-2);

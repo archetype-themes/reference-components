@@ -11,6 +11,8 @@
   {%- endfor -%}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'line-item-quantity.component.css' %}
+
 {% liquid
   assign hydration = hydration | default: 'on:visible'
 %}

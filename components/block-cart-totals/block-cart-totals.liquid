@@ -5,6 +5,8 @@
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'block-cart-totals.component.css' %}
+
 {% liquid
   assign hydration = hydration | default: 'on:visible'
 %}

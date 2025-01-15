@@ -1,7 +1,3 @@
-@import '../../styles/vendor/normalize.css';
-@import '../../styles/layout/page-width.css';
-@import '../../styles/modules/table.css';
-
 .main-cart {
   display: grid;
   gap: var(--size-8);

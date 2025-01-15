@@ -1,6 +1,3 @@
-@import '../../styles/vendor/normalize.css';
-@import '../../styles/layout/page-width.css';
-
 .main-product {
   display: grid;
   width: 100%;

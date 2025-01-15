@@ -1,6 +1,3 @@
-@import '../../styles/vendor/normalize.css';
-@import '../../styles/base.css';
-
 .product-media-gallery {
   display: grid;
   grid-auto-flow: column;
