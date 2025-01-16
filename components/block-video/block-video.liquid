@@ -15,7 +15,7 @@
   {% render 'block-video', block: block, autoplay: true %}
 {%- endcomment -%}
 
-{% render 'stylesheet', name: 'block-video.component.css' %}
+{% render 'stylesheet', name: 'component.block-video.css' %}
 
 {% liquid
   assign video = video | default: block.settings.video
@@ -86,7 +86,7 @@
   {% if video != blank or external_video != blank %}
     <template data-island>
       <script type="module">
-        import 'block-video.component'
+        import 'component.block-video'
       </script>
     </template>
   {% endif %}

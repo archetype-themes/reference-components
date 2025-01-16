@@ -8,7 +8,7 @@
   {% render 'icon', name: 'bag' %}
 {%- endcomment -%}
 
-{% render 'stylesheet', name: 'cart-icon.component.css' %}
+{% render 'stylesheet', name: 'component.cart-icon.css' %}
 
 {%- liquid
   if section.settings.cart_icon != blank
@@ -37,7 +37,7 @@
 
   <template data-island>
     <script type="module">
-      import 'cart-icon.component'
+      import 'component.cart-icon'
     </script>
   </template>
 </is-land>

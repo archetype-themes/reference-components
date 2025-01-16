@@ -9,7 +9,7 @@
   {% render 'block-cart-note', block: block %}
 {%- endcomment -%}
 
-{% render 'stylesheet', name: 'block-cart-note.component.css' %}
+{% render 'stylesheet', name: 'component.block-cart-note.css' %}
 
 {% liquid
   assign note = note | default: cart.note
@@ -27,7 +27,7 @@
 
   <template data-island>
     <script type="module">
-      import 'block-cart-note.component'
+      import 'component.block-cart-note'
     </script>
   </template>
 </is-land>

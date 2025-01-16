@@ -12,7 +12,7 @@
   {% render 'block-model', block: block %}
 {%- endcomment -%}
 
-{% render 'stylesheet', name: 'block-model.component.css' %}
+{% render 'stylesheet', name: 'component.block-model.css' %}
 
 {% liquid
   assign product = block.settings.product | default: product
@@ -52,7 +52,7 @@
 
   <template data-island>
     <script type="module">
-      import 'block-model.component'
+      import 'component.block-model'
     </script>
   </template>
 </is-land>

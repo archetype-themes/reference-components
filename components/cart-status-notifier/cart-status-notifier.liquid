@@ -8,7 +8,7 @@
   {% render 'cart-status-notifier' %}
 {%- endcomment -%}
 
-{% render 'stylesheet', name: 'cart-status-notifier.component.css' %}
+{% render 'stylesheet', name: 'component.cart-status-notifier.css' %}
 
 {%- liquid
   assign hydration = hydration | default: 'on:visible'
@@ -22,7 +22,7 @@
 
   <template data-island>
     <script type="module">
-      import 'cart-status-notifier.component'
+      import 'component.cart-status-notifier'
     </script>
   </template>
 </is-land>

@@ -12,7 +12,7 @@
   {% render 'block-price' block: block %}
 {%- endcomment -%}
 
-{% render 'stylesheet', name: 'block-price.component.css' %}
+{% render 'stylesheet', name: 'component.block-price.css' %}
 
 {%- liquid
   assign use_variant = use_variant | default: true
@@ -109,5 +109,5 @@
 </block-price>
 
 <script type="module">
-  import 'block-price.component'
+  import 'component.block-price'
 </script>
