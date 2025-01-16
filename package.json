@@ -1,6 +1,6 @@
 {
-  "name": "reference-components",
-  "version": "1.0.0",
+  "name": "@archetype-themes/reference-components",
+  "version": "2.0.0",
   "description": "A sample collection of Shopify theme components built by Archetype Themes",
   "main": "playwright.setup.js",
   "scripts": {
