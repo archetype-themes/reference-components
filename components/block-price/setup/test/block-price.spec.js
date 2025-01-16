@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { EVENTS } from '@archetype-themes/utils/pubsub'
+import { EVENTS } from 'pubsub'
 
 test('block-price', async ({ page }) => {
   // Given
