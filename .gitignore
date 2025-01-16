@@ -1,6 +1,7 @@
 build
 node_modules
 .explorer
+.dev
 .locales
 test-results
 .env
