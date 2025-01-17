@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from 'pubsub'
+import { EVENTS, subscribe } from 'util.pubsub'
 
 class VariantSku extends HTMLElement {
   connectedCallback() {

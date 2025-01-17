@@ -1,4 +1,4 @@
-import { EVENTS, publish, subscribe } from 'pubsub'
+import { EVENTS, publish, subscribe } from 'util.pubsub'
 
 export class LineItemQuantity extends HTMLElement {
   connectedCallback() {

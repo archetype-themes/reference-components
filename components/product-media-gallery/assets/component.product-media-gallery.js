@@ -1,4 +1,4 @@
-import { EVENTS, subscribe } from 'pubsub'
+import { EVENTS, subscribe } from 'util.pubsub'
 
 export class ProductMediaGallery extends HTMLElement {
   connectedCallback() {

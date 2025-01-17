@@ -1,4 +1,4 @@
-import { EVENTS, publish } from 'pubsub'
+import { EVENTS, publish } from 'util.pubsub'
 
 class BlockVariantPicker extends HTMLElement {
   connectedCallback() {

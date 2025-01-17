@@ -1,5 +1,5 @@
-import BaseMedia from 'base-media'
-import { loadProduct } from 'product-loader'
+import BaseMedia from 'element.base-media'
+import { loadProduct } from 'util.product-loader'
 
 export class ModelMedia extends BaseMedia {
   getPlayerTarget() {

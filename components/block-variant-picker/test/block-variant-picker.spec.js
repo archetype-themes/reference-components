@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { EVENTS } from 'pubsub'
+import { EVENTS } from 'util.pubsub'
 
 test('block-variant-picker', async ({ page }) => {
   // Given

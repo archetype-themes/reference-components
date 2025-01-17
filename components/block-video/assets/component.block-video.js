@@ -1,5 +1,5 @@
-import BaseMedia from 'base-media'
-import loadScript from 'script-loader'
+import BaseMedia from 'element.base-media'
+import loadScript from 'util.script-loader'
 
 const onYouTubePromise = new Promise((resolve) => {
   window.onYouTubeIframeAPIReady = () => resolve()
