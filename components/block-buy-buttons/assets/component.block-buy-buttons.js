@@ -1,4 +1,4 @@
-import { EVENTS, publish, subscribe } from 'util.util.pubsub'
+import { EVENTS, publish, subscribe } from 'util.pubsub'
 
 class BlockBuyButtons extends HTMLElement {
   connectedCallback() {
