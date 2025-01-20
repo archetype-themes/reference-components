@@ -11,6 +11,8 @@
   {%- endfor -%}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'component.line-item-quantity.css' %}
+
 {% liquid
   assign hydration = hydration | default: 'on:visible'
 %}
@@ -25,7 +27,7 @@
 
   <template data-island>
     <script type="module">
-      import 'components/line-item-quantity'
+      import 'component.line-item-quantity'
     </script>
   </template>
 </is-land>

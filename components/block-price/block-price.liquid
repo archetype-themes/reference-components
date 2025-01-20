@@ -12,6 +12,8 @@
   {% render 'block-price' block: block %}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'component.block-price.css' %}
+
 {%- liquid
   assign use_variant = use_variant | default: true
   assign target = product
@@ -107,5 +109,5 @@
 </block-price>
 
 <script type="module">
-  import 'components/block-price'
+  import 'component.block-price'
 </script>

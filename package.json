@@ -1,6 +1,6 @@
 {
-  "name": "reference-components",
-  "version": "1.0.0",
+  "name": "@archetype-themes/reference-components",
+  "version": "2.0.0",
   "description": "A sample collection of Shopify theme components built by Archetype Themes",
   "main": "playwright.setup.js",
   "scripts": {
@@ -24,5 +24,8 @@
     "@shopify/prettier-plugin-liquid": "^1.4.4",
     "dotenv": "^16.4.5",
     "prettier": "^3.2.5"
+  },
+  "dependencies": {
+    "glob": "^11.0.1"
   }
 }

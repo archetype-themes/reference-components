@@ -25,6 +25,8 @@
   %}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'component.section-main-cart.css' %}
+
 {%- liquid
   assign color_scheme = color_scheme | default: section.settings.color_scheme | default: 'scheme-1'
 -%}

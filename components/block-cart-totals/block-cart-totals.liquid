@@ -5,6 +5,8 @@
   - hydration {'on:visible'|'on:idle'|'on:interaction'|'on:media'} - Hydration strategy
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'component.block-cart-totals.css' %}
+
 {% liquid
   assign hydration = hydration | default: 'on:visible'
 %}
@@ -19,7 +21,7 @@
 
     <template data-island>
       <script type="module">
-        import 'components/block-cart-totals'
+        import 'component.block-cart-totals'
       </script>
     </template>
   </is-land>

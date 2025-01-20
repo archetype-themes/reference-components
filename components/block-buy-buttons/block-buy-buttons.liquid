@@ -9,6 +9,8 @@
   {% render 'block-buy-buttons', block: block %}
 {% endcomment %}
 
+{% render 'stylesheet', name: 'component.block-buy-buttons.css' %}
+
 {%- liquid
   assign form_id = 'product-form-' | append: section.id
 
@@ -100,5 +102,5 @@
 </block-buy-buttons>
 
 <script type="module">
-  import 'components/block-buy-buttons'
+  import 'component.block-buy-buttons'
 </script>

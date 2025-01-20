@@ -9,6 +9,8 @@
   {% render 'block-cart-note', block: block %}
 {%- endcomment -%}
 
+{% render 'stylesheet', name: 'component.block-cart-note.css' %}
+
 {% liquid
   assign note = note | default: cart.note
   assign hydration = hydration | default: 'on:visible'
@@ -25,7 +27,7 @@
 
   <template data-island>
     <script type="module">
-      import 'components/block-cart-note'
+      import 'component.block-cart-note'
     </script>
   </template>
 </is-land>
