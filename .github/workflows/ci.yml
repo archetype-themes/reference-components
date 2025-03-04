@@ -26,7 +26,7 @@ jobs:
       - name: Install Shopify CLI
         run: npm i -g @shopify/cli
       - name: Install Component Plugin
-        run: shopify plugins install plugin-theme-component
+        run: shopify plugins install plugin-devkit
       - name: Build Components
         run: echo -e '\n' | shopify theme component dev --no-watch
       - name: Deploy
