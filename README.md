@@ -31,7 +31,7 @@ View the components in the [Component explorer](https://archetype-components.mys
 Before you can work with theme components, you'll need to ensure you have the following tooling installed on your local development machine:
 
 - [Shopify CLI](https://shopify.dev/docs/themes/tools/cli/install)
-- [Shopify CLI Theme Component plugin](https://github.com/archetype-themes/plugin-devkit)
+- [Devkit CLI plugin](https://github.com/archetype-themes/plugin-devkit)
 
 Once these are installed, clone this `reference-components` repository to your local development machine.
 
@@ -43,7 +43,7 @@ You can find more detailed information in the [reference theme's README](https:/
 
 ## Usage guidelines
 
-Theme components are created, developed, and installed using `shopify theme component`. You can find more detailed information about this command and each of its arguments in the [Shopify CLI Theme Component README](https://github.com/archetype-themes/plugin-devkit#readme).
+Theme components are created, developed, and installed using `shopify theme component`. You can find more detailed information about this command and each of its arguments in the [Devkit CLI plugin README](https://github.com/archetype-themes/plugin-devkit#readme).
 
 All theme components are contained within the `components` directory located at the root directory of this repository.
 
